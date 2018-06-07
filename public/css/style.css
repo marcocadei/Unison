@@ -1,0 +1,57 @@
+.generalFont {
+    font-family: Montserrat, "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.boldText {
+    font-weight: 600;
+}
+
+.buttonText {
+    white-space: normal !important;
+    word-wrap: break-word;
+    font-size: 150%;
+}
+
+a {
+    outline: none;
+}
+
+a.outlined {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.bgLogin {
+    background-size: cover;
+    background: url("../images/bgLogin.jpeg") center;
+}
+
+.burgerFocus:focus, .burgerFocus.focus {
+    outline: 0;
+    border-color: rgba(89, 49, 150, 0.5);
+}
+
+.loginImage {
+    opacity: 0.75;
+    border-radius: 3%;
+    border: thick solid rgb(156, 166, 90);
+}
+
+.carouselElement {
+    height: 100vh;
+    /*
+    1vh = 1% della larghezza della viewport
+    100vh = Tutta la larghezza della viewport
+     */
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.imageCover {
+    object-fit: cover;
+}
