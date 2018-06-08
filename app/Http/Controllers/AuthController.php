@@ -17,6 +17,14 @@ class AuthController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *          Ridirige l'utente alla pagina di login
+     */
+    public function create(){
+        return view('login');
+    }
+
+    /**
      * Controlla che le credenziali fornite siano quelle di un utente esistente
      * @return \Illuminate\Http\JsonResponse Il risultato, sottoforma di json, del risultato della
      *         verifica dei dati dell'utente.<br>
@@ -47,14 +55,6 @@ class AuthController extends Controller
             ->orWhere('email', '=', request('email'))->exists();
 
         return response()->json(['result' => !$result]);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *          Ridirige l'utente alla pagina di login
-     */
-    public function create(){
-        return view('login');
     }
 
     /**
