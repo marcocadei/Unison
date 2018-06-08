@@ -64,7 +64,8 @@ class AuthController extends Controller
      */
     public function login(){
         // Devo controllare le credenziali dell'utente
-        $user = User::where('username', '=', request('usernameSI'))->first();
+        $user = User::where('username', '=', request('usernameSI'))
+                ->orWhere('email', '=', request('usernameSI'))->first();
 
         // il secondo parametro viene usato per ricordarsi dell'utente fin quando esso non slogga manualmente
         auth()->login($user, true);
