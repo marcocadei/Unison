@@ -68,7 +68,7 @@ class AuthController extends Controller
                 ->orWhere('email', '=', request('usernameSI'))->first();
 
         // il secondo parametro viene usato per ricordarsi dell'utente fin quando esso non slogga manualmente
-        auth()->login($user, true);
+        auth()->login($user, false);
 
         return redirect()->home();
     }

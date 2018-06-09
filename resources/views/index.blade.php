@@ -9,7 +9,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="/images/homeDrums.jpg" alt="Registra nuovo account">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeDrums.jpg')}}" alt="Registra nuovo account">
                 <div class="carousel-caption d-block">
                     <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('login') }}">Crea nuovo account</a>
                     <h3 class="font-weight-bold">Personalizza la tua esperienza su Unison.</h3>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="carousel-item carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeBand.jpg" alt="Vai alla top 50">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeBand.jpg')}}" alt="Vai alla top 50">
                 <div class="carousel-caption d-block">
                     <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('home') }}">Vai alla top 50</a>
                     <h3 class="font-weight-bold">Rimani sempre aggiornato sulle ultime novità.</h3>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="carousel-item carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeMicrophone.jpg" alt="Carica nuova traccia">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeMicrophone.jpg')}}" alt="Carica nuova traccia">
                 <div class="carousel-caption d-md-block">
                     <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('home') }}">Carica nuova traccia</a>
                     <h3 class="font-weight-bold">Condividi la tua musica con il mondo intero.</h3>

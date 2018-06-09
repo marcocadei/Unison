@@ -12,12 +12,12 @@
 
         <!-- Fogli di stile -->
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="./css/bootstrap.css"> <!-- Modificato con i colori del tema Pulse -->
+        <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}"> <!-- Modificato con i colori del tema Pulse -->
         <!-- FontAwesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Nostri CSS -->
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 
         <!-- Script (1) -->
         @yield('script_header')

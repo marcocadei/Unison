@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+
 Route::get('/login', 'AuthController@create')->name('login');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');

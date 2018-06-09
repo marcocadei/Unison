@@ -14,7 +14,7 @@
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
             <div class="col-sm-9 order-last col-md-6 order-md-first text-center">
-                <img src="./images/tape.png" alt="Non perdere altro tempo: iscriviti subito!" class="loginImage img-fluid mt-5 mt-md-0">
+                <img src="{{asset('images/tape.png')}}" alt="Non perdere altro tempo: iscriviti subito!" class="loginImage img-fluid mt-5 mt-md-0">
             </div>
             <div class="col-sm-12 col-md-6">
                 <ul class="nav nav-tabs" id="tab" role="tablist">
@@ -96,6 +96,6 @@
 
 @section('script_footer')
     <!-- Altri script nostri -->
-    <script type="text/javascript" src="./js/signInCheck.js"></script>
-    <script type="text/javascript" src="./js/signUpCheck.js"></script>
+    <script type="text/javascript" src="{{asset('js/signInCheck.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/signUpCheck.js')}}"></script>
 @endsection
