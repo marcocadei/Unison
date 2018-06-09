@@ -18,7 +18,7 @@
             <div class="carousel-item active carouselElement">
                 <img class="h-100 w-100 d-block imageCover" src="/images/homeDrums.jpg" alt="Registra nuovo account">
                 <div class="carousel-caption d-block">
-                    <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(SIGNUP_PAGE)">Registra nuovo account</button>
+                    <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(SIGNUP_PAGE)">Crea nuovo account</button>
                     <h3 class="font-weight-bold">Personalizza la tua esperienza su Unison.</h3>
                     <p>Segui i tuoi artisti preferiti e ascolta per primo le loro nuove produzioni.</p>
                 </div>
