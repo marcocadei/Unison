@@ -1,12 +1,5 @@
 @extends('layouts.layout')
 
-@section('script_header')
-    <!-- Costanti -->
-    <script type="text/javascript" src="./js/constants.js"></script>
-    <!-- Utilità generale -->
-    <script type="text/javascript" src="./js/general.js"></script>
-@endsection
-
 @section('content')
     <div id="homepageSlideshow" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
