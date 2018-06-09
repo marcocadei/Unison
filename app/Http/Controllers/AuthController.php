@@ -17,6 +17,14 @@ class AuthController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *          Ridirige l'utente alla pagina di login
+     */
+    public function create(){
+        return view('login');
+    }
+
+    /**
      * Controlla che le credenziali fornite siano quelle di un utente esistente
      * @return \Illuminate\Http\JsonResponse Il risultato, sottoforma di json, del risultato della
      *         verifica dei dati dell'utente.<br>
@@ -50,21 +58,14 @@ class AuthController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *          Ridirige l'utente alla pagina di login
-     */
-    public function create(){
-        return view('login');
-    }
-
-    /**
      * Effettua il login dell'utente
      * @return \Illuminate\Http\RedirectResponse
      *          Ridirige l'utente alla home page
      */
     public function login(){
         // Devo controllare le credenziali dell'utente
-        $user = User::where('username', '=', request('usernameSI'))->first();
+        $user = User::where('username', '=', request('usernameSI'))
+                ->orWhere('email', '=', request('usernameSI'))->first();
 
         // il secondo parametro viene usato per ricordarsi dell'utente fin quando esso non slogga manualmente
         auth()->login($user, true);

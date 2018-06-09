@@ -2,7 +2,7 @@
 
 @section('script_header')
     <!-- Costanti -->
-    <script type="text/javascript" src="js/constants.js"></script>
+    <script type="text/javascript" src="./js/constants.js"></script>
     <!-- Utilità generale -->
     <script type="text/javascript" src="./js/general.js"></script>
 @endsection
@@ -16,7 +16,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeDrums.jpg" alt="Registra nuovo account">
+                <img class="h-100 w-100 d-block imageCover" src="/images/homeDrums.jpg" alt="Registra nuovo account">
                 <div class="carousel-caption d-block">
                     <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(SIGNUP_PAGE)">Registra nuovo account</button>
                     <h3 class="font-weight-bold">Personalizza la tua esperienza su Unison.</h3>

@@ -51,8 +51,8 @@
             <div class="input-group-append my-0">
                 <input class="my-0 form-control mr-2 flex-fill" type="search" placeholder="Cerca..." aria-label="Cerca">
                 <span class="input-group-append">
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
-                        </span>
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
+                </span>
             </div>
         </form>
 
