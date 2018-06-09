@@ -26,7 +26,10 @@
 
         <!-- Per altri script vedi in coda al body -->
 
-        <title>Progetto Programmazione web</title>
+        <title>
+            @yield('title')
+        </title>
+
     </head>
     <body class="generalFont bg-light">
         @include('layouts.navbar')

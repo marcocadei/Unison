@@ -1,4 +1,9 @@
 @extends('layouts.layout')
+
+@section('title')
+    Entra in Unison
+@endsection
+
 @section('content')
     <!--<h1 class="display-3 text-center ">Pagina di login</h1>-->
     <div class="jumbotron jumbotron-fluid text-center bgLogin mt-5">
@@ -19,10 +24,10 @@
             <div class="col-sm-12 col-md-6">
                 <ul class="nav nav-tabs" id="tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="signInTab" data-toggle="tab" href="#signInContent" role="tab" aria-controls="signInContent" aria-selected="true">Accedi</a>
+                        <a class="nav-link {{$activeLogin}}" id="signInTab" data-toggle="tab" href="#signInContent" role="tab" aria-controls="signInContent" aria-selected="true">Accedi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="signUpTab" data-toggle="tab" href="#signUpContent" role="tab" aria-controls="signUpContent" aria-selected="false">Iscriviti</a>
+                        <a class="nav-link {{$activeRegister}}" id="signUpTab" data-toggle="tab" href="#signUpContent" role="tab" aria-controls="signUpContent" aria-selected="false">Iscriviti</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="tabContent">

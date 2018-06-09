@@ -21,7 +21,18 @@ class AuthController extends Controller
      *          Ridirige l'utente alla pagina di login
      */
     public function create(){
-        return view('login');
+        // In base all' URL specificata imposto delle variabili che servono per attivare
+        // il tab corretto nella vista
+        // Se si specifica '/login' verrà aperto il tab per fare il login
+        // Se si specifica '/register' verrà aperto il tab per effettuare la registrazione
+        $path = request()->path();
+        $activeLogin = 'active';
+        $activeRegister = '';
+        if ($path == 'register'){
+            $activeLogin = '';
+            $activeRegister = 'active';
+        }
+        return view('login', compact(['activeLogin', 'activeRegister']));
     }
 
     /**

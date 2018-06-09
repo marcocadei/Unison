@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+    Unison
+@endsection
+
 @section('content')
     <div id="homepageSlideshow" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
