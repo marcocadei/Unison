@@ -17,9 +17,8 @@
             </div>
             <div class="col-sm-12 col-md-5 mx-auto mt-4 border-left pl-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold">Contatti</h5>
-                <p><i class="fa fa-home mr-3"></i> Chi siamo</p>
-                <p><i class="fa fa-envelope mr-3"></i> unison@altervista.org</p>
-                <p><i class="fa fa-phone mr-3"></i> Call center - 39 366 312 9512</p>
+                <p><i class="fa fa-home mr-3"></i>Chi siamo</p>
+                <p><i class="fa fa-envelope mr-3"></i><a class="text-white" href="mailto:unison@altervista.org">unison@altervista.org</a></p>
             </div>
         </div>
         <div class="row py-3 d-flex align-items-center text-light mt-3 pt-3 border-top">
