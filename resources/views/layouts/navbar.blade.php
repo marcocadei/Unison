@@ -1,11 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
-    <!-- Non fa impostare la grangezza -->
-    <!--<a class="navbarIcon mr-3" href="login.html">-->
-    <!--<img src="./images/diapasonBiancoDefinitivo.png" alt="Logo" class="img-fluid">-->
-    <!--</a>-->
-    <a class="navbar-brand" href="#">
-        <!-- FIXME Sistemare dimensione immagine logo -->
-        <img src="images/bigLogo.png" width="60" height="30" alt="Logo Unison">
+    <a class="navbar-brand" href="/">
+        <div class="navLogo container container-fluid h-100">
+            &nbsp;
+        </div>
     </a>
     <div class="d-flex flex-row order-0 order-md-3">
         <ul class="navbar-nav flex-row px-2 px-md-0">
