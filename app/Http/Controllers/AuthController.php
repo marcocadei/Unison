@@ -17,6 +17,25 @@ class AuthController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *          Ridirige l'utente alla pagina di login
+     */
+    public function create(){
+        // In base all' URL specificata imposto delle variabili che servono per attivare
+        // il tab corretto nella vista
+        // Se si specifica '/login' verrà aperto il tab per fare il login
+        // Se si specifica '/register' verrà aperto il tab per effettuare la registrazione
+        $path = request()->path();
+        $activeLogin = 'active';
+        $activeRegister = '';
+        if ($path == 'register'){
+            $activeLogin = '';
+            $activeRegister = 'active';
+        }
+        return view('login', compact(['activeLogin', 'activeRegister']));
+    }
+
+    /**
      * Controlla che le credenziali fornite siano quelle di un utente esistente
      * @return \Illuminate\Http\JsonResponse Il risultato, sottoforma di json, del risultato della
      *         verifica dei dati dell'utente.<br>
@@ -29,7 +48,7 @@ class AuthController extends Controller
                     $query->where('username', '=', request('username'))
                           ->orWhere('email', '=', request('username'));
                   })
-                  ->where('password', '=', md5(request('password')))->exists();
+                  ->where('password', '=', request('password'))->exists();
 
         return response()->json(['result' => $result]);
     }
@@ -50,24 +69,17 @@ class AuthController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *          Ridirige l'utente alla pagina di login
-     */
-    public function create(){
-        return view('login');
-    }
-
-    /**
      * Effettua il login dell'utente
      * @return \Illuminate\Http\RedirectResponse
      *          Ridirige l'utente alla home page
      */
     public function login(){
         // Devo controllare le credenziali dell'utente
-        $user = User::where('username', '=', request('usernameSI'))->first();
+        $user = User::where('username', '=', request('usernameSI'))
+                ->orWhere('email', '=', request('usernameSI'))->first();
 
         // il secondo parametro viene usato per ricordarsi dell'utente fin quando esso non slogga manualmente
-        auth()->login($user, true);
+        auth()->login($user, false);
 
         return redirect()->home();
     }

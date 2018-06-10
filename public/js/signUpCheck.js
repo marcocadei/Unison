@@ -49,6 +49,8 @@ function validateSignUp(event) {
     // Se anche i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali non siano già presenti nel db
     if(nextPage) {
+        // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
+        // l'utente da determinati tipi di attacco
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

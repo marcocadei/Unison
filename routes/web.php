@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+
 Route::get('/login', 'AuthController@create')->name('login');
+Route::get('/register', 'AuthController@create')->name('register');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 Route::post('/registration', 'AuthController@register');

@@ -55,3 +55,26 @@ a.outlined {
 .imageCover {
     object-fit: cover;
 }
+
+.navLogo {
+    background: url(/images/smallLogo.png) no-repeat scroll center center;
+    background-size: contain;
+}
+
+.smallText {
+    font-size: small;
+}
+
+.bigText {
+    font-size: x-large;
+}
+
+.bgImage {
+    margin: 0;
+    background: url("/images/smallLogo.png") repeat;
+    background-size: 25px;
+}
+
+.scrollingCol {
+    overflow-y: auto;
+}

@@ -1,10 +1,7 @@
 @extends('layouts.layout')
 
-@section('script_header')
-    <!-- Costanti -->
-    <script type="text/javascript" src="js/constants.js"></script>
-    <!-- Utilità generale -->
-    <script type="text/javascript" src="./js/general.js"></script>
+@section('title')
+    Unison
 @endsection
 
 @section('content')
@@ -16,25 +13,25 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeDrums.jpg" alt="Registra nuovo account">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeDrums.jpg')}}" alt="Registra nuovo account">
                 <div class="carousel-caption d-block">
-                    <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(SIGNUP_PAGE)">Registra nuovo account</button>
+                    <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('register') }}">Crea nuovo account</a>
                     <h3 class="font-weight-bold">Personalizza la tua esperienza su Unison.</h3>
                     <p>Segui i tuoi artisti preferiti e ascolta per primo le loro nuove produzioni.</p>
                 </div>
             </div>
             <div class="carousel-item carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeBand.jpg" alt="Vai alla top 50">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeBand.jpg')}}" alt="Vai alla top 50">
                 <div class="carousel-caption d-block">
-                    <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(CHARTS_PAGE)">Vai alla top 50</button>
+                    <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('home') }}">Vai alla top 50</a>
                     <h3 class="font-weight-bold">Rimani sempre aggiornato sulle ultime novità.</h3>
                     <p>Ascolta subito i brani più di tendenza in questo momento.</p>
                 </div>
             </div>
             <div class="carousel-item carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="./images/homeMicrophone.jpg" alt="Carica nuova traccia">
+                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeMicrophone.jpg')}}" alt="Carica nuova traccia">
                 <div class="carousel-caption d-md-block">
-                    <button type="button" class="btn btn-primary my-5 p-4 buttonText" onclick="sendToPage(UPLOAD_PAGE)">Carica nuova traccia</button>
+                    <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('home') }}">Carica nuova traccia</a>
                     <h3 class="font-weight-bold">Condividi la tua musica con il mondo intero.</h3>
                     <p>Unison è la piattaforma giusta per far sentire la tua voce.</p>
                 </div>
