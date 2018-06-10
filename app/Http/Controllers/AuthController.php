@@ -48,7 +48,7 @@ class AuthController extends Controller
                     $query->where('username', '=', request('username'))
                           ->orWhere('email', '=', request('username'));
                   })
-                  ->where('password', '=', md5(request('password')))->exists();
+                  ->where('password', '=', request('password'))->exists();
 
         return response()->json(['result' => $result]);
     }

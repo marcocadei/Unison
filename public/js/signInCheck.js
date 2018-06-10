@@ -44,7 +44,7 @@ function validateLogin(event){
         $.post("/checkUserCredentials",
             {
                 username: $("#usernameSI").val(),
-                password: $("#passwordSI").val()
+                password: md5($("#passwordSI").val())
             }, function (data, status, xhr) {
                 if (data.result)
                     $("#SI").submit();
