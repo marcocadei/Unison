@@ -3,12 +3,12 @@
   * che i diversi campi siano stati riempiti in modo appropriato
   */
 $(document).ready(function () {
-    $("#emailSU").focusout(function() {checkField(this)});
-    $("#usernameSU").focusout(function() {checkField(this)});
+    $("#emailSU").keyup(function() {checkEmail(this)});
+    //$("#usernameSU").focusout(function() {checkField(this)});
     $("#usernameSU").keyup(function() {checkUser(this)});
     //$("#passwordSU").focusout(function() {checkField(this)});
     $("#passwordSU").keyup(function() {checkPassword(this)});
-    $("#repeatpasswordSU").focusout(function() {checkField(this)});
+    //$("#repeatpasswordSU").focusout(function() {checkField(this)});
     $("#repeatPasswordSU").keyup(function() {checkRepeatPassword(this);});
 
     $("#buttonSU").click(validateSignUp);
@@ -22,12 +22,17 @@ $(document).ready(function () {
  *        compilati allora l'utente non deve poter procedere alla pagina successiva
  */
 function validateSignUp(event) {
-
     // Di default disabilito il submit della form, che effettuo solo dopo
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
 
     let nextPage = true;
+
+    // Non so se servirà in futuro
+    nextPage &= checkEmail($("#emailSU"));
+    nextPage &= checkUser($("#usernameSU"));
+    nextPage &= checkPassword($("#passwordSU"));
+    nextPage &= checkRepeatPassword($("#repeatPasswordSU"));
 
     // L'input hidden viene usato per mostrare il messaggio di errore nel caso in cui le credenziali inserite
     // siano già presenti nel db (quindi a seguito di una verifica lato server), perciò non deve essere considerato
@@ -35,16 +40,6 @@ function validateSignUp(event) {
     $("#SU input[type != hidden]").each(function () {
         nextPage &= checkField(this);
     });
-
-    // Non so se servirà in futuro
-    //nextPage &= checkEmail($("#emailSU"));
-
-
-    nextPage &= checkUser($("#usernameSU"));
-
-    nextPage &= checkPassword($("#passwordSU"));
-
-    nextPage &= checkRepeatPassword($("#repeatPasswordSU"));
 
     // Se anche i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali non siano già presenti nel db
@@ -80,10 +75,33 @@ function checkField(el) {
         return false;
     }
     else {
-        $(el).removeClass("is-invalid");
+        if (!$(el).hasClass("is-invalid"))
+            $(el).removeClass("is-invalid");
         return true;
     }
 }
+
+
+/**
+ *  Funzione che controlla che nel campo email della form sia stato inserito una email corretta.
+ *  In particolare viene controllato che l'input sia della forma:
+ *  testo@testo.testo
+ * @param email, il valore del campo email, che viene verificato
+ * @returns {boolean} true se il valore è valido, false altrimenti
+ */
+function checkEmail(email){
+    const emailRegex = /\S+@\S+\.\S+/;
+
+    if (!$(email).val().match(emailRegex) && $(email).val().length > 0) {
+        $(email).addClass("is-invalid");
+        return false;
+    }
+    else {
+        $(email).removeClass("is-invalid");
+        return true;
+    }
+}
+
 
 /**
  *  Funzione che controlla che nel campo username della form sia stato inserito un valore corretto,
