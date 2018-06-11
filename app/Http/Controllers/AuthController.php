@@ -26,11 +26,11 @@ class AuthController extends Controller
         // Se si specifica '/login' verrà aperto il tab per fare il login
         // Se si specifica '/register' verrà aperto il tab per effettuare la registrazione
         $path = request()->path();
-        $activeLogin = 'active';
+        $activeLogin = 'active show';
         $activeRegister = '';
         if ($path == 'register'){
+            $activeRegister = $activeLogin;
             $activeLogin = '';
-            $activeRegister = 'active';
         }
         return view('login', compact(['activeLogin', 'activeRegister']));
     }

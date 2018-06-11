@@ -24,14 +24,15 @@
             <div class="col-sm-12 col-md-6">
                 <ul class="nav nav-tabs" id="tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link {{$activeLogin}}" id="signInTab" data-toggle="tab" href="#signInContent" role="tab" aria-controls="signInContent" aria-selected="false">Accedi</a>
+                        <a class="nav-link {{$activeLogin}}" id="signInTab" data-toggle="tab" href="#signInContent" role="tab" aria-controls="signInContent" aria-selected="{{ json_encode($activeRegister == '') }}">Accedi</a>
+                        {{-- Nota: Viene utilizzato json_encode dal momento che print(variabileBooleana) stampa '0' oppure '1' mentre qui serve 'false' o 'true' --}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$activeRegister}}" id="signUpTab" data-toggle="tab" href="#signUpContent" role="tab" aria-controls="signUpContent" aria-selected="true">Iscriviti</a>
+                        <a class="nav-link {{$activeRegister}}" id="signUpTab" data-toggle="tab" href="#signUpContent" role="tab" aria-controls="signUpContent" aria-selected="{{ json_encode($activeLogin == '') }}">Iscriviti</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="tabContent">
-                    <div class="tab-pane fade show {{$activeLogin}} bg-white border-bottom border-left border-right" id="signInContent" role="tabpanel" aria-labelledby="signInTab">
+                    <div class="tab-pane fade {{$activeLogin}} bg-white border-bottom border-left border-right" id="signInContent" role="tabpanel" aria-labelledby="signInTab">
                         <form class="p-5" action="/login" method="post" id="SI">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSI">
@@ -55,7 +56,7 @@
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSI">Accedi</button>
                         </form>
                     </div>
-                    <div class="tab-pane fade show {{$activeRegister}} bg-white border-bottom border-left border-right" id="signUpContent" role="tabpanel" aria-labelledby="signUpTab">
+                    <div class="tab-pane fade {{$activeRegister}} bg-white border-bottom border-left border-right" id="signUpContent" role="tabpanel" aria-labelledby="signUpTab">
                         <form class="p-5" action="/registration" method="post" id="SU">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSU">
