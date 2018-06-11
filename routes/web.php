@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/login', 'AuthController@create')->name('login');
 Route::get('/register', 'AuthController@create')->name('register');
 Route::post('/login', 'AuthController@login');
-Route::get('/logout', 'AuthController@logout');
+Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::post('/registration', 'AuthController@register');
 
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
