@@ -4,6 +4,7 @@
   */
 $(document).ready(function () {
     $("#emailSU").keyup(function() {checkEmail(this)});
+    $("#emailSU").focusout(function() {checkEmail(this)});
     //$("#usernameSU").focusout(function() {checkField(this)});
     $("#usernameSU").keyup(function() {checkUser(this)});
     //$("#passwordSU").focusout(function() {checkField(this)});
@@ -111,9 +112,9 @@ function checkEmail(email){
  */
 function checkUser(user) {
 
-    const $userRegex = /^[a-zA-Z0-9]+$/;
+    const userRegex = /^[a-zA-Z0-9]+$/;
 
-    if(!$(user).val().match($userRegex) && $(user).val().length > 0) {
+    if(!$(user).val().match(userRegex) && $(user).val().length > 0) {
         $(user).addClass("is-invalid");
         return false;
     }
