@@ -24,7 +24,7 @@ a.outlined {
 
 .bgLogin {
     background-size: cover;
-    background: url("../images/bgLogin.jpeg") center;
+    background: url("/images/bgLogin.jpeg") center;
 }
 
 .burgerFocus:focus, .burgerFocus.focus {
@@ -57,7 +57,7 @@ a.outlined {
 }
 
 .navLogo {
-    background: url(/images/smallLogo.png) no-repeat scroll center center;
+    background: url("/images/smallLogo.png") no-repeat scroll center center;
     background-size: contain;
 }
 
