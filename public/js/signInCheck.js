@@ -3,8 +3,8 @@
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
-    $("#usernameSI").focusout(function() {checkField(this)});
-    $("#passwordSI").focusout(function() {checkField(this)});
+    $("#usernameSI").focusout(function() {checkFieldSI(this)});
+    $("#passwordSI").focusout(function() {checkFieldSI(this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
     // Perché in validateLogin di default disabilito il comportamento del submit e solo
     // se le credenziali sono corrette allora faccio il submit della form. Quindi se qui
@@ -28,7 +28,7 @@ function validateLogin(event){
     // siano errate (quindi a seguito di una verifica lato server), perciò non deve essere considerato in questi
     // controlli lato client
     $("#SI input[type != hidden]").each(function () {
-         nextPage &= checkField(this);
+         nextPage &= checkFieldSI(this);
     });
 
     // Se anche i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
@@ -60,7 +60,7 @@ function validateLogin(event){
  * @param el L'elemento che si vuole validare
  * @returns {boolean} true se l'elemento è stato correttamente validato, false altrimenti
  */
-function checkField(el) {
+function checkFieldSI(el) {
     if ($(el).val().length == 0) {
         $(el).addClass("is-invalid");
         return false;
