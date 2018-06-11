@@ -130,8 +130,8 @@ function checkUser(user) {
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
 function checkPassword(pwd) {
-
-   const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+                            //cifra   //minuscola //maiuscola //simbolo //almeno 8 dei caratteri che accetto
+    const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_])[\x21-\x7E]{8,}$/;
 
     if ($(pwd).val().length == 0) {
         $(pwd).addClass("is-invalid");
