@@ -43,14 +43,14 @@
                                 <label for="usernameSI">Username o email:</label>
                                 <input type="text" class="form-control" id="usernameSI" name="usernameSI" placeholder="Inserisci username o email...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username o un'e-mail valida.
+                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri).
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordSI">Password:</label>
                                 <input type="password" class="form-control" id="passwordSI" name="passwordSI" placeholder="Inserisci password...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica una password valida.
+                                    Per favore specifica una password valida (lunghezza massima consentita 64 caratteri).
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSI">Accedi</button>
@@ -67,21 +67,21 @@
                                 <label for="emailSU">Email:</label>
                                 <input type="email" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica un'e-mail valida.
+                                    Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri).
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="usernameSU">Username:</label>
                                 <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username valido: può contenere solamente lettere e/o numeri.
+                                    Per favore specifica uno username valido: può contenere solamente lettere e/o numeri (lunghezza massima consentita 64 caratteri).
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordSU">Password:</label>
                                 <input type="password" class="form-control" id="passwordSU" name="passwordSU" placeholder="Inserisci password...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola, un numero e un carattere speciale.
+                                    Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola, un numero e un carattere speciale (lunghezza massima consentita 64 caratteri).
                                 </div>
                             </div>
                             <div class="form-group">

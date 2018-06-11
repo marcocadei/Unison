@@ -3,13 +3,20 @@
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
-    $("#usernameSI").focusout(function() {checkFieldSI(this)});
-    $("#passwordSI").focusout(function() {checkFieldSI(this)});
+    $("#usernameSI").keyup(function() {checkFieldSI(this)});
+    $("#passwordSI").keyup(function() {checkFieldSI(this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
     // Perché in validateLogin di default disabilito il comportamento del submit e solo
     // se le credenziali sono corrette allora faccio il submit della form. Quindi se qui
     // aggiungessi un event handler per il submit entrerei in un loop
     $("#buttonSI").click(validateLogin);
+});
+
+$(document).ready(function () {
+    $("#SI").submit(function () {
+        $("#buttonSI").attr("disabled", true);
+        return true;
+    });
 });
 
 /**
@@ -31,7 +38,7 @@ function validateLogin(event){
          nextPage &= checkFieldSI(this);
     });
 
-    // Se anche i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
+    // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali corrispondano a quelle di un utente precedentemente registrato
     if(nextPage) {
         // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
@@ -62,6 +69,10 @@ function validateLogin(event){
  */
 function checkFieldSI(el) {
     if ($(el).val().length == 0) {
+        $(el).addClass("is-invalid");
+        return false;
+    }
+    else if($(el).val().length > maxLength){
         $(el).addClass("is-invalid");
         return false;
     }

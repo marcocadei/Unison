@@ -5,14 +5,18 @@
 $(document).ready(function () {
     $("#emailSU").keyup(function() {checkEmail(this)});
     $("#emailSU").focusout(function() {checkEmail(this)});
-    //$("#usernameSU").focusout(function() {checkField(this)});
     $("#usernameSU").keyup(function() {checkUser(this)});
-    //$("#passwordSU").focusout(function() {checkField(this)});
     $("#passwordSU").keyup(function() {checkPassword(this)});
-    //$("#repeatpasswordSU").focusout(function() {checkField(this)});
     $("#repeatPasswordSU").keyup(function() {checkRepeatPassword(this);});
 
     $("#buttonSU").click(validateSignUp);
+});
+
+$(document).ready(function () {
+    $("#SU").submit(function () {
+        $("#buttonSU").attr("disabled", true);
+        return true;
+    });
 });
 
 
@@ -29,20 +33,13 @@ function validateSignUp(event) {
 
     let nextPage = true;
 
-    // Non so se servirà in futuro
+    // Controllo lato client sui campi della form
     nextPage &= checkEmail($("#emailSU"));
     nextPage &= checkUser($("#usernameSU"));
     nextPage &= checkPassword($("#passwordSU"));
     nextPage &= checkRepeatPassword($("#repeatPasswordSU"));
 
-    // L'input hidden viene usato per mostrare il messaggio di errore nel caso in cui le credenziali inserite
-    // siano già presenti nel db (quindi a seguito di una verifica lato server), perciò non deve essere considerato
-    // in questi controlli lato client
-    $("#SU input[type != hidden]").each(function () {
-        nextPage &= checkField(this);
-    });
-
-    // Se anche i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
+    // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali non siano già presenti nel db
     if(nextPage) {
         // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
@@ -65,23 +62,8 @@ function validateSignUp(event) {
 
 }
 
-/**
- * Funzione che controlla che i campi della form non siano vuoti
- * @param el, il campo della form che si verifica
- * @returns {boolean} true se il campo non è vuoto, false altrimenti
- */
-function checkField(el) {
-    if ($(el).val().length == 0) {
-        $(el).addClass("is-invalid");
-        return false;
-    }
-    else {
-        if (!$(el).hasClass("is-invalid"))
-            $(el).removeClass("is-invalid");
-        return true;
-    }
-}
-
+// Lunghezza massima dei campi
+maxLength = 64;
 
 /**
  *  Funzione che controlla che nel campo email della form sia stato inserito una email corretta.
@@ -93,7 +75,15 @@ function checkField(el) {
 function checkEmail(email){
     const emailRegex = /\S+@\S+\.\S+/;
 
-    if (!$(email).val().match(emailRegex) && $(email).val().length > 0) {
+    if ($(email).val().length == 0) {
+        $(email).addClass("is-invalid");
+        return false;
+    }
+    else if($(email).val().length > maxLength){
+        $(email).addClass("is-invalid");
+        return false;
+    }
+    else if (!$(email).val().match(emailRegex) && $(email).val().length > 0) {
         $(email).addClass("is-invalid");
         return false;
     }
@@ -114,7 +104,15 @@ function checkUser(user) {
 
     const userRegex = /^[a-zA-Z0-9]+$/;
 
-    if(!$(user).val().match(userRegex) && $(user).val().length > 0) {
+    if ($(user).val().length == 0) {
+        $(user).addClass("is-invalid");
+        return false;
+    }
+    else if($(user).val().length > maxLength){
+        $(user).addClass("is-invalid");
+        return false;
+    }
+    else if(!$(user).val().match(userRegex) && $(user).val().length > 0) {
         $(user).addClass("is-invalid");
         return false;
     }
@@ -135,14 +133,22 @@ function checkPassword(pwd) {
 
    const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
 
-   if(!$(pwd).val().match(passwordRegex) && $(pwd).val().length > 0) {
+    if ($(pwd).val().length == 0) {
+        $(pwd).addClass("is-invalid");
+        return false;
+    }
+    else if($(pwd).val().length > maxLength){
+        $(pwd).addClass("is-invalid");
+        return false;
+    }
+    else if(!$(pwd).val().match(passwordRegex) && $(pwd).val().length > 0) {
       $(pwd).addClass("is-invalid");
       return false;
-   }
-   else {
+    }
+    else {
        $(pwd).removeClass("is-invalid");
        return true;
-   }
+    }
 }
 
 /**
@@ -151,7 +157,11 @@ function checkPassword(pwd) {
  * @returns {boolean}, true se il valore è valido, false altrimenti
  */
 function checkRepeatPassword(repwd) {
-    if($(repwd).val() != $("#passwordSU").val() && $(repwd).val().length > 0) {
+    if ($(repwd).val().length == 0) {
+        $(repwd).addClass("is-invalid");
+        return false;
+    }
+    else if($(repwd).val() != $("#passwordSU").val() && $(repwd).val().length > 0) {
         $(repwd).addClass("is-invalid");
         return false;
     }
