@@ -13,7 +13,14 @@
     font-size: 150%;
 }
 
-a {
+.buttonWithoutShadow:focus,
+.buttonWithoutShadow.focus,
+.buttonWithoutShadow:not(:disabled):not(.disabled):active:focus,
+.buttonWithoutShadow:not(:disabled):not(.disabled).active:focus {
+    box-shadow: none;
+}
+
+a, .noOutline {
     outline: none;
 }
 
@@ -77,4 +84,56 @@ a.outlined {
 
 .scrollingCol {
     overflow-y: auto;
+}
+
+.wordBreak {
+    word-wrap: break-word;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.over {
+    background: transparent;
+    z-index: 102; !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.under {
+    z-index: 101; !important;
+}
+
+/*
+Nota: Nelle definizioni successive, tutte le regole marcate con (X) devono riportare SEMPRE lo stesso valore in rem
+(per esempio 3.5rem).
+ */
+
+nav.navbarMinHeight {
+    min-height: 3.5rem !important; /* (X) */
+}
+
+main.mainMinHeight {
+    min-height: calc(95vh - 2 * 3.5rem); /* (X) */
+}
+
+.sideColumn {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 3.5rem; /* (X) */
+    height: calc(100vh - 2 * 3.5rem); /* (X) */
+    overflow-y: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: .875rem;
+}
+
+.sideColTogglersContainer {
+    top: 3.5rem; /* (X) */
+}
+
+#backBtnContainer {
+    bottom: 3.5rem; /* (X) */
 }
