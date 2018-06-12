@@ -91,7 +91,7 @@
                                     Per favore reinserisci la stessa password.
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSU">Registra nuovo account</button>
+                            <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSU">Registra account</button>
                         </form>
                     </div>
                 </div>
