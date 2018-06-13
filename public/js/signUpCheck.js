@@ -3,20 +3,21 @@
   * che i diversi campi siano stati riempiti in modo appropriato
   */
 $(document).ready(function () {
-    $("#emailSU").keyup(function() {checkEmail(this)});
-    $("#emailSU").focusout(function() {checkEmail(this)});
-    $("#usernameSU").keyup(function() {checkUser(this)});
-    $("#passwordSU").keyup(function() {checkPassword(this)});
-    $("#repeatPasswordSU").keyup(function() {checkRepeatPassword(this);});
+    $("#emailSU").keyup(function(event) {checkEmail(event, this)});
+    // Questo handler serve perché se mentre si digita l'email compaiono i suggerimenti del browser
+    // e si seleziona una voce con le frecce e poi si preme tab, su firefox l'evento keyup non si
+    // scatena, mentre su chrome va
+    $("#emailSU").focusout(function(event) {checkEmail(event, this)});
+    $("#usernameSU").keyup(function(event) {checkUser(event, this)});
+    $("#passwordSU").keyup(function(event) {checkPassword(event, this)});
+    $("#repeatPasswordSU").keyup(function(event) {checkRepeatPassword(event, this);});
 
     $("#buttonSU").click(validateSignUp);
-});
 
-$(document).ready(function () {
-    $("#SU").submit(function () {
-        $("#buttonSU").attr("disabled", true);
-        return true;
-    });
+    // $("#SU").submit(function () {
+    //     $("#buttonSU").attr("disabled", true);
+    //     return true;
+    // });
 });
 
 
@@ -34,14 +35,17 @@ function validateSignUp(event) {
     let nextPage = true;
 
     // Controllo lato client sui campi della form
-    nextPage &= checkEmail($("#emailSU"));
-    nextPage &= checkUser($("#usernameSU"));
-    nextPage &= checkPassword($("#passwordSU"));
-    nextPage &= checkRepeatPassword($("#repeatPasswordSU"));
+    nextPage &= checkEmail(event, $("#emailSU"));
+    nextPage &= checkUser(event, $("#usernameSU"));
+    nextPage &= checkPassword(event, $("#passwordSU"));
+    nextPage &= checkRepeatPassword(event, $("#repeatPasswordSU"));
+
 
     // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali non siano già presenti nel db
     if(nextPage) {
+        // Disabilito il bottone di submit per evitare che la form sia trasmessa più di una volta
+        $("#buttonSU").attr("disabled", true);
         // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
         // l'utente da determinati tipi di attacco
         $.ajaxSetup({
@@ -56,7 +60,11 @@ function validateSignUp(event) {
             }, function (data, status, xhr) {
                 if (data.result)
                     $("#SU").submit();
-                else $("#formSU").addClass("is-invalid");
+                else {
+                    $("#formSU").addClass("is-invalid");
+                    // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
+                    $("#buttonSU").attr("disabled", false);
+                }
             }, "json");
     }
 
@@ -65,6 +73,7 @@ function validateSignUp(event) {
 // Lunghezza massima dei campi
 maxLength = 64;
 
+
 /**
  *  Funzione che controlla che nel campo email della form sia stato inserito una email corretta.
  *  In particolare viene controllato che l'input sia della forma:
@@ -72,18 +81,11 @@ maxLength = 64;
  * @param email, il valore del campo email, che viene verificato
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
-function checkEmail(email){
+function checkEmail(event, email){
     const emailRegex = /\S+@\S+\.\S+/;
 
-    if ($(email).val().length == 0) {
-        $(email).addClass("is-invalid");
-        return false;
-    }
-    else if($(email).val().length > maxLength){
-        $(email).addClass("is-invalid");
-        return false;
-    }
-    else if (!$(email).val().match(emailRegex) && $(email).val().length > 0) {
+    if (($(email).val().length == 0 || $(email).val().length > maxLength || !$(email).val().match(emailRegex))
+        && ((event!= null && event.keyCode != 9) || event == null)) {
         $(email).addClass("is-invalid");
         return false;
     }
@@ -100,19 +102,12 @@ function checkEmail(email){
  * @param user, il valore del campo user, che viene verificato
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
-function checkUser(user) {
+function checkUser(event, user) {
 
     const userRegex = /^[a-zA-Z0-9]+$/;
 
-    if ($(user).val().length == 0) {
-        $(user).addClass("is-invalid");
-        return false;
-    }
-    else if($(user).val().length > maxLength){
-        $(user).addClass("is-invalid");
-        return false;
-    }
-    else if(!$(user).val().match(userRegex) && $(user).val().length > 0) {
+    if (($(user).val().length == 0 || $(user).val().length > maxLength || !$(user).val().match(userRegex))
+        && ((event!= null && event.keyCode != 9) || event == null)) {
         $(user).addClass("is-invalid");
         return false;
     }
@@ -129,25 +124,18 @@ function checkUser(user) {
  * @param pwd, il valore del campo password, che viene verificato
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
-function checkPassword(pwd) {
+function checkPassword(event, pwd) {
                             //cifra   //minuscola //maiuscola //simbolo //almeno 8 dei caratteri che accetto
     const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_])[\x21-\x7E]{8,}$/;
 
-    if ($(pwd).val().length == 0) {
+    if (($(pwd).val().length == 0 || $(pwd).val().length > maxLength || !$(pwd).val().match(passwordRegex))
+        && ((event!= null && event.keyCode != 9) || event == null)) {
         $(pwd).addClass("is-invalid");
         return false;
-    }
-    else if($(pwd).val().length > maxLength){
-        $(pwd).addClass("is-invalid");
-        return false;
-    }
-    else if(!$(pwd).val().match(passwordRegex) && $(pwd).val().length > 0) {
-      $(pwd).addClass("is-invalid");
-      return false;
     }
     else {
-       $(pwd).removeClass("is-invalid");
-       return true;
+        $(pwd).removeClass("is-invalid");
+        return true;
     }
 }
 
@@ -156,12 +144,9 @@ function checkPassword(pwd) {
  * @param repwd, il valore del campo repeatPassword, che viene verificato
  * @returns {boolean}, true se il valore è valido, false altrimenti
  */
-function checkRepeatPassword(repwd) {
-    if ($(repwd).val().length == 0) {
-        $(repwd).addClass("is-invalid");
-        return false;
-    }
-    else if($(repwd).val() != $("#passwordSU").val() && $(repwd).val().length > 0) {
+function checkRepeatPassword(event, repwd) {
+    if (($(repwd).val().length == 0 || $(repwd).val().length > maxLength || $(repwd).val() != $("#passwordSU").val())
+        && ((event!= null && event.keyCode != 9) || event == null)) {
         $(repwd).addClass("is-invalid");
         return false;
     }
