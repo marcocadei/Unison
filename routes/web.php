@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
+Route::get('/', 'BaseController@index')->name('index');
 
 Route::get('/login', 'AuthController@create')->name('login');
 Route::get('/register', 'AuthController@create')->name('register');
