@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top navbarMinHeight">
     <a class="navbar-brand" href="/">
         <div class="navLogo container container-fluid h-100">
             &nbsp;
@@ -15,7 +15,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-2" href="{{ route('logout') }}">
-                        Esci
+                        <span class="d-none d-sm-inline">Esci</span>
                         <span class="fas fa-sign-out-alt"></span>
                     </a>
                 </li>
