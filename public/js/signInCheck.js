@@ -73,6 +73,11 @@ function validateLogin(event){
  * @returns {boolean} true se l'elemento è stato correttamente validato, false altrimenti
  */
 function checkFieldSI(event, el) {
+    // Questo controllo guarda se:
+    // il campo considerato ha lunghezza zero o superiore alla massima E
+    // ->se si è nel campo e il tasto premuto non è tab(allora serve l'errore)
+    // ->se si è acceduto al campo col tasto tab e la sua lunghezza è != 0 (allora serve l'errore)
+    // ->se il controllo è stato attivato dal bottone 'Accedi' (in tal caso serve l'errore)
     if (($(el).val().length == 0 || $(el).val().length > maxLength)
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(el).val().length != 0)  || event == null)) {
         $(el).addClass("is-invalid");
