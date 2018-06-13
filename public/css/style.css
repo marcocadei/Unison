@@ -132,6 +132,7 @@ main.mainMinHeight {
 
 .sideColTogglersContainer {
     top: 3.5rem; /* (X) */
+    z-index: 999 !important;
 }
 
 #backBtnContainer {
