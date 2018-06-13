@@ -73,7 +73,8 @@ function validateLogin(event){
  * @returns {boolean} true se l'elemento è stato correttamente validato, false altrimenti
  */
 function checkFieldSI(event, el) {
-    if (($(el).val().length == 0 || $(el).val().length > maxLength) && ((event!= null && event.keyCode != 9) || event == null)) {
+    if (($(el).val().length == 0 || $(el).val().length > maxLength)
+        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(el).val().length != 0)  || event == null)) {
         $(el).addClass("is-invalid");
         return false;
     }

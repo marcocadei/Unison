@@ -85,7 +85,7 @@ function checkEmail(event, email){
     const emailRegex = /\S+@\S+\.\S+/;
 
     if (($(email).val().length == 0 || $(email).val().length > maxLength || !$(email).val().match(emailRegex))
-        && ((event!= null && event.keyCode != 9) || event == null)) {
+        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(email).val().length != 0)  || event == null)) {
         $(email).addClass("is-invalid");
         return false;
     }
@@ -107,7 +107,7 @@ function checkUser(event, user) {
     const userRegex = /^[a-zA-Z0-9]+$/;
 
     if (($(user).val().length == 0 || $(user).val().length > maxLength || !$(user).val().match(userRegex))
-        && ((event!= null && event.keyCode != 9) || event == null)) {
+        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(user).val().length != 0)  || event == null)) {
         $(user).addClass("is-invalid");
         return false;
     }
@@ -129,7 +129,7 @@ function checkPassword(event, pwd) {
     const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_])[\x21-\x7E]{8,}$/;
 
     if (($(pwd).val().length == 0 || $(pwd).val().length > maxLength || !$(pwd).val().match(passwordRegex))
-        && ((event!= null && event.keyCode != 9) || event == null)) {
+        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(pwd).val().length != 0) || event == null)) {
         $(pwd).addClass("is-invalid");
         return false;
     }
@@ -146,7 +146,7 @@ function checkPassword(event, pwd) {
  */
 function checkRepeatPassword(event, repwd) {
     if (($(repwd).val().length == 0 || $(repwd).val().length > maxLength || $(repwd).val() != $("#passwordSU").val())
-        && ((event!= null && event.keyCode != 9) || event == null)) {
+        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(repwd).val().length != 0)  || event == null)) {
         $(repwd).addClass("is-invalid");
         return false;
     }

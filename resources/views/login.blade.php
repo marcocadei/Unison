@@ -33,7 +33,7 @@
                 </ul>
                 <div class="tab-content" id="tabContent">
                     <div class="tab-pane fade {{$activeLogin}} bg-white border-bottom border-left border-right" id="signInContent" role="tabpanel" aria-labelledby="signInTab">
-                        <form class="p-5" action="/login" method="post" id="SI">
+                        <form class="p-5" action="{{route('login')}}" method="post" id="SI">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSI">
                             <div class="invalid-feedback">
