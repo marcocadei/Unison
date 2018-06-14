@@ -3,8 +3,8 @@
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
-    $("#usernameSI").keyup(function(event) {checkFieldSI(event, this)});
-    $("#passwordSI").keyup(function(event) {checkFieldSI(event, this)});
+    $("#usernameSI").keyup(function(event) {checkUser(event, this)});
+    $("#passwordSI").keyup(function(event) {checkPassword(event, this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
     // Perché in validateLogin di default disabilito il comportamento del submit e solo
     // se le credenziali sono corrette allora faccio il submit della form. Quindi se qui
@@ -33,9 +33,11 @@ function validateLogin(event){
     // L'input hidden viene usato per mostrare il messaggio di errore nel caso in cui le credenziali inserite
     // siano errate (quindi a seguito di una verifica lato server), perciò non deve essere considerato in questi
     // controlli lato client
-    $("#SI input[type != hidden]").each(function () {
-         nextPage &= checkFieldSI(null, this);
-    });
+    // $("#SI input[type != hidden]").each(function () {
+    //      nextPage &= checkFieldSI(null, this);
+    // });
+    nextPage &= checkUser(event, $("#usernameSI"));
+    nextPage &= checkPassword(event, $("#passwordSI"));
 
     // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali corrispondano a quelle di un utente precedentemente registrato
@@ -72,19 +74,19 @@ function validateLogin(event){
  * @param el L'elemento che si vuole validare
  * @returns {boolean} true se l'elemento è stato correttamente validato, false altrimenti
  */
-function checkFieldSI(event, el) {
-    // Questo controllo guarda se:
-    // il campo considerato ha lunghezza zero o superiore alla massima E
-    // ->se si è nel campo e il tasto premuto non è tab(allora serve l'errore)
-    // ->se si è acceduto al campo col tasto tab e la sua lunghezza è != 0 (allora serve l'errore)
-    // ->se il controllo è stato attivato dal bottone 'Accedi' (in tal caso serve l'errore)
-    if (($(el).val().length == 0 || $(el).val().length > maxLength)
-        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(el).val().length != 0)  || event == null)) {
-        $(el).addClass("is-invalid");
-        return false;
-    }
-    else {
-        $(el).removeClass("is-invalid");
-        return true;
-    }
-}
+// function checkFieldSI(event, el) {
+//     // Questo controllo guarda se:
+//     // il campo considerato ha lunghezza zero o superiore alla massima E
+//     // ->se si è nel campo e il tasto premuto non è tab(allora serve l'errore)
+//     // ->se si è acceduto al campo col tasto tab e la sua lunghezza è != 0 (allora serve l'errore)
+//     // ->se il controllo è stato attivato dal bottone 'Accedi' (in tal caso serve l'errore)
+//     if (($(el).val().length == 0 || $(el).val().length > maxLength)
+//         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(el).val().length != 0)  || event == null)) {
+//         $(el).addClass("is-invalid");
+//         return false;
+//     }
+//     else {
+//         $(el).removeClass("is-invalid");
+//         return true;
+//     }
+// }
