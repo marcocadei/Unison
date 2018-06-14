@@ -43,14 +43,14 @@
                                 <label for="usernameSI">Username o email:</label>
                                 <input type="text" class="form-control" id="usernameSI" name="usernameSI" placeholder="Inserisci username o email...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri).
+                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordSI">Password:</label>
                                 <input type="password" class="form-control" id="passwordSI" name="passwordSI" placeholder="Inserisci password...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica una password valida (lunghezza massima consentita 64 caratteri).
+                                    Per favore specifica una password valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSI">Accedi</button>
@@ -81,7 +81,8 @@
                                 <label for="passwordSU">Password:</label>
                                 <input type="password" class="form-control" id="passwordSU" name="passwordSU" placeholder="Inserisci password...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola, un numero e un carattere speciale (lunghezza massima consentita 64 caratteri).
+                                    Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
+                                    un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                                 </div>
                             </div>
                             <div class="form-group">
