@@ -223,10 +223,12 @@ $(document).ready(function() {
              */
             var activeIndex = Amplitude.getActiveIndex();
             /**
-             * Indice della traccia corrispondente alla barra cliccata.
+             * Indice della traccia corrispondente alla barra cliccata. Viene utilizzato substr(21) perchè ogni barra
+             * ha un id pari a "song-played-progress-[numero]" e quindi il valore numerico inizia al ventunesimo
+             * carattere.
              * @type {string}
              */
-            var clickedIndex = this.id.charAt(this.id.length - 1);
+            var clickedIndex = this.id.substr(21);
             /**
              * Indice della traccia di destinazione: corrisponde sempre ad activeIndex a meno che non sia stata cliccata
              * la barra nella navbar inferiore, in qual caso la destinazione è la traccia attuale.
@@ -258,7 +260,7 @@ $(document).ready(function() {
          */
         $('.amplitude-song-played-progress').on('click', function(e) {
             var activeIndex = Amplitude.getActiveIndex();
-            var clickedIndex = this.id.charAt(this.id.length - 1);
+            var clickedIndex = this.id.substr(21);
             var targetIndex = this.id === "amplitude-main-progress" ? activeIndex : clickedIndex;
 
             if(activeIndex != targetIndex) {
@@ -268,3 +270,13 @@ $(document).ready(function() {
         });
     }
 });
+
+function toggleCurrentHoursSpan() {
+    var data = Amplitude.getActiveSongMetadata();
+    if (data["duration"] >= 3600) {
+        $("#mainCurrentHours").removeClass("d-none");
+    }
+    else {
+        $("#mainCurrentHours").addClass("d-none");
+    }
+}

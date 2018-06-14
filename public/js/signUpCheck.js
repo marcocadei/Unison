@@ -32,6 +32,9 @@ function validateSignUp(event) {
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
 
+    // Rimuove il messaggio d'errore alla nuova pressione del tasto di submit.
+    $("#formSU").removeClass("is-invalid");
+
     let nextPage = true;
 
     // Controllo lato client sui campi della form
@@ -46,6 +49,9 @@ function validateSignUp(event) {
     if(nextPage) {
         // Disabilito il bottone di submit per evitare che la form sia trasmessa più di una volta
         $("#buttonSU").attr("disabled", true);
+        // Viene disabilitata anche la possibilità di cambiare tab per far sì che non sia possibile inviare due
+        // richieste diverse (una per l'accesso e una per la registrazione)
+        $("#signInTab").addClass("disabled");
         // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
         // l'utente da determinati tipi di attacco
         $.ajaxSetup({
@@ -64,6 +70,8 @@ function validateSignUp(event) {
                     $("#formSU").addClass("is-invalid");
                     // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
                     $("#buttonSU").attr("disabled", false);
+                    // Viene riattivato l'altro tab
+                    $("#signInTab").removeClass("disabled");
                 }
             }, "json");
     }
