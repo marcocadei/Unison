@@ -90,7 +90,9 @@ maxLength = 64;
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
 function checkEmail(event, email){
-    const emailRegex = /\S+@\S+\.\S+/;
+    //const emailRegex = /\S+@\S+\.\S+/;
+    // Sono consentiti solo caratteri ASCII stampabili, ovvero quessi da 21 a 7E in HEX
+    const emailRegex = /^[\x21-\x7E]+@[\x21-\x7E]+\.[\x21-\x7E]+$/;
 
     if (($(email).val().length == 0 || $(email).val().length > maxLength || !$(email).val().match(emailRegex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(email).val().length != 0)  || event == null)) {

@@ -17,7 +17,7 @@ Route::get('/login', 'AuthController@create')->name('login');
 Route::get('/register', 'AuthController@create')->name('register');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout')->name('logout');
-Route::post('/registration', 'AuthController@register');
+Route::post('/registration', 'AuthController@register')->name('registration');
 
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
 Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
