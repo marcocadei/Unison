@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeMatchesID($query, $id) {
+        return $query->where('id', $id);
+    }
+
+    public function scopeMatchesUsername($query, $username) {
+        return $query->where('username', $username);
+    }
+
 }
