@@ -57,7 +57,7 @@
                         </form>
                     </div>
                     <div class="tab-pane fade {{$activeRegister}} bg-white border-bottom border-left border-right" id="signUpContent" role="tabpanel" aria-labelledby="signUpTab">
-                        <form class="p-5" action="/registration" method="post" id="SU">
+                        <form class="p-5" action="{{ route("register") }}" method="post" id="SU">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSU">
                             <div class="invalid-feedback">
