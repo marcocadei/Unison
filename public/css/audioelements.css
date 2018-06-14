@@ -24,6 +24,11 @@
     content: "\f028";
 }
 
+.amplitude-mute:not(.amplitude-muted):not(.amplitude-not-muted):after {
+    content: "\f026\00D7";
+}
+
+.amplitude-mute:after,
 .amplitude-not-muted:after,
 .amplitude-muted:after {
     min-width: 16px;
@@ -32,6 +37,7 @@
 .amplitude-play-pause:after,
 .amplitude-paused:after,
 .amplitude-playing:after,
+.amplitude-mute:after,
 .amplitude-not-muted:after,
 .amplitude-muted:after {
     font-family: FontAwesome;
