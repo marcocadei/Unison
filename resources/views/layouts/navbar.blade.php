@@ -9,7 +9,7 @@
             @if(auth()->check())
                 <li class="nav-item"><a class="nav-link px-2" href="#"><span class="fas fa-cogs"></span></a></li>
                 <li class="nav-item">
-                    <a class="nav-link px-2" href="#">
+                    <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->username) }}">
                         <span class="fas fa-user"></span>
                     </a>
                 </li>
