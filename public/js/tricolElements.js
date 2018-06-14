@@ -270,3 +270,13 @@ $(document).ready(function() {
         });
     }
 });
+
+function toggleCurrentHoursSpan() {
+    var data = Amplitude.getActiveSongMetadata();
+    if (data["duration"] >= 3600) {
+        $("#mainCurrentHours").removeClass("d-none");
+    }
+    else {
+        $("#mainCurrentHours").addClass("d-none");
+    }
+}
