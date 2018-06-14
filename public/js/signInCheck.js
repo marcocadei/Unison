@@ -29,6 +29,9 @@ function validateLogin(event){
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
 
+    // Rimuove il messaggio d'errore alla nuova pressione del tasto di submit.
+    $("#formSI").removeClass("is-invalid");
+
     let nextPage = true;
     // L'input hidden viene usato per mostrare il messaggio di errore nel caso in cui le credenziali inserite
     // siano errate (quindi a seguito di una verifica lato server), perciò non deve essere considerato in questi
@@ -42,6 +45,9 @@ function validateLogin(event){
     if(nextPage) {
         // Disabilito il bottone di submit per evitare che la form sia trasmessa più di una volta
         $("#buttonSI").attr("disabled", true);
+        // Viene disabilitata anche la possibilità di cambiare tab per far sì che non sia possibile inviare due
+        // richieste diverse (una per l'accesso e una per la registrazione)
+        $("#signUpTab").addClass("disabled");
         // Ho dovuto aggiungere questa parte perché Laravel usa dei token nella form per proteggere
         // l'utente da determinati tipi di attacco
         $.ajaxSetup({
@@ -60,6 +66,8 @@ function validateLogin(event){
                     $("#formSI").addClass("is-invalid");
                     // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
                     $("#buttonSI").attr("disabled", false);
+                    // Viene riattivato l'altro tab
+                    $("#signUpTab").removeClass("disabled");
                 }
             }, "json");
     }
