@@ -22,4 +22,8 @@ Route::post('/registration', 'AuthController@register')->name('registration');
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
 Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// FIXME Questa route è da ributtare al feed (una volta che sarà pronto; poi eliminare anche HomeController)
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth')->name('home');
+Route::get('/user/{username}', 'TrackController@userProfile');
