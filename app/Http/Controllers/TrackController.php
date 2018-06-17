@@ -80,10 +80,9 @@ class TrackController extends Controller
 
 //    FIXME - Solo debug - Poi togliere!
     public function allTracks() {
-        $dropFooter = true;
         $tracks = Track::getAllTracks();
         $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-        return view('tricol.feed', compact(['dropFooter', 'songs']));
+        return view('tricol.feed', compact(['songs']));
     }
 
     /**
@@ -98,8 +97,6 @@ class TrackController extends Controller
         if (!$userExists) {
             return abort(404);
         }
-
-        $dropFooter = true;
 
         /*
          * Record del database associato all'utente di cui si vuole visualizzare la pagina profilo.
@@ -135,7 +132,7 @@ class TrackController extends Controller
             "following" => $numberOfFollowed,
             "uploads" => $numberOfUploadedTracks
         );
-        return view('tricol.userprofile', compact(['dropFooter', 'songs', 'userInfo']));
+        return view('tricol.userprofile', compact(['songs', 'userInfo']));
     }
 
 }

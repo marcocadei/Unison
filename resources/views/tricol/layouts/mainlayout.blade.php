@@ -1,3 +1,5 @@
+@php($dropFooter = true)
+
 @extends('layouts.layout')
 
 @section('script_header')
