@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    <!--<h1 class="display-3 text-center ">Pagina di login</h1>-->
     <div class="jumbotron jumbotron-fluid text-center bgLogin mt-5">
         <div class="container text-light">
             <h1 class="display-4 boldText">Entra su Unison</h1>
