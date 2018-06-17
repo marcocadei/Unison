@@ -37,7 +37,12 @@ class Track extends Model
         if (!$includePrivateTracks) {
             $tracksToReturn = $tracksToReturn->notPrivate();
         }
-        return $tracksToReturn->limit(50)->get();
+        /*
+         * Nota: Le tracce sono ordinate in ordine cronologico inverso (da quella caricata più di recente a quella più
+         * vecchia); nel caso in cui ci fossero due tracce caricate esattamente nello stesso istante (cioè aventi lo
+         * stesso valore per il campo "created_at") queste risultano ordinate per ID.
+         */
+        return $tracksToReturn->orderByDesc('created_at')->limit(50)->get();
     }
 
 }
