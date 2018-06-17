@@ -33,8 +33,14 @@ class Track extends Model
 // per impedire che ne vengano caricate chissà quante, le chiamate successive devono poi avere un ->offset(XX)
 
     public static function getTracksByUser($userID, $includePrivateTracks) {
+        /*
+         * Recupera tutte le tracce dell'utente specificato, incluse quelle private.
+         */
         $tracksToReturn = Track::matchesUserID($userID);
         if (!$includePrivateTracks) {
+            /*
+             * Esclude le tracce private.
+             */
             $tracksToReturn = $tracksToReturn->notPrivate();
         }
         /*
