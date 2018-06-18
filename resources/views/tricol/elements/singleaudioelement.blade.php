@@ -41,6 +41,9 @@
                                 <span class="fas fa-heart"></span>
                             </span>
                             {{-- TODO Realizzare lo script che fa mettere il mi piace cliccando qui --}}
+                            {{-- ATTENZIONE! Le tracce in generale possono essere visualizzate anche da utenti non
+                            loggati (ad es la top 50 è sempre accessibile): accertarsi che ci sia un utente loggato
+                            prima di abilitare il collegamento del mipiace! --}}
                             <span class="smallText">{{ $song["likes"] }}</span>
                         </span>
                         |
