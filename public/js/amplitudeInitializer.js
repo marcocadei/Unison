@@ -27,7 +27,7 @@ let amplitudeData = {
         "song_change": toggleCurrentHoursSpan
     },
     "songs": songsData
-}
+};
 Amplitude.init(amplitudeData);
 
 /**********************************************************
