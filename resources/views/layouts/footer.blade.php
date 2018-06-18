@@ -21,6 +21,8 @@
                 <h5 class="text-uppercase mb-4 font-weight-bold">Contatti</h5>
                 <p><i class="fa fa-home mr-3"></i>Chi siamo</p>
                 <p><i class="fa fa-envelope mr-3"></i><a class="text-white" href="mailto:unison@altervista.org">unison@altervista.org</a></p>
+                <h5 class="text-uppercase my-4 font-weight-bold">Extra</h5>
+                <p><i class="fas fa-dice-three mr-3"></i><a class="text-white" target="_blank" href="{{ asset("/er_redirect.html") }}">Lancia un dado</a></p>
             </div>
         </div>
         <div class="row py-3 d-flex align-items-center text-light mt-3 pt-3 border-top">
