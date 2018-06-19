@@ -60,9 +60,3 @@
     </div>
     <hr class="bg-secondary my-4 hrThick">
 @endsection
-
-@section('script_footer')
-    @parent
-    @include('tricol.elements.amplitudeinitializer')
-@endsection
-

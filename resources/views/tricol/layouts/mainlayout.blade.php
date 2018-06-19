@@ -38,4 +38,7 @@
     <script type="text/javascript" src="{{ asset('/js/tricolElements.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('/js/amplitudeElements.js') }}"></script>
+
+    {{-- IMPORTANTE: Lasciare questa inclusione sempre come ultima riga di questa sezione! --}}
+    @include('tricol.elements.amplitudeinitializer')
 @endsection

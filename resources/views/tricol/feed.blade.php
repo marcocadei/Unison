@@ -4,8 +4,3 @@
     Feed | {{auth()->user()->username}}
 @endsection
 
-@section('script_footer')
-    @parent
-    @include('tricol.elements.amplitudeinitializer')
-@endsection
-
