@@ -33,7 +33,7 @@
             </div>
             <div class="row justify-content-center">
                 @php($names = array('Roscigno', 'Mastro Pitossi', 'Marco Cadei'))
-                @php($selected = $names[rand(0, 2)])
+                @php($selected = $names[rand(0, count($names) - 1)])
                 Abbiamo attivato&nbsp;<a target="_blank" href="https://www.google.com/search?q={{ $selected }}">{{ $selected }}</a>&nbsp;per risolvere il problema
             </div><br>
             <div class="row justify-content-center">

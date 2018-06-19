@@ -28,7 +28,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <script>
-        $("#ctl00_cphContenuto_etbSeed_txtetbSeed").attr("value", Math.random().toString(10).substring(2, 11));
+        var seedLength = Math.floor(Math.random() * 7) + 4;
+        $("#ctl00_cphContenuto_etbSeed_txtetbSeed").attr("value", Math.random().toString(10).substring(2, seedLength));
         $(document).ready(function() {
             $("#ctl00_cphContenuto_btnGenera").click();
         });
