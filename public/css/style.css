@@ -156,3 +156,14 @@ hr.hrThick {
 a.disabledAnchor {
     pointer-events: none;
 }
+
+img.filteredCoverArt {
+    filter: opacity(37.5%);
+}
+
+.audioElementCounter {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10vh;
+}

@@ -3,8 +3,15 @@
     destinazione dell'elemento puntina. Non rimuovere! --}}
 <div class="audioElementContainer my-1">
     <div class="row align-items-center justify-content-center">
-        <div class="col-8 col-sm-4 col-md-2 p-1 pl-3 pr-3 pr-sm-1">
-            <img src="{{ asset($song["cover_art_url"]) }}" class="img-fluid w-100 p-0 m-auto"/>
+        <div class="col-7 col-sm-4 col-md-2 p-1 pl-3 pr-3 pr-sm-1">
+            @if(!isset($displayCounter) || !$displayCounter)
+                <img src="{{ asset($song["cover_art_url"]) }}" class="img-fluid w-100 p-0 m-auto"/>
+            @else
+                <div class="position-relative text-center">
+                    <img src="{{ asset($song["cover_art_url"]) }}" class="img-fluid w-100 p-0 m-auto filteredCoverArt" />
+                    <h1 class="position-absolute boldText text-primary audioElementCounter">{{ $counter + 1 }}</h1>
+                </div>
+            @endif
         </div>
         <div class="col-12 col-sm-8 col-md-10">
             <div class="py-1">
