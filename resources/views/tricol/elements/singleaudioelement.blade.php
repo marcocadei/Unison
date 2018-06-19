@@ -92,4 +92,3 @@
     @endif
 </div>
 <hr class="d-sm-none bg-light">
-{{--@endif--}}
