@@ -45,6 +45,37 @@ function afterPauseCallback() {
     Conteggio delle riproduzioni
 */
 
+/*
+    [ Note sul conteggio delle riproduzioni ]
+
+    Il conteggio delle riproduzioni funziona nel seguente modo:
+    - quando l'utente avvia la riproduzione di un brano, viene avviato un timer la cui durata è pari ad una certa
+        percentuale della lunghezza della traccia in riproduzione;
+    - quando la traccia è messa in pausa il timer è congelato, e riprende a scorrere quando la riproduzione è
+        riavviata;
+    - quando l'utente cambia brano, il timer è resettato e la durata viene modificata in base alla lunghezza della
+        nuova traccia in riproduzione.
+
+    Si sottolinea che il conteggio delle riproduzioni NON tiene in alcun modo conto della porzione di traccia
+    effettivamente ascoltata dall'utente. Ad esempio, per una traccia della durata di un minuto, se la soglia
+    percentuale è impostata al 50%, la riproduzione dei primi 30 secondi del brano e la riproduzione "in loop" dei
+    primi 3 secondi per 10 volte (senza mai cambiare traccia) avranno lo stesso effetto e il numero di riproduzioni
+    sarà comunque incrementato di un'unità.
+
+    Alla scadenza del timer, questo NON viene fermato, bensì riparte con la medesima durata. Questa è una scelta
+    voluta, che comunque si traduce nella possibilità di creare "falsi conteggi" se l'utente continua ad ascoltare
+    la stessa traccia senza mai cambiare brano. Ad esempio, se la soglia percentuale è impostata al 50%, ascoltare il
+    brano nella sua interezza avrà l'effetto di incrementare di DUE unità il numero di riproduzioni, ascoltare il brano
+    per due volte (senza cambiare traccia) avrà l'effetto di incrementare di QUATTRO unità il numero di riproduzioni,
+    e così via.
+
+    Infine: Il timer NON tiene conto dello stato attuale del caricamento del file audio (Amplitude non offre un
+    sistema di callback anche per il buffering, quindi non è tecnicamente possibile); questo vuol dire che su
+    connessioni lente, o comunque quando il file audio viene caricato ad una velocità inferiore a quella con cui la
+    traccia è riprodotta (cioè quando la riproduzione "va a scatti"), il timer tiene conto anche del periodo di tempo
+    in cui l'utente effettivamente non sta ascoltando la traccia dato che questa non si è ancora caricata.
+ */
+
 /**
  * Resetta il timer per l'aggiornamento del contatore riproduzioni.
  */
