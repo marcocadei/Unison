@@ -32,5 +32,10 @@
     <!-- Amplitude JS (Player audio) -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@3.2.3/dist/amplitude.js"></script>
 
+    <!-- Timer (utilizzati per il contatore riproduzioni) -->
+    <script type="text/javascript" src="{{ asset('/js/libs/jquery.timer.js') }}"></script>
+
     <script type="text/javascript" src="{{ asset('/js/tricolElements.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('/js/amplitudeElements.js') }}"></script>
 @endsection
