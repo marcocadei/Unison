@@ -101,7 +101,7 @@ class AuthController extends Controller
      *  Effettua il login
      *  Lo ridirige alla home page
      */
-    public function register(){
+    public function registration(){
         $user = new User;
 
         $user->username = request('usernameSU');
