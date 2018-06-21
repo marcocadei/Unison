@@ -65,11 +65,11 @@ $(document).ready(function () {
     $("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
 
     // Prima di caricare la canzone controllo che tutti i campi siano compilati come richiesto
-    $("#buttonUpload").click(validateUpdate);
+    $("#buttonUpload").click(validateUpload);
 });
 
 
-function validateUpdate(event) {
+function validateUpload(event) {
     // Di default disabilito il submit della form, che effettuo solo dopo
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
