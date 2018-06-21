@@ -66,7 +66,7 @@
                                 <label for="emailSU">Email:</label>
                                 <input type="email" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri).
+                                    Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                                 </div>
                             </div>
                             <div class="form-group">

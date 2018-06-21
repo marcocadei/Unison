@@ -22,44 +22,79 @@
                 <img src="{{asset('images/upload.png')}}" alt="Non perdere altro tempo: iscriviti subito!" class="img-fluid mt-5 mt-md-0">
             </div>
             <div class="col-sm-12 col-md-6">
-                <form class="p-5" action="/" method="post" id="upload">
+                <form action="{{ url('track') }}" method="post" id="upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
                     <div class="invalid-feedback">
-                        Parametri specificati incorretti
+                        Hai già caricato una canzone con quel titolo o con quel nome di file!
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="inputGroupFile01">Canzone:</label>
+                    <div class="form-group">
+                        <label for="trackSelect">Canzone:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".mp3, .mp4" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Scegli file</label>
+                            <input type="file" accept=".mp3, .mp4" class="custom-file-input" id="trackSelect" name="trackSelect">
+                            <label class="custom-file-label" for="trackSelect">Scegli file</label>
+                            <div class="invalid-feedback">
+                                Seleziona una canzone!
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="passwordSI">Password:</label>
-                        <input type="password" class="form-control" id="passwordSI" name="passwordSI" placeholder="Inserisci password...">
-                        <div class="invalid-feedback">
-                            Per favore specifica una password valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                        <label for="photoSelect">Immagine:</label>
+                        <div class="custom-file">
+                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
+                            <label class="custom-file-label" for="photoSelect">Scegli file</label>
+                            <div class="invalid-feedback">
+                                L'immagine di copertina deve essere selezionata e quadrata!
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSI">Accedi</button>
+
+                    <div class="form-group">
+                        <label for="title">Titolo:</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo...">
+                        <div class="invalid-feedback">
+                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Autore:</label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="{{ auth()->user()->username }}" disabled>
+                        <div class="invalid-feedback">
+                            Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrizione:</label>
+                        <textarea class="form-control" id="description" name="description" placeholder="Inserisci una descrizione..."></textarea>
+                        <div class="invalid-feedback">
+                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
+                        </div>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="checkbox" value="on" id="allowDownload" name="allowDownload">
+                        <label class="form-check-label" for="allowDownload">
+                            Consenti il download della traccia
+                        </label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="checkbox" value="on" id="private" name="private">
+                        <label class="form-check-label" for="private">
+                            Traccia privata
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonUpload">Carica</button>
                 </form>
             </div>
         </div>
     </div>
 @endsection
 @section('script_footer')
-<script>
-    $("#inputGroupFile01").on('change',function(){
-        //get the file name
-        let fileName = $(this).val();
-        let lastSlash = fileName.lastIndexOf("\\");
-        console.log(lastSlash);
-        fileName = fileName.substring(lastSlash  + 1);
-        //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(fileName);
-    })
-</script>
+    <script type="text/javascript" src="{{ asset('js/uploadCheck.js') }}"></script>
 @endsection

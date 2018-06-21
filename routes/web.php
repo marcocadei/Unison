@@ -32,4 +32,6 @@ Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home'
 Route::get('/user/{username}', 'TrackController@userProfile');
 Route::get('top50', 'TrackController@top50');
 
-Route::get('/track/upload', 'TrackController@upload');
+Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name('upload');
+Route::post('/track', 'TrackController@store');
+Route::post('/checkSongExistence', 'TrackController@checkSongExistence');

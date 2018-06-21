@@ -11,6 +11,7 @@ use App\User;
 use App\Like;
 use App\Following;
 use App\Unison\GeneralUtils;
+use App\MP3File;
 
 class TrackController extends Controller
 {
@@ -135,8 +136,43 @@ class TrackController extends Controller
         return view('tricol.userprofile', compact(['songs', 'userInfo']));
     }
 
-
+    // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
     public function upload(){
-        return view('tracks.upload');
+        $username = auth()->user()->username;
+        return view('tracks.upload', compact('username'));
+    }
+
+    public function store() {
+        // Recupero la durata della canzone caricata
+        $mp3file = new MP3File(request('trackSelect'));
+        $duration = intval($mp3file->getDurationEstimate());
+
+        // Creo la traccia in modo tale da poterla salvare sul DB
+        $track = new Track;
+
+        $track->title = request('title');
+        $track->description = request('description');
+        $track->duration = $duration;
+        $track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
+        $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
+        $track->uploader = auth()->user()->id;
+        $track->dl_enabled = (request('allowDownload') ? 1 : 0);
+        $track->private = (request('private') ? 1 : 0);
+
+        $track->save();
+
+        // Carico i file (traccia e relativa copertina) e li memorizzo sul server
+        request()->file('trackSelect')->store('public/tracks');
+        request()->file('photoSelect')->store('public/trackthumbs');
+        return redirect('/');
+    }
+
+    public function checkSongExistence(){
+        $result = \DB::table('tracks')
+            ->where('title', '=', request('title'))
+            ->orWhere('file', '=', request('file'))
+            ->exists();
+
+        return response()->json(['result' => !$result]);
     }
 }
