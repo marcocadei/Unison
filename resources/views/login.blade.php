@@ -17,10 +17,10 @@
         <div class="row h-100 justify-content-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
-            <div class="col-sm-9 order-last col-md-6 order-md-first text-center">
+            <div class="col-9 order-last col-md-6 order-md-first text-center">
                 <img src="{{asset('images/tape.png')}}" alt="Non perdere altro tempo: iscriviti subito!" class="loginImage img-fluid mt-5 mt-md-0">
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-12 col-md-6">
                 <ul class="nav nav-tabs" id="tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link {{$activeLogin}}" id="signInTab" data-toggle="tab" href="#signInContent" role="tab" aria-controls="signInContent" aria-selected="{{ json_encode($activeRegister == '') }}">Accedi</a>

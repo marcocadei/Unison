@@ -5,12 +5,12 @@
 @endsection
 
 @section('content')
-    <!--<h1 class="display-3 text-center ">Pagina di login</h1>-->
     <div class="jumbotron jumbotron-fluid text-center bgLogin mt-5">
         <div class="container text-light">
-            <h1 class="display-4 boldText">Fai sentire al mondo la tua musica</h1>
+            <h1 class="d-none d-md-inline display-4 boldText">Fai sentire al mondo la tua musica</h1>
+            <h1 class="d-inline d-md-none boldText">Fai sentire al mondo la tua musica</h1>
             <div class="d-none d-md-block">
-                <p class="lead">Carica la tua track e diventa un'artista di successo</p>
+                <p class="lead">Carica le tue produzioni e diventa un artista di successo</p>
             </div>
         </div>
     </div>
@@ -18,10 +18,10 @@
         <div class="row h-100 justify-content-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
-            <div class="col-sm-9 order-last col-md-6 order-md-first text-center">
-                <img src="{{asset('images/upload.png')}}" alt="Non perdere altro tempo: iscriviti subito!" class="img-fluid mt-5 mt-md-0">
+            <div class="col-9 order-last col-md-6 order-md-first text-center">
+                <img src="{{asset('images/upload.png')}}" alt="Carica una nuova traccia" class="img-fluid mt-5 mt-md-0">
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-12 col-md-6">
                 <form action="{{ url('track') }}" method="post" id="upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
@@ -32,8 +32,8 @@
                     <div class="form-group">
                         <label for="trackSelect">Canzone:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".mp3, .mp4" class="custom-file-input" id="trackSelect" name="trackSelect">
-                            <label class="custom-file-label" for="trackSelect">Scegli file</label>
+                            <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
+                            <label class="custom-file-label" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
                                 Seleziona una canzone!
                             </div>
@@ -44,7 +44,7 @@
                         <label for="photoSelect">Immagine:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
-                            <label class="custom-file-label" for="photoSelect">Scegli file</label>
+                            <label class="custom-file-label" for="photoSelect">Scegli file...</label>
                             <div class="invalid-feedback">
                                 L'immagine di copertina deve essere selezionata e quadrata!
                             </div>
