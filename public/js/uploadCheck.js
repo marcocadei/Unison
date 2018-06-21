@@ -3,6 +3,20 @@ maxLengthDescription = 200;
 trackChoosed = false;
 imageChoosed = false;
 
+// var song = 'Moondust';
+// var artist = 'James%20Young';
+// var token = 'BQAgUtwHfaR2hIxuFd2TytUtBc5A6dActRL8htzsb2_b1DjlqGEBQWXbr6FKyFy5-nVPngNGr-EK5RuEfRt_Fo9LFdsazG6QtGusPGajySVlWJ1BO7kaAcfQfRrA0REEwyDXBE1Dqh9N';
+// $.ajax({
+//     url: 'https://api.spotify.com/v1/search?type=track&query=Moondusterino&limit=1',
+//     headers: {
+//         Authorization: 'Bearer ' + token
+//     }
+//     })
+//     .then( function(oData) {
+//         //console.log(oData.tracks.items[0].uri);
+//         console.log(oData);
+//     })
+
 $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
     // in modo che contenga il titolo della traccia selezionata
@@ -94,13 +108,33 @@ function validateUpdate(event) {
                     $("#buttonUpload").attr("disabled", false);
                 }
             }, "json");
+
+        // Prima di terminare l'upload controllo se la canzone è presente su spotify
+        checkSpotify();
     }
+}
+
+function checkSpotify(){
+    var song = 'Moondust';
+    var artist = 'James%20Young';
+    var token = 'BQAgUtwHfaR2hIxuFd2TytUtBc5A6dActRL8htzsb2_b1DjlqGEBQWXbr6FKyFy5-nVPngNGr-EK5RuEfRt_Fo9LFdsazG6QtGusPGajySVlWJ1BO7kaAcfQfRrA0REEwyDXBE1Dqh9N';
+    $.ajax({
+        url: 'https://api.spotify.com/v1/search?type=track&query=Moondust&limit=1',
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+        .then( function(oData) {
+            //console.log(oData.tracks.items[0].uri);
+            console.log(oData);
+        })
 
 }
 
+
 function checkTitle(event, field, maxLength) {
 
-    const regex = /^[a-zA-Z0-9]+$/;
+    const regex = /^[\x20-\x7E]+$/;
 
     if (($(field).val().length == 0 || $(field).val().length > maxLength || !$(field).val().match(regex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(field).val().length != 0)  || event == null)) {
@@ -115,7 +149,7 @@ function checkTitle(event, field, maxLength) {
 
 function checkDescription(event, field, maxLength) {
 
-    const regex = /^[a-zA-Z0-9]*$/;
+    const regex = /^[\x20-\x7E]*$/;
 
     if (($(field).val().length > maxLength || !$(field).val().match(regex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(field).val().length != 0)  || event == null)) {
