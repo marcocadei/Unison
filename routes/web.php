@@ -22,6 +22,14 @@ Route::post('/registration', 'AuthController@registration')->name('registration'
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
 Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// FIXME solo debug - poi eliminare
+Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');
+
+Route::get("/feed", function () {
+    return redirect("/home");
+});
+Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
+Route::get('/user/{username}', 'TrackController@userProfile');
+Route::get('top50', 'TrackController@top50');
 
 Route::get('/track/upload', 'TrackController@upload');

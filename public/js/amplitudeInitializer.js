@@ -5,6 +5,9 @@
     la variabile globale songsData!
  */
 
+/**
+ *  Variabile globale che contiene i dati con cui è inizializzato l'oggetto player audio Amplitude.
+ */
 let amplitudeData = {
     "autoplay": false, // Al caricamento della pagina la riproduzione non parte in automatico
     "default_album_art": "/dbres/trackthumbs/trackdefault.png",
@@ -23,16 +26,31 @@ let amplitudeData = {
             Ogni volta che viene avviata una traccia viene aggiornata di conseguenza la destinazione dell'elemento
             puntina in modo che punti al contenitore della traccia attualmente in riproduzione.
          */
-        "after_play": setThumbtackDestination,
-        "song_change": toggleCurrentHoursSpan
+        "after_play": afterPlayCallback,
+        "song_change": songChangeCallback,
+        "after_pause": afterPauseCallback
     },
     "songs": songsData
-}
+};
 Amplitude.init(amplitudeData);
 
+/**
+ * Variabile globale; timer utilizzato per l'aggiornamento del numero di riproduzioni di una traccia.
+ * @type {Timer}
+ */
+let playCountTimer = $.timer(updatePlayCount, 999999999, false);
+
 /**********************************************************
-    Attivazione e disattivazione del pulsante di play globale
+    Altre operazioni da eseguire in fase di inizializzazione
 */
+
+/**
+ * Se c'è almeno una tracca, il timer viene inizializzato in base alla durata della prima traccia in elenco
+ * (ma non viene fatto partire).
+ */
+if (songsData.length > 0) {
+    resetPlayCountTimer();
+}
 
 /**
  * Se non ci sono tracce, tutti i bottoni della navbar inferiore vengono disabilitati.
@@ -40,15 +58,3 @@ Amplitude.init(amplitudeData);
 if (songsData.length == 0) {
     disableMainPlayButton();
 }
-
-/**
- * Disabilita tutti i bottoni della navbar inferiore.
- * Nota: Lo slider del volume è comunque ancora modificabile, ma dato che non ci sono brani in riproduzione la modifica
- * del suo valore non ha alcun effetto.
- */
-function disableMainPlayButton() {
-    $("#audioNavButtons > li > a").addClass("disabledAnchor");
-}
-
-// TODO scrivere il codice per la riattivazione/ridisattivazione dei bottoni della navbar inferiore quando si aggiornano
-// le tracce con Amplitude.bindNewElements

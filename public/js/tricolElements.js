@@ -172,7 +172,11 @@ function topFunction() {
  * Imposta la destinazione della puntina al div che contiene la traccia attualmente in riproduzione.
  */
 function setThumbtackDestination() {
-    thumbtackDestination = $("#middleCol span.amplitude-playing:first").parents(".audioElementContainer");
+    let activeIndex = Amplitude.getActiveIndex();
+    thumbtackDestination = $("#song-played-progress-" + activeIndex).parents(".audioElementContainer");
+
+    /* TODO la puntina dev'essere resettata a middleCol ad ogni pressione di un "carica altro" o in generale
+    in qualunque momento si chiami bindNewElements() per evitare di referenziare qualcosa di inesistente */
 }
 
 /**
