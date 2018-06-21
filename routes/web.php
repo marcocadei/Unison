@@ -22,6 +22,10 @@ Route::post('/registration', 'AuthController@registration')->name('registration'
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
 Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 
+Route::get('/modify', 'UserController@edit')->name('modify');
+// Route usata per modificare le informazioni utente; put è un metodo apposito; NB: in caso di modifica dell'username viene chiamata sull'username vecchio
+Route::post('/modify/{username}', 'UserController@update');
+
 // FIXME solo debug - poi eliminare
 Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');
 
