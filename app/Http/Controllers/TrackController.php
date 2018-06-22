@@ -175,4 +175,23 @@ class TrackController extends Controller
 
         return response()->json(['result' => !$result]);
     }
+
+    /**
+     * Restituisce il feed dell'utente attualmente loggato.
+     */
+    public function userFeed() {
+        $tracks = Track::getFeedTracks(auth()->user()->id);
+        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
+        return view('tricol.feed', compact(['songs']));
+    }
+
+    /**
+     * Restituisce la pagina con i brani più ascoltati di sempre.
+     */
+    public function top50() {
+        $tracks = Track::getTopTracks();
+        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
+        return view('tricol.top50', compact(['songs']));
+    }
+
 }
