@@ -32,8 +32,8 @@
                     <div class="form-group">
                         <label for="trackSelect">Canzone:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
-                            <label class="custom-file-label" for="trackSelect">Scegli file...</label>
+                            <input type="file" accept=".mp3, .m4a" class="custom-file-input form-control" id="trackSelect" name="trackSelect">
+                            <label class="custom-file-label" for="trackSelect" maxlength="30">Scegli file...</label>
                             <div class="invalid-feedback">
                                 Seleziona una canzone!
                             </div>
@@ -61,7 +61,7 @@
 
                     <div class="form-group">
                         <label for="author">Autore:</label>
-                        <input type="text" class="form-control" id="author" name="author" placeholder="{{ auth()->user()->username }}" disabled>
+                        <input type="text" class="form-control" id="author" name="author" value="{{ auth()->user()->username }}" disabled>
                         <div class="invalid-feedback">
                             Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>
@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label for="description">Descrizione:</label>
-                        <textarea class="form-control" id="description" name="description" placeholder="Inserisci una descrizione..."></textarea>
+                        <textarea class="form-control" id="description" name="description" placeholder="Inserisci una descrizione..." style="resize:none"></textarea>
                         <div class="invalid-feedback">
                             Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
                         </div>

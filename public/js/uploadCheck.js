@@ -42,15 +42,25 @@ $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
     // in modo che contenga il titolo della traccia selezionata
     $("#trackSelect").on('change',function(){
+        trackChoosed = true;
         trackName = getChooserName($(this));
         //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(trackName);
+        if (trackName.length > 25)
+            $(this).next('.custom-file-label').html(trackName.substr(0, 23)+"...");
+        else if (trackName.length < 25 && trackName.length > 0)
+            $(this).next('.custom-file-label').html(trackName);
+        else {
+            $(this).next('.custom-file-label').html("Scegli file...");
+            trackChoosed = false;
+        }
+
 
         // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
         // del file (senza il formato), ma è sempre possibile cambiarlo
-        $("#title").val(trackName.split(".")[0]);
-        trackChoosed = true;
+        let ultimo_punto = trackName.lastIndexOf(".");
+        $("#title").val(trackName.substring(0, ultimo_punto));
         checkFileField($("#trackSelect"), trackChoosed);
+        checkTitle(null, $("#title"), maxLengthTitle);
     });
 
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
@@ -58,7 +68,12 @@ $(document).ready(function () {
     $("#photoSelect").on('change',function(){
         photoName = getChooserName($(this));
         //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(photoName);
+        if (photoName.length > 0)
+            $(this).next('.custom-file-label').html(photoName);
+        else{
+            $(this).next('.custom-file-label').html("Scegli file...");
+            imageChoosed;
+        }
 
         // Codice javascript per recuperare le dimensioni dell'immagine
         // selezionata dall'utente

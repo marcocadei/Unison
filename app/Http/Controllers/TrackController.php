@@ -154,7 +154,10 @@ class TrackController extends Controller
         $track->title = request('title');
         $track->description = request('description');
         $track->duration = $duration;
-        $track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
+        //$track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
+        // Do al file il nome del titolo
+        $tmp = explode(".", request('trackSelect')->getClientOriginalName());
+        $track->file = 'public/tracks/'.request('title').".".end($tmp);
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null)
             $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
