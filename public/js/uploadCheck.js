@@ -1,6 +1,7 @@
 maxLengthTitle = 64;
 maxLengthDescription = 200;
 trackChoosed = false;
+// La scelta dell'immagine non è obbligatoria
 imageChoosed = true;
 
 // $.ajax(
