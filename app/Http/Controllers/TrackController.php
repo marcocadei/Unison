@@ -12,6 +12,7 @@ use App\Like;
 use App\Following;
 use App\Unison\GeneralUtils;
 use App\MP3File;
+use Storage;
 
 class TrackController extends Controller
 {
@@ -162,8 +163,10 @@ class TrackController extends Controller
         $track->save();
 
         // Carico i file (traccia e relativa copertina) e li memorizzo sul server
-        request()->file('trackSelect')->store('public/tracks');
-        request()->file('photoSelect')->store('public/trackthumbs');
+//        request()->file('trackSelect')->store('public/tracks');
+//        request()->file('photoSelect')->store('public/trackthumbs');
+        Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('trackSelect')->getClientOriginalName());
+        Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('photoSelect')->getClientOriginalName());
         return redirect('/');
     }
 

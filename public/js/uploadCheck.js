@@ -1,21 +1,41 @@
 maxLengthTitle = 64;
 maxLengthDescription = 200;
 trackChoosed = false;
-imageChoosed = false;
+imageChoosed = true;
 
+// $.ajax(
+//     {
+//         method: "POST",
+//         url: "https://accounts.spotify.com/api/token",
+//         data: {
+//             "grant_type":    "client_credentials",
+//             "client_secret": 'e1285ca811a14013905cf827625c27ed',
+//             "client_id":     'd310fd518ac44b1287561bf297091271',
+//         },
+//         success: function(result) {
+//             // handle result...
+//         },
+//     }
+// );
 // var song = 'Moondust';
 // var artist = 'James%20Young';
-// var token = 'BQAgUtwHfaR2hIxuFd2TytUtBc5A6dActRL8htzsb2_b1DjlqGEBQWXbr6FKyFy5-nVPngNGr-EK5RuEfRt_Fo9LFdsazG6QtGusPGajySVlWJ1BO7kaAcfQfRrA0REEwyDXBE1Dqh9N';
+// var token = 'BQA6jocZFO6vt1x7orXuGf_CsLJJ1-jymo0pxek9Ikz_PYdQ_1F_QbnLAJ2BZL0hMc13cHvfNpy__OsG-IVzCnV6ZrqAbvS65KAhVVAiyQjFYbH11fu4XCPlpxU3XmCPaFFYpHhvzcsq';
 // $.ajax({
-//     url: 'https://api.spotify.com/v1/search?type=track&query=Moondusterino&limit=1',
+//     url: 'https://api.spotify.com/v1/search?type=track&query=Faint&limit=1',
 //     headers: {
 //         Authorization: 'Bearer ' + token
+//     },
+//     success: function(oData){
+//         console.log(oData);
+//     },
+//     errror: function (XMLHttpRequest, textStatus, errorThrown) {
+//         console.log("niente");
 //     }
 //     })
-//     .then( function(oData) {
-//         //console.log(oData.tracks.items[0].uri);
-//         console.log(oData);
-//     })
+    // .then( function(oData) {
+    //     //console.log(oData.tracks.items[0].uri);
+    //     console.log(oData);
+    // })
 
 $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
@@ -110,7 +130,7 @@ function validateUpload(event) {
             }, "json");
 
         // Prima di terminare l'upload controllo se la canzone è presente su spotify
-        checkSpotify();
+        //checkSpotify();
     }
 }
 
