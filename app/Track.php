@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Following;
+
 class Track extends Model
 {
 
@@ -18,6 +20,11 @@ class Track extends Model
     public function scopeMatchesUserID($query, $userID) {
         return $query->where('uploader', $userID);
     }
+
+    /**
+     * @var int Numero (massimo) di tracce restituite da una singola interrogazione al database.
+     */
+    private static $chunkSize = 50;
 
 //    FIXME - Solo debug - Poi togliere!
     public static function getAllTracks() {
@@ -48,7 +55,35 @@ class Track extends Model
          * vecchia); nel caso in cui ci fossero due tracce caricate esattamente nello stesso istante (cioè aventi lo
          * stesso valore per il campo "created_at") queste risultano ordinate per ID.
          */
-        return $tracksToReturn->orderByDesc('created_at')->limit(50)->get();
+        return $tracksToReturn
+            ->orderByDesc('created_at')
+            ->limit(Track::$chunkSize)
+            ->get();
+    }
+
+    /**
+     * Restituisce le tracce del feed dell'utente specificato, ovvero le tracce caricate da utenti seguiti da quello
+     * indicato, in ordine cronologico inverso.
+     * @param $userID integer Utente di cui caricare il feed.
+     */
+    public static function getFeedTracks($userID) {
+        return Following::matchesFollower($userID)
+            ->join('tracks', 'tracks.uploader', '=', 'followings.followed')
+            ->where('private', false)
+            ->orderByDesc('tracks.created_at')
+            ->offset(0)
+            ->limit(Track::$chunkSize)
+            ->get();
+    }
+
+    /**
+     * Restituisce le tracce più ascoltate (cioè le prime ordinate per numero di riproduzioni decrescente).
+     */
+    public static function getTopTracks() {
+        return Track::notPrivate()
+            ->orderByDesc('plays')
+            ->limit(Track::$chunkSize)
+            ->get();
     }
 
 }
