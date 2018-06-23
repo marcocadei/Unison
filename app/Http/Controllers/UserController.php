@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Storage;
 
 class UserController extends Controller
 {
@@ -22,14 +23,17 @@ class UserController extends Controller
         $user->username = request('usernameMod');
         $user->email = request('emailMod');
         $user->password = md5(request('passwordMod'));
-        $user->profile_pic= 'public/profilepics/'.request('photoMod')->getClientOriginalName()  ;
+        // Controllo che il campo per il caricamento dell'immagine non sia stato lasciato vuoto, altrimenti non faccio nulla
+        if(request('photoMod') != null) {
+            $user->profile_pic= 'public/profilepics/'.request('photoMod')->getClientOriginalName();
+            // Carico l'immagine sul server
+            Storage::putFileAs('public/profilepics', request()->file('photoMod'), request('photoMod')->getClientOriginalName());
+        }
         $user->bio = request('bioMod');
         $user->save();
 
-        // Carico l'immagine sul server
-        request()->file('photoMod')->store('public/profilepics');
 
-        // PROBABILMENTE DA TOGLIERE IN FUTURO, OPPURE BISOGNA MODIFICARE LA ROUTE
+        // PROBABILMENTE DA TOGLIERE IN QUANTO VOGLIO FARE UNA COSA VIA AJAX, QUINDI DOVREBBE TORNARE JSON
         return redirect('/modify');
     }
 }

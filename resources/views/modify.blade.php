@@ -6,6 +6,25 @@
 
 @section('content')
     <br><br>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Modifica avvenuta con successo!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
@@ -16,19 +35,10 @@
             <div class="col-sm-12 col-md-9 border-left pl-3">
                 <form class="p-5" action="{{'/modify'}}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    {{--<input type="hidden" class="form-control" id="formMod">
-                    <div class="invalid-feedback">
-                        Nome utente o email già utilizzati.
-                    </div>--}}
-                    <input type="hidden" class="form-control" id="formModI">
-                    <div class="invalid-feedback">
-                        Nome utente o email già utilizzati.
-                    </div>
                     <div class="row justify-content-center">
-                        <div class="col-4 border border-primary">
-                            <img class="img-fluid rounded-circle" src="{{Storage::url('public/profilepics/LgQ9uovyXRf7pLrlqXT2bOyHKvEKeFJPXImYNRNl.jpeg')}}"{{--src="{{Storage::url(auth()->user()->profile_pic)}}"--}}>
+                        <div class="col-4">
+                            <img class="img-fluid rounded-circle border border-primary" src="{{Storage::url(auth()->user()->profile_pic)}}">
                         </div>
-                        {{Storage::url('public/profilepics/LgQ9uovyXRf7pLrlqXT2bOyHKvEKeFJPXImYNRNl.jpeg')}}
                     </div>
                     <div class="form-group">
                         <label for="photoMod">Immagine di profilo:</label>
@@ -36,14 +46,10 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
                             <label class="custom-file-label" for="photoMod">Scegli il file della nuova immagine di profilo</label>
                             <div class="invalid-feedback">
-                                L'immagine di profilo deve essere selezionata e quadrata!
+                                L'immagine di profilo deve essere quadrata!
                             </div>
                         </div>
                     </div>
-                    {{--<input type="hidden" class="form-control" id="formModI">
-                    <div class="invalid-feedback">
-                        Username o e-mail già presente.
-                    </div>--}}
                     <div class="form-group">
                         <input type="hidden" id="originalEmailMod" name="originalEmailMod" value="{{ auth()->user()->email }}">
                         <label for="emailMod">Inserisci la nuova email:</label>
@@ -84,10 +90,14 @@
                             Per favore reinserisci la stessa password.
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" id="formModV">
+                    <input type="hidden" class="form-control" id="formModI">
+                    <div class="invalid-feedback">
+                        Nome utente o email già utilizzati.
+                    </div>
+                    {{--<input type="hidden" class="form-control" id="formModV">
                     <div class="valid-feedback">
                         Modifica avvenuta con successo!
-                    </div>
+                    </div>--}}
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
                 </form>
             </div>

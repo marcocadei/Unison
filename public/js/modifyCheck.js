@@ -97,27 +97,33 @@ function validateModify(event) {
         if ($emailChanged || $usernameChanged) {
             let $emailToSend = $emailChanged ? $("#emailMod").val() : '';
             let $usernameToSend = $usernameChanged ? $("#usernameMod").val() : '';
-            $.post("/checkNewUserCredentials",
+            $.post("/checkNewModifiedUserCredentials",
                 {
                     username: $usernameToSend,
                     email: $emailToSend
                 }, function (data, status, xhr) {
                     if (data.result) {
-                        alert("L'utente è nuovo");
-                        /*$("#mod").submit();
-                        $("#formModV").addClass("is-valid");*/
+                        $("#mod").submit();
+                        $('#exampleModal').modal({
+                            keyboard: false
+                        });
+                        // PROVALO DOMATTINA
+                        //window.onload(("#formModV").addClass("is-valid"));
                     }
                     else {
-                        alert("L'utente non è nuovo");
-                       /* $("#formModI").addClass("is-invalid");
+                        $("#formModI").addClass("is-invalid");
                         // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
-                        $("#buttonMod").attr("disabled", false);*/
+                        $("#buttonMod").attr("disabled", false);
                     }
                 }, "json");
         }
         else {
             $("#mod").submit();
-            $("#formModV").addClass("is-valid");
+            $('#exampleModal').modal({
+                keyboard: false
+            }));
+            // PROVALO DOMATTINA
+            //window.onload(("#formModV").addClass("is-valid"));
         }
     }
 
