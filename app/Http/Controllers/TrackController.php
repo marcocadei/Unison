@@ -164,6 +164,9 @@ class TrackController extends Controller
         $track->uploader = auth()->user()->id;
         $track->dl_enabled = (request('allowDownload') ? 1 : 0);
         $track->private = (request('private') ? 1 : 0);
+        $tmp = request('spotifyID');
+        if (isset($tmp))
+            $track->spotify_id = request('spotifyID');
 
         $track->save();
 

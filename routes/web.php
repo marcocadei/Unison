@@ -35,3 +35,5 @@ Route::get('top50', 'TrackController@top50');
 Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name('upload');
 Route::post('/track', 'TrackController@store');
 Route::post('/checkSongExistence', 'TrackController@checkSongExistence');
+
+Route::post('/spotify/token', 'SpotifyController@token');

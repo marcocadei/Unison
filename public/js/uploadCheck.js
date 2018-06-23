@@ -4,39 +4,6 @@ trackChoosed = false;
 // La scelta dell'immagine non è obbligatoria
 imageChoosed = true;
 
-// $.ajax(
-//     {
-//         method: "POST",
-//         url: "https://accounts.spotify.com/api/token",
-//         data: {
-//             "grant_type":    "client_credentials",
-//             "client_secret": 'e1285ca811a14013905cf827625c27ed',
-//             "client_id":     'd310fd518ac44b1287561bf297091271',
-//         },
-//         success: function(result) {
-//             // handle result...
-//         },
-//     }
-// );
-// var song = 'Moondust';
-// var artist = 'James%20Young';
-// var token = 'BQA6jocZFO6vt1x7orXuGf_CsLJJ1-jymo0pxek9Ikz_PYdQ_1F_QbnLAJ2BZL0hMc13cHvfNpy__OsG-IVzCnV6ZrqAbvS65KAhVVAiyQjFYbH11fu4XCPlpxU3XmCPaFFYpHhvzcsq';
-// $.ajax({
-//     url: 'https://api.spotify.com/v1/search?type=track&query=Faint&limit=1',
-//     headers: {
-//         Authorization: 'Bearer ' + token
-//     },
-//     success: function(oData){
-//         console.log(oData);
-//     },
-//     errror: function (XMLHttpRequest, textStatus, errorThrown) {
-//         console.log("niente");
-//     }
-//     })
-    // .then( function(oData) {
-    //     //console.log(oData.tracks.items[0].uri);
-    //     console.log(oData);
-    // })
 
 $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
@@ -53,7 +20,6 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html("Scegli file...");
             trackChoosed = false;
         }
-
 
         // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
         // del file (senza il formato), ma è sempre possibile cambiarlo
@@ -136,35 +102,88 @@ function validateUpload(event) {
                 title: $("#title").val(),
                 file: "public/tracks/"+trackName
             }, function (data, status, xhr) {
-                if (data.result)
-                    $("#upload").submit();
+                if (data.result) {
+                    // Prima di terminare l'upload controllo se la canzone è presente su spotify
+                    checkSpotify();
+                    // L'upload lo faccio solo dopo che l'utente ha premuto uno dei due
+                    // tasti della finestra modale (nel caso in cui essa sia mostrata)
+                    //$("#upload").submit();
+                }
                 else {
                     $("#formUpload").addClass("is-invalid");
                     // Se i dati inseriti erano sbagliati allora riabilito il bottone di caricamento
                     $("#buttonUpload").attr("disabled", false);
                 }
             }, "json");
-
-        // Prima di terminare l'upload controllo se la canzone è presente su spotify
-        //checkSpotify();
     }
 }
 
 function checkSpotify(){
-    var song = 'Moondust';
-    var artist = 'James%20Young';
-    var token = 'BQAgUtwHfaR2hIxuFd2TytUtBc5A6dActRL8htzsb2_b1DjlqGEBQWXbr6FKyFy5-nVPngNGr-EK5RuEfRt_Fo9LFdsazG6QtGusPGajySVlWJ1BO7kaAcfQfRrA0REEwyDXBE1Dqh9N';
+    // Con questo recupero il token
+    var token = null;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.post("/spotify/token",
+        {},
+        function (data, status, xhr) {
+            token = data.result;
+            searchSong(token);
+        },
+        "json");
+    // Questo rimuove l'header X-CSRF-TOKEN dalla richiesta ajax
+    // Prima lo metto perché mi serve per ragioni di sicurezza imposte da Laravel
+    // Ora lo tolgo perché spotify non si aspetta quell'header nella richiesta
+    delete $.ajaxSettings.headers['X-CSRF-TOKEN'];
+}
+
+function searchSong(token){
+    // var song = 'Moondust';
+    // var artist = 'James%20Young';
+    // Gli spazi vanno sostituiti con %20 nell'url di richiesta
+    let track = $("#title").val().replace(" ", "%20");
+    //var token = data;
     $.ajax({
-        url: 'https://api.spotify.com/v1/search?type=track&query=Moondust&limit=1',
+        url: 'https://api.spotify.com/v1/search?type=track&query=' + track + '&limit=1',
         headers: {
             Authorization: 'Bearer ' + token
         }
     })
         .then( function(oData) {
             //console.log(oData.tracks.items[0].uri);
-            console.log(oData);
+            // console.log(oData);
+            mostraInfoSpotify(oData);
         })
+}
 
+function mostraInfoSpotify(data){
+    // Mostro la finestra di spotify solo se ho trovato qualcosa,
+    // altrimenti non faccio nulla
+    if(data.tracks.items.length > 0) {
+        // Recupero l'id dell'elemento che è stato premuto per uscire dalla finestra modale
+        // in base al risultato che ottengo effettuo delle operazioni diverse
+        $('#spotifyModal').on('hide.bs.modal', function (e) {
+            var tmpid = $(document.activeElement).attr('id');
+            // Se l'utente ha deciso di collegare la canzone allora devo aggiungere l'ID Spotify corretto
+            if (tmpid == "collegaModal"){
+                $("#spotifyID").val(data.tracks.items[0].id);
+            }
+            $("#upload").submit();
+        });
+        // Mostro la finestra modale, ma prima aggiungo le informazioni relative alla canzone
+        $("#canzoneModale").append("<b>Canzone:</b> " + data.tracks.items[0].name)
+        $("#artistaModale").append("<b>Artista:</b> " + data.tracks.items[0].artists[0].name)
+        $("#albumModale").append("<b>Album:</b> " + data.tracks.items[0].album.name)
+        $('#spotifyModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    }
+    else{
+        $("#upload").submit();
+    }
 }
 
 

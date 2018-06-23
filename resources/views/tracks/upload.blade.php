@@ -5,6 +5,39 @@
 @endsection
 
 @section('content')
+    <!-- Finestra modale che si attiva nel caso in cui al termine dell'upload, i dati relativi alla
+         canzone inserita vengano trovati su Spotify -->
+    <div class="modal fade" id="spotifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Dati Spotify</h5>
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                </div>
+                <div class="modal-body">
+                    I dati della canzone che stai caricando corrispondono a quelli di una canzone su Spotify:
+                    <ul>
+                        <li id="canzoneModale"></li>
+                        <li id="artistaModale"></li>
+                        <li id="albumModale"></li>
+                    </ul>
+                    Desideri collegare la tua canzone a quella di spotify?<br>
+                    <small>
+                        Questo consentirà agli utenti di Unison di visualizzare ancora<br>
+                        più informazioni riguardo alla tua musica!
+                    </small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="annullaModal">Annulla</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="collegaModal">Collega canzone</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Termine della finestra modale -->
+
     <div class="jumbotron jumbotron-fluid text-center bgLogin mt-5">
         <div class="container text-light">
             <h1 class="d-none d-md-inline display-4 boldText">Fai sentire al mondo la tua musica</h1>
@@ -88,6 +121,9 @@
                             Traccia privata
                         </label>
                     </div>
+
+                    <!-- input hidden usato per trasmettere lo spotify ID al server -->
+                    <input type="hidden" id="spotifyID" name="spotifyID">
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonUpload">Carica</button>
                 </form>
