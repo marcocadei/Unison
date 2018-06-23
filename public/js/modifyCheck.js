@@ -121,7 +121,7 @@ function validateModify(event) {
             $("#mod").submit();
             $('#exampleModal').modal({
                 keyboard: false
-            }));
+            });
             // PROVALO DOMATTINA
             //window.onload(("#formModV").addClass("is-valid"));
         }
