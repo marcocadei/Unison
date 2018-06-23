@@ -103,12 +103,10 @@ function validateModify(event) {
                     email: $emailToSend
                 }, function (data, status, xhr) {
                     if (data.result) {
-                        $("#mod").submit();
-                        $('#exampleModal').modal({
+                        $('#modModal').modal({
                             keyboard: false
                         });
-                        // PROVALO DOMATTINA
-                        //window.onload(("#formModV").addClass("is-valid"));
+                        $("#mod").submit();
                     }
                     else {
                         $("#formModI").addClass("is-invalid");
@@ -118,12 +116,10 @@ function validateModify(event) {
                 }, "json");
         }
         else {
-            $("#mod").submit();
-            $('#exampleModal').modal({
+            $('#modModal').modal({
                 keyboard: false
             });
-            // PROVALO DOMATTINA
-            //window.onload(("#formModV").addClass("is-valid"));
+            $("#mod").submit();
         }
     }
 
