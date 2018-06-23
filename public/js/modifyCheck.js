@@ -35,7 +35,6 @@ $(document).ready(function () {
         }
         checkFileField($("#photoMod"), imageChosen);
     });
-    alert
     $("#emailMod").keyup(function(event) {checkEmail(event, this)});
     // Questo handler serve perché se mentre si digita l'email compaiono i suggerimenti del browser
     // e si seleziona una voce con le frecce e poi si preme tab, su firefox l'evento keyup non si
@@ -76,6 +75,7 @@ function validateModify(event) {
     nextPage &= checkPassword(event, $("#passwordMod"));
     nextPage &= checkRepeatPassword(event, $("#repeatPasswordMod"));
     nextPage &= checkBio(event, $("#bioMod"), maxLengthBio);
+    nextPage &= checkFileField($("#photoMod"), imageChosen);
 
 
     // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
