@@ -7,7 +7,11 @@
     <div class="d-flex flex-row order-0 order-md-3">
         <ul class="navbar-nav flex-row px-2 px-md-0 text-nowrap">
             @if(auth()->check())
-                <li class="nav-item"><a class="nav-link px-2" href="#"><span class="fas fa-cogs"></span></a></li>
+                <li class="nav-item">
+                    <a class="nav-link px-2" href="{{ route('modify') }}">
+                        <span class="fas fa-cogs"></span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->username) }}">
                         <span class="fas fa-user"></span>
