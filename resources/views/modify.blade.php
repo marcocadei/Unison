@@ -28,23 +28,23 @@
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
             <div class="col-sm-9 order-last col-md-3 order-md-first text-center">
-                <img src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!" class="loginImage rounded-circle img-fluid mt-5 mt-md-0">
+                <img class="loginImage rounded-circle img-fluid mt-5 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
             </div>
             <div class="col-sm-12 col-md-9 border-left pl-3">
                 <form class="p-5" action="{{'/modify'}}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <div class="row justify-content-center">
-                        <div class="col-4">
-                            <img class="img-fluid rounded-circle border border-primary" src="{{Storage::url(auth()->user()->profile_pic)}}">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <img class="img-fluid rounded-circle border border-primary profileImage" src="{{Storage::url(auth()->user()->profile_pic)}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="photoMod">Immagine di profilo:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
-                            <label class="custom-file-label" for="photoMod">Scegli il file della nuova immagine di profilo</label>
+                            <label class="custom-file-label modal-open" for="photoMod">Scegli il file della nuova immagine di profilo</label>
                             <div class="invalid-feedback">
-                                L'immagine di profilo deve essere quadrata!
+                                L'immagine di profilo deve essere quadrata e almeno 150X150px!
                             </div>
                         </div>
                     </div>

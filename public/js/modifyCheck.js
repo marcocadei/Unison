@@ -22,7 +22,7 @@ $(document).ready(function () {
         if ((file = this.files[0])) {
             img = new Image();
             img.onload = function () {
-                if (this.width != this.height) {
+                if (this.width != this.height || this.width < 150 || this.height < 150) {
                     $("#photoMod").addClass("is-invalid");
                     imageChosen = false;
                 }
