@@ -157,7 +157,7 @@ class TrackController extends Controller
         //$track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
         // Do al file il nome del titolo
         $tmp = explode(".", request('trackSelect')->getClientOriginalName());
-        $track->file = 'public/tracks/'.request('title').".".end($tmp);
+        $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp);
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null)
             $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
@@ -180,8 +180,7 @@ class TrackController extends Controller
 
     public function checkSongExistence(){
         $result = \DB::table('tracks')
-            ->where('title', '=', request('title'))
-            ->orWhere('file', '=', request('file'))
+            ->where('file', '=', request('file'))
             ->exists();
 
         return response()->json(['result' => !$result]);
