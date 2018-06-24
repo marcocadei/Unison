@@ -1,6 +1,7 @@
 maxLength = 64;
 maxLengthBio = 500;
-imageChosen = false;
+// La scelta dell'immagine non è obbligatoria
+imageChosen = true;
 
 /**
  * Associo agli elementi della form il gestore degli eventi che si occupa di controllare
@@ -13,7 +14,12 @@ $(document).ready(function () {
     $("#photoMod").on('change', function(){
         $photoName = getChooserName($(this));
         //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html($photoName);
+        if ($photoName.length > 0)
+            $(this).next('.custom-file-label').html($photoName);
+        else{
+            $(this).next('.custom-file-label').html("Scegli file...");
+            imageChosen;
+        }
 
         // Codice javascript per recuperare le dimensioni dell'immagine
         // selezionata dall'utente
