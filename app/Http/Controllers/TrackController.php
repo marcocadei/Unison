@@ -55,7 +55,8 @@ class TrackController extends Controller
             $songInfo = array(
                 "name" => $track->title,
                 "artist" => $track->uploader,
-                "url" => asset($track->file),
+                //"url" => asset($track->file),
+                "url" => Storage::url($track->file),
                 "duration" => $duration,
                 "duration_hours" => $duration_hours,
                 "duration_mins" => $duration_mins,
@@ -157,8 +158,8 @@ class TrackController extends Controller
         $track->duration = $duration;
         //$track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
         // Do al file il nome del titolo
-        $tmp = explode(".", request('trackSelect')->getClientOriginalName());
-        $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp);
+        $tmp1 = explode(".", request('trackSelect')->getClientOriginalName());
+        $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp1);
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null)
             $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
@@ -172,7 +173,7 @@ class TrackController extends Controller
         $track->save();
 
         // Carico i file (traccia e relativa copertina) e li memorizzo sul server
-        Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('trackSelect')->getClientOriginalName());
+        Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('title')."_".auth()->user()->username.".".end($tmp1));
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null)
             Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('photoSelect')->getClientOriginalName());
