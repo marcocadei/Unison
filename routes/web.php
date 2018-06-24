@@ -27,6 +27,8 @@ Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
 Route::post('/checkNewModifiedUserCredentials', 'AuthController@checkNewModifiedUserCredentials');
 
+Route::post('/follow', 'UserController@follow');
+Route::post('/unfollow', 'UserController@unfollow');
 
 // FIXME solo debug - poi eliminare
 Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');
