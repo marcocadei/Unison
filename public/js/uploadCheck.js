@@ -4,7 +4,6 @@ trackChoosed = false;
 // La scelta dell'immagine non è obbligatoria
 imageChoosed = true;
 
-
 $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
     // in modo che contenga il titolo della traccia selezionata
@@ -139,13 +138,13 @@ function checkSpotify(){
 }
 
 function searchSong(token){
-    // var song = 'Moondust';
-    // var artist = 'James%20Young';
     // Gli spazi vanno sostituiti con %20 nell'url di richiesta
+    let artist = $("#author").val().replace(" ", "%20");
     let track = $("#title").val().replace(" ", "%20");
+    //'https://api.spotify.com/v1/search?q=track:Numb%20artist:Linkin%20Park&type=track&limit=1'
     //var token = data;
     $.ajax({
-        url: 'https://api.spotify.com/v1/search?type=track&query=' + track + '&limit=1',
+        url: 'https://api.spotify.com/v1/search?q=track:' + track + '%20artist:' + artist + '&type=track&limit=1',
         headers: {
             Authorization: 'Bearer ' + token
         }
@@ -158,9 +157,9 @@ function searchSong(token){
 }
 
 function mostraInfoSpotify(data){
-    // Mostro la finestra di spotify solo se ho trovato qualcosa,
-    // altrimenti non faccio nulla
-    if(data.tracks.items.length > 0) {
+    // Mostro la finestra di spotify solo se ho trovato qualcosa e l'artista trovato è colui che sta
+    // caricando la canzone, altrimenti non faccio nulla
+    if(data.tracks.items.length > 0 && data.tracks.items[0].artists[0].name == $("#author").val()) {
         // Recupero l'id dell'elemento che è stato premuto per uscire dalla finestra modale
         // in base al risultato che ottengo effettuo delle operazioni diverse
         $('#spotifyModal').on('hide.bs.modal', function (e) {
