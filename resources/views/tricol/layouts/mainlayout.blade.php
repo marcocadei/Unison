@@ -42,6 +42,8 @@
     <!-- Script usato per recuperare i dati di spotify -->
     <script type="text/javascript" src="{{ asset('js/retrieveSpotifyData.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('/js/follow.js') }}"></script>
+
     {{-- IMPORTANTE: Lasciare questa inclusione sempre come ultima riga di questa sezione! --}}
     @include('tricol.elements.amplitudeinitializer')
 @endsection

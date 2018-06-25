@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Following;
 use Illuminate\Http\Request;
 use App\User;
 use Storage;
@@ -32,8 +33,35 @@ class UserController extends Controller
         $user->bio = request('bioMod');
         $user->save();
 
-
-        // PROBABILMENTE DA TOGLIERE IN QUANTO VOGLIO FARE UNA COSA VIA AJAX, QUINDI DOVREBBE TORNARE JSON
         return redirect('/modify');
+    }
+
+    public function follow() {
+        $following = new Following;
+
+        $followerId = auth()->user()->id;
+        $followed = User::where('username', '=', request('followed'))->first();
+        $followedId = $followed->id;
+
+        $following->follower = $followerId;
+        $following->followed = $followedId;
+
+        $following->save();
+
+        return response()->json(['result' => true]);
+    }
+
+    public function unfollow() {
+
+        $unfollowerId = auth()->user()->id;
+        $unfollowedId = User::where('username', '=', request('unfollowed'))->first();
+        $unfollowedId = $unfollowedId->id;
+
+        $following = Following::where('follower', '=', $unfollowerId)
+                        ->where('followed', '=', $unfollowedId)->first();
+
+        $following->delete();
+
+        return response()->json(['result' => true]);
     }
 }

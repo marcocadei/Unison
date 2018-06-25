@@ -10,7 +10,7 @@
             <div class="col-8 col-md-4 mb-2 mb-md-0">
                 <img class="img-fluid border border-light rounded-circle" src="{{ $userInfo["profile_pic"] }}">
             </div>
-            <div class="col-12 col-md-8 text-left">
+            <div class="col-12 col-md-8 text-left" id="refreshing">
                 <div class="row">
                     <div class="col-12">
                         <h1 class="boldText wordBreak text-left">{{ $userInfo["username"] }}</h1>
@@ -45,9 +45,9 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             @if($userInfo["followed_by_logged_user"])
-                                <button class="btn btn-outline-primary">Seguito</button>
+                                <button id="buttonUnfollow" class="btn btn-outline-primary">Seguito</button>
                             @else
-                                <button class="btn btn-primary">Segui</button>
+                                <button id="buttonFollow" class="btn btn-primary">Segui</button>
                                 {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
                                 controllare che alla pressione del tasto "segui" l'utente sia effettivamente loggato!
                                 (sennò lo si ributta alla pagina di login) --}}
