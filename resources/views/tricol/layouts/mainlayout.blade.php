@@ -39,6 +39,9 @@
 
     <script type="text/javascript" src="{{ asset('/js/amplitudeElements.js') }}"></script>
 
+    <!-- Script usato per recuperare i dati di spotify -->
+    <script type="text/javascript" src="{{ asset('js/retrieveSpotifyData.js') }}"></script>
+
     {{-- IMPORTANTE: Lasciare questa inclusione sempre come ultima riga di questa sezione! --}}
     @include('tricol.elements.amplitudeinitializer')
 @endsection

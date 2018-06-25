@@ -71,7 +71,7 @@
                     </span>
                     @if(strcmp($song["spotify_id"], "0000000000000000000000") != 0)
                     <span class="float-right text-right">
-                        <a class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#spotifyMetadata-{{ $counter }}" role="button" aria-expanded="false" aria-controls="spotifyMetadata-{{ $counter }}">
+                        <a class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#spotifyMetadata-{{ $counter }}" role="button" aria-expanded="false" aria-controls="spotifyMetadata-{{ $counter }}" onclick="retrieveData(this)">
                             <span class="fab fa-spotify"></span>
                         </a>
                     </span>
@@ -86,6 +86,7 @@
             <div class="card card-body py-2">
                 {{-- TODO da rimpiazzare con i dati veri --}}
                 <span class="smallText">Caricamento dati da Spotify in corso... [Track ID: {{ $song["spotify_id"] }}]</span>
+                <input type="hidden" value="{{ $song["spotify_id"] }}">
             </div>
         </div>
     </div>

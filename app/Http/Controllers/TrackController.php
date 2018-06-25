@@ -178,7 +178,7 @@ class TrackController extends Controller
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null)
             Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('photoSelect')->getClientOriginalName());
-        return redirect('/');
+        return redirect('/user/'.auth()->user()->username);
     }
 
     public function checkSongExistence(){
