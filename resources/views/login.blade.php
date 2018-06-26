@@ -108,5 +108,5 @@
     <script type="text/javascript" src="{{asset('js/signUpCheck.js')}}"></script>
 
     <!-- Script che implementa MD5 per evitare di mandare la password al server in chiaro -->
-    <script type="text/javascript" src="{{asset('js/md5.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/libs/md5.js')}}"></script>
 @endsection

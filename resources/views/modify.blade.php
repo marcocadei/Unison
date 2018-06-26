@@ -104,7 +104,7 @@
     <script type="text/javascript" src="{{asset('js/modifyCheck.js')}}"></script>
 
     <!-- Script che implementa MD5 per evitare di mandare la password al server in chiaro -->
-    <script type="text/javascript" src="{{asset('js/md5.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/libs/md5.js')}}"></script>
 
     {{-- Attiva la finestra modale al caricamento della pagina; la variabile di sessione "viewMod" è settata solo
     quando la pagina di modifica viene ricaricata a seguito di un aggiornamento dei dati. --}}
