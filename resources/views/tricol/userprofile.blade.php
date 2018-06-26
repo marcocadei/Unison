@@ -45,9 +45,9 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             @if($userInfo["followed_by_logged_user"])
-                                <button id="buttonUnfollow" class="btn btn-outline-primary">Seguito</button>
+                                <button id="buttonUnfollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
                             @else
-                                <button id="buttonFollow" class="btn btn-primary">Segui</button>
+                                <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
                                 {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
                                 controllare che alla pressione del tasto "segui" l'utente sia effettivamente loggato!
                                 (sennò lo si ributta alla pagina di login) --}}
