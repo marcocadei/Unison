@@ -109,9 +109,6 @@ function validateModify(event) {
                     email: $emailToSend
                 }, function (data, status, xhr) {
                     if (data.result) {
-                        $('#modModal').modal({
-                            keyboard: false
-                        });
                         $("#mod").submit();
                     }
                     else {
@@ -122,9 +119,6 @@ function validateModify(event) {
                 }, "json");
         }
         else {
-            $('#modModal').modal({
-                keyboard: false
-            });
             $("#mod").submit();
         }
     }
