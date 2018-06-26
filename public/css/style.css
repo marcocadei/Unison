@@ -169,6 +169,10 @@ img.filteredCoverArt {
 }
 
 .profileImage {
-    width: 150px;
-    height: 150px;
+    min-height: 150px;
+    max-height: 25vmin;
+}
+
+textarea.unresizable {
+    resize: none;
 }
