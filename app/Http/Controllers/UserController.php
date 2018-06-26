@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Following;
 use Illuminate\Http\Request;
+
+use App\Following;
 use App\User;
 use Storage;
 
 class UserController extends Controller
 {
     //FIXME verificare che si debba passare per il middleware (cioè verificare che l'utente sia loggato) per ogni azione del controller
-    public function __construct(){
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function edit(){
+    public function edit() {
         return view('modify');
     }
 
-    public function update(){
-        //Chiamato da ajax restituisce json
+    public function update() {
+        // Chiamato da ajax restituisce json
         $user = User::find(auth()->user()->id);
         $user->username = request('usernameMod');
         $user->email = request('emailMod');
@@ -33,7 +34,12 @@ class UserController extends Controller
         $user->bio = request('bioMod');
         $user->save();
 
-        return redirect('/modify');
+        /*
+         * Dopo aver eseguito la modifica del database viene ricaricata la stessa pagina; viene però impostata a true
+         * la variabile di sessione "viewMod" in modo che al caricamento venga visualizzata la finestra modale che
+         * conferma all'utente l'avvenuta applicazione delle modifiche.
+         */
+        return redirect('modify')->with('viewMod', true);
     }
 
     public function follow() {

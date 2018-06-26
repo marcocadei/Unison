@@ -70,6 +70,7 @@ function validateModify(event) {
     // Di default disabilito il submit della form, che effettuo solo dopo
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
+
     $("#formMod").removeClass('is-invalid');
 
     let nextPage = true;
@@ -103,28 +104,22 @@ function validateModify(event) {
         if ($emailChanged || $usernameChanged) {
             let $emailToSend = $emailChanged ? $("#emailMod").val() : '';
             let $usernameToSend = $usernameChanged ? $("#usernameMod").val() : '';
-            $.post("/checkNewModifiedUserCredentials",
+            $.post("/checkNewUserCredentials",
                 {
                     username: $usernameToSend,
                     email: $emailToSend
                 }, function (data, status, xhr) {
                     if (data.result) {
-                        $('#modModal').modal({
-                            keyboard: false
-                        });
                         $("#mod").submit();
                     }
                     else {
-                        $("#formModI").addClass("is-invalid");
+                        $("#formMod").addClass("is-invalid");
                         // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
                         $("#buttonMod").attr("disabled", false);
                     }
                 }, "json");
         }
         else {
-            $('#modModal').modal({
-                keyboard: false
-            });
             $("#mod").submit();
         }
     }

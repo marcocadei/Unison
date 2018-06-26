@@ -11,7 +11,7 @@ use App\User;
 use App\Like;
 use App\Following;
 use App\Unison\GeneralUtils;
-use App\MP3File;
+use App\Unison\MP3File;
 use Storage;
 
 class TrackController extends Controller
@@ -55,13 +55,11 @@ class TrackController extends Controller
             $songInfo = array(
                 "name" => $track->title,
                 "artist" => $track->uploader,
-                //"url" => asset($track->file),
                 "url" => Storage::url($track->file),
                 "duration" => $duration,
                 "duration_hours" => $duration_hours,
                 "duration_mins" => $duration_mins,
                 "duration_secs" => $duration_secs,
-                //"cover_art_url" => asset($track->picture),
                 "cover_art_url" => Storage::url($track->picture),
                 "date" => $track->created_at,
                 "plays" => $playsToBeDisplayed,
@@ -130,7 +128,6 @@ class TrackController extends Controller
             "same_as_logged_user" => $sameAsLoggedUser,
             "followed_by_logged_user" => $followedByLoggedUser,
             "username" => $userRecord->username,
-            //"profile_pic" => asset($userRecord->profile_pic),
             "profile_pic" => Storage::url($userRecord->profile_pic),
             "bio" => $userRecord->bio,
             "followers" => $numberOfFollowers,
@@ -162,8 +159,14 @@ class TrackController extends Controller
         $tmp1 = explode(".", request('trackSelect')->getClientOriginalName());
         $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp1);
         // La cover art per la track può non essere specificata
-        if (request('photoSelect') != null)
-            $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
+        $timestamp = null;
+        $coverArtFormat = null;
+        if (request('photoSelect') != null) {
+            $timestamp = time();
+            $coverArtFormat = explode(".", request('photoSelect')->getClientOriginalName());
+            $coverArtFormat = end($coverArtFormat);
+            $track->picture = 'public/trackthumbs/' . auth()->user()->username."_".$timestamp.".".$coverArtFormat;
+        }
         $track->uploader = auth()->user()->id;
         $track->dl_enabled = (request('allowDownload') ? 1 : 0);
         $track->private = (request('private') ? 1 : 0);
@@ -176,8 +179,9 @@ class TrackController extends Controller
         // Carico i file (traccia e relativa copertina) e li memorizzo sul server
         Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('title')."_".auth()->user()->username.".".end($tmp1));
         // La cover art per la track può non essere specificata
-        if (request('photoSelect') != null)
-            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('photoSelect')->getClientOriginalName());
+        if (request('photoSelect') != null) {
+            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), auth()->user()->username."_".$timestamp.".".$coverArtFormat);
+        }
         return redirect('/user/'.auth()->user()->username);
     }
 

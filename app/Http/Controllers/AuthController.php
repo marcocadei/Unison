@@ -13,7 +13,7 @@ class AuthController extends Controller
      * accedere a queste funzioni, fatta eccezione per quella di logout
      */
     public function __construct(){
-        $this->middleware('guest', ['except' => ['logout', 'checkNewModifiedUserCredentials']]);
+        $this->middleware('guest', ['except' => ['logout', 'checkNewUserCredentials']]);
     }
 
     /**
@@ -61,21 +61,6 @@ class AuthController extends Controller
      *
      */
     public function checkNewUserCredentials(){
-        $result = \DB::table('users')
-            ->where('username', '=', request('username'))
-            ->orWhere('email', '=', request('email'))->exists();
-
-        return response()->json(['result' => !$result]);
-    }
-
-    /**
-     * Controlla che le credenziali fornite (NELLA MODIFICA) NON coincidano con quelle di un utente esistente
-     * @return \Illuminate\Http\JsonResponse Il risultato, sottoforma di json, del risultato della
-     *         verifica dei dati dell'utente.<br>
-     *         <b>true</b> se l'utente esiste, <b>false</b> altrimenti
-     *
-     */
-    public function checkNewModifiedUserCredentials(){
         $result = \DB::table('users')
             ->where('username', '=', request('username'))
             ->orWhere('email', '=', request('email'))->exists();
