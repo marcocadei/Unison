@@ -90,10 +90,6 @@
                     <div class="invalid-feedback">
                         Nome utente o email già utilizzati.
                     </div>
-                    {{--<input type="hidden" class="form-control" id="formModV">
-                    <div class="valid-feedback">
-                        Modifica avvenuta con successo!
-                    </div>--}}
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
                 </form>
             </div>
