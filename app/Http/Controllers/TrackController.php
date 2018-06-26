@@ -159,8 +159,14 @@ class TrackController extends Controller
         $tmp1 = explode(".", request('trackSelect')->getClientOriginalName());
         $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp1);
         // La cover art per la track può non essere specificata
-        if (request('photoSelect') != null)
-            $track->picture = 'public/trackthumbs/'.request('photoSelect')->getClientOriginalName();
+        $timestamp = null;
+        $coverArtFormat = null;
+        if (request('photoSelect') != null) {
+            $timestamp = time();
+            $coverArtFormat = explode(".", request('photoSelect')->getClientOriginalName());
+            $coverArtFormat = end($coverArtFormat);
+            $track->picture = 'public/trackthumbs/' . auth()->user()->username."_".$timestamp.".".$coverArtFormat;
+        }
         $track->uploader = auth()->user()->id;
         $track->dl_enabled = (request('allowDownload') ? 1 : 0);
         $track->private = (request('private') ? 1 : 0);
@@ -173,8 +179,9 @@ class TrackController extends Controller
         // Carico i file (traccia e relativa copertina) e li memorizzo sul server
         Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('title')."_".auth()->user()->username.".".end($tmp1));
         // La cover art per la track può non essere specificata
-        if (request('photoSelect') != null)
-            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('photoSelect')->getClientOriginalName());
+        if (request('photoSelect') != null) {
+            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), auth()->user()->username."_".$timestamp.".".$coverArtFormat);
+        }
         return redirect('/user/'.auth()->user()->username);
     }
 
