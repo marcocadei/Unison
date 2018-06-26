@@ -5,33 +5,31 @@
 @endsection
 
 @section('content')
-    <br><br>
     <!-- Modal -->
     <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-success" id="modModalLabel">Modifica avvenuta con successo!</h5>
+                    <h5 class="modal-title">Modifica informazioni utente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{--Non credo sia necessario--}}
-                {{--<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>--}}
+                <div class="modal-body">
+                    <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Modifica avvenuta con successo!</h5>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container h-100">
+    <div class="container h-100 mt-5 mb-3 pt-3">
         <div class="row h-100 justify-content-center align-items-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
             <div class="col-sm-9 order-last col-md-3 order-md-first text-center">
-                <img class="loginImage rounded-circle img-fluid mt-5 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
+                <img class="loginImage rounded-circle img-fluid mt-3 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
             </div>
             <div class="col-sm-12 col-md-9 border-left pl-3">
-                <form class="p-5" action="{{'/modify'}}" method="post" id="mod" enctype="multipart/form-data">
+                <form class="px-2 px-md-5 py-3" action="/modify" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row mb-3">
                         <div class="col-12">
@@ -66,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Inserisci la nuova bio:</label>
-                        <textarea rows="4" cols="50" id="bioMod" name="bioMod" class="form-control">{{ auth()->user()->bio }}</textarea>
+                        <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable">{{ auth()->user()->bio }}</textarea>
                         <div class="invalid-feedback">
                             Per favore specifica una bio valida: può contenere al massimo 500 caratteri.
                         </div>
@@ -101,7 +99,6 @@
             </div>
         </div>
     </div>
-    <br><br>
 @endsection
 
 @section('script_footer')
