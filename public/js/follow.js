@@ -1,8 +1,3 @@
-/*$(document).ready(function () {
-    $("#buttonFollow").click(executeFollow);
-    $("#buttonUnfollow").click(executeUnfollow);
-});*/
-
 function executeFollow() {
 
     $("#buttonFollow").attr("disabled", true);
