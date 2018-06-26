@@ -103,7 +103,7 @@ function validateModify(event) {
         if ($emailChanged || $usernameChanged) {
             let $emailToSend = $emailChanged ? $("#emailMod").val() : '';
             let $usernameToSend = $usernameChanged ? $("#usernameMod").val() : '';
-            $.post("/checkNewModifiedUserCredentials",
+            $.post("/checkNewUserCredentials",
                 {
                     username: $usernameToSend,
                     email: $emailToSend
