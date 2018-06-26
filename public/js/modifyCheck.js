@@ -70,6 +70,7 @@ function validateModify(event) {
     // Di default disabilito il submit della form, che effettuo solo dopo
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
+
     $("#formMod").removeClass('is-invalid');
 
     let nextPage = true;
@@ -112,7 +113,7 @@ function validateModify(event) {
                         $("#mod").submit();
                     }
                     else {
-                        $("#formModI").addClass("is-invalid");
+                        $("#formMod").addClass("is-invalid");
                         // Se i dati inseriti erano sbagliati allora riabilito il bottone di submit
                         $("#buttonMod").attr("disabled", false);
                     }

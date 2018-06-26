@@ -86,7 +86,7 @@
                             Per favore reinserisci la stessa password.
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" id="formModI">
+                    <input type="hidden" class="form-control" id="formMod">
                     <div class="invalid-feedback">
                         Nome utente o email già utilizzati.
                     </div>
