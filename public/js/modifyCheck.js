@@ -180,16 +180,22 @@ function checkUser(event, user) {
 function checkPassword(event, pwd) {
     //cifra   //minuscola //maiuscola //simbolo //almeno 8 dei caratteri che accetto
     const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_])[\x21-\x7E]{8,}$/;
-
-    if (($(pwd).val().length == 0 || $(pwd).val().length > maxLength || !$(pwd).val().match(passwordRegex))
-        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(pwd).val().length != 0) || event == null)) {
-        $(pwd).addClass("is-invalid");
-        return false;
+    if ($(pwd).val().length >= 1) {
+        if (($(pwd).val().length > maxLength || !$(pwd).val().match(passwordRegex))
+            && ((event != null && event.keyCode != 9) || (event != null && event.keyCode == 9 && $(pwd).val().length != 0) || event == null)) {
+            $(pwd).addClass("is-invalid");
+            return false;
+        }
+        else {
+            $(pwd).removeClass("is-invalid");
+            return true;
+        }
     }
     else {
         $(pwd).removeClass("is-invalid");
         return true;
     }
+
 }
 
 /**
@@ -198,10 +204,16 @@ function checkPassword(event, pwd) {
  * @returns {boolean}, true se il valore è valido, false altrimenti
  */
 function checkRepeatPassword(event, repwd) {
-    if (($(repwd).val().length == 0 || $(repwd).val().length > maxLength || $(repwd).val() != $("#passwordMod").val())
-        && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(repwd).val().length != 0)  || event == null)) {
-        $(repwd).addClass("is-invalid");
-        return false;
+    if ($(repwd).val().length >= 1) {
+        if (($(repwd).val().length > maxLength || $(repwd).val() != $("#passwordMod").val())
+            && ((event != null && event.keyCode != 9) || (event != null && event.keyCode == 9 && $(repwd).val().length != 0) || event == null)) {
+            $(repwd).addClass("is-invalid");
+            return false;
+        }
+        else {
+            $(repwd).removeClass("is-invalid");
+            return true;
+        }
     }
     else {
         $(repwd).removeClass("is-invalid");
