@@ -12,7 +12,7 @@ function executeFollow() {
             followed: (window.location.pathname).substring(window.location.pathname.lastIndexOf('/') + 1)
         },
         function (data, status, xhr) {
-            $("#refreshing").load(location.href + " #refreshing");
+            $("#refreshing-container").load(location.href + " #refreshing-contained");
         }, "json");
 };
 
@@ -30,6 +30,6 @@ function executeUnfollow() {
             unfollowed: (window.location.pathname).substring(window.location.pathname.lastIndexOf('/') + 1)
         },
         function (data, status, xhr) {
-            $("#refreshing").load(location.href + " #refreshing");
+            $("#refreshing-container").load(location.href + " #refreshing-contained");
         }, "json");
 };

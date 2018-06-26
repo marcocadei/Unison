@@ -6,12 +6,12 @@
 
 @section('middlecol_header')
     <div class="container">
-        <div id="refreshing">
-            <div class="row align-items-center justify-content-center profileInfoBackground rounded py-3">
-                <div class="col-8 col-md-4 mb-2 mb-md-0">
-                    <img class="img-fluid border border-light rounded-circle" src="{{ $userInfo["profile_pic"] }}">
-                </div>
-                <div class="col-12 col-md-8 text-left">
+        <div class="row align-items-center justify-content-center profileInfoBackground rounded py-3">
+            <div class="col-8 col-md-4 mb-2 mb-md-0">
+                <img class="img-fluid border border-light rounded-circle" src="{{ $userInfo["profile_pic"] }}">
+            </div>
+            <div class="col-12 col-md-8 text-left" id="refreshing-container">
+                <div id="refreshing-contained">
                     <div class="row">
                         <div class="col-12">
                             <h1 class="boldText wordBreak text-left">{{ $userInfo["username"] }}</h1>
