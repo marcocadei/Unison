@@ -140,7 +140,8 @@ class TrackController extends Controller
     // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
     public function upload(){
         $username = auth()->user()->username;
-        return view('tracks.upload', compact('username'));
+        $maxFileSize = ini_get('upload_max_filesize');
+        return view('tracks.upload', compact(['username', 'maxFileSize']));
     }
 
     public function store() {

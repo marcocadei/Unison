@@ -65,10 +65,12 @@
                     <div class="form-group">
                         <label for="trackSelect">Canzone:</label>
                         <div class="custom-file">
+                            <!-- Input type hidden che uso per recuperare l'informazione circa la massima dimensione del file che può essere caricato -->
+                            <input type="hidden" name="maxFileSize" id="maxFileSize" value="{{ $maxFileSize }}">
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input form-control" id="trackSelect" name="trackSelect">
                             <label class="custom-file-label" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona una canzone!
+                                Seleziona una canzone! (Dimensione massima consentita: {{ $maxFileSize }})
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,7 @@
 
                     <div class="form-group">
                         <label for="author">Autore:</label>
-                        <input type="text" class="form-control" id="author" name="author" value="{{ auth()->user()->username }}" disabled>
+                        <input type="text" class="form-control" id="author" name="author" value="{{ $username}}" disabled>
                         <div class="invalid-feedback">
                             Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>

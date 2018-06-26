@@ -20,6 +20,19 @@ $(document).ready(function () {
             trackChoosed = false;
         }
 
+        // Controllo che il file caricato non superi la dimensione massima consentita
+        let maxFileSize = parseInt($("#maxFileSize").val());
+        // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
+        // per effettuare il confronto devo riportare i MB in bit
+        if (this.files[0].size > maxFileSize * 1024 * 1024){
+            $("#trackSelect").addClass("is-invalid");
+            trackChoosed = false;
+        }
+        else{
+            $("#trackSelect").removeClass("is-invalid");
+            trackChoosed = true;
+        }
+
         // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
         // del file (senza il formato), ma è sempre possibile cambiarlo
         let ultimo_punto = trackName.lastIndexOf(".");
