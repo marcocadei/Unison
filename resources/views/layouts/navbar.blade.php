@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top navbarMinHeight">
-    <a class="navbar-brand" href="/" data-toggle="tooltip" data-placement="bottom" title="Home">
+    <a class="navbar-brand" href="/" title="Home page">
         <div class="navLogo container container-fluid h-100">
             &nbsp;
         </div>
@@ -7,29 +7,29 @@
     <div class="d-flex flex-row order-0 order-md-3">
         <ul class="navbar-nav flex-row px-2 px-md-0 text-nowrap">
             @if(auth()->check())
-                <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Track upload">
+                <li class="nav-item" title="Carica una traccia">
                     <a class="nav-link px-2" href="{{ route('upload') }}">
                         <span class="fas fa-cloud-upload-alt"></span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Modifica profilo">
+                <li class="nav-item" title="Impostazioni">
                     <a class="nav-link px-2" href="{{ route('modify') }}">
                         <span class="fas fa-cogs"></span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->username) }}" data-toggle="tooltip" data-placement="bottom" title="Il mio profilo">
+                <li class="nav-item" title="Il tuo profilo">
+                    <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->username) }}">
                         <span class="fas fa-user"></span>
                     </a>
                 </li>
-                <li class="nav-item"  data-toggle="tooltip" data-placement="bottom" title="Logout">
+                <li class="nav-item" title="Esci">
                     <a class="nav-link px-2" href="{{ route('logout') }}">
                         <span class="d-none d-sm-inline">Esci</span>
                         <span class="fas fa-sign-out-alt"></span>
                     </a>
                 </li>
             @else
-                <li class="nav-item">
+                <li class="nav-item" title="Accedi">
                     <a class="nav-link px-2" href="{{ route('login') }}">
                         Accedi
                         <span class="fas fa-sign-in-alt"></span>
