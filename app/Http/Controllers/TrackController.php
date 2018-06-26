@@ -125,6 +125,7 @@ class TrackController extends Controller
         $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userRecord->id)->count());
 
         $userInfo = array(
+            "user_id" => $userRecord->id,
             "same_as_logged_user" => $sameAsLoggedUser,
             "followed_by_logged_user" => $followedByLoggedUser,
             "username" => $userRecord->username,

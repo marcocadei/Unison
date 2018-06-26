@@ -46,8 +46,8 @@ class UserController extends Controller
         $following = new Following;
 
         $followerId = auth()->user()->id;
-        $followed = User::where('username', '=', request('followed'))->first();
-        $followedId = $followed->id;
+//        $followed = User::where('username', '=', request('followed'))->first();
+        $followedId = request('followed');
 
         $following->follower = $followerId;
         $following->followed = $followedId;
@@ -60,8 +60,8 @@ class UserController extends Controller
     public function unfollow() {
 
         $unfollowerId = auth()->user()->id;
-        $unfollowedId = User::where('username', '=', request('unfollowed'))->first();
-        $unfollowedId = $unfollowedId->id;
+//        $unfollowedId = User::where('username', '=', request('unfollowed'))->first();
+        $unfollowedId = request('unfollowed');
 
         $following = Following::where('follower', '=', $unfollowerId)
                         ->where('followed', '=', $unfollowedId)->first();

@@ -44,14 +44,21 @@
                     </div>
                     @if(!$userInfo["same_as_logged_user"])
                         <div class="row mt-3">
+                            <div class="d-none col-12">
+                                <span class="bg-primary text-primary" id="userID">
+                                    {{ $userInfo["user_id"] }}
+                                </span>
+                            </div>
                             <div class="col-12">
-                                @if($userInfo["followed_by_logged_user"])
-                                    <button id="buttonUnfollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
-                                @else
-                                    <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
-                                    {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
-                                    controllare che alla pressione del tasto "segui" l'utente sia effettivamente loggato!
-                                    (sennò lo si ributta alla pagina di login) --}}
+                                @if(auth()->check())
+                                    @if($userInfo["followed_by_logged_user"])
+                                        <button id="buttonUnfollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
+                                    @else
+                                        <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
+                                        {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
+                                        controllare che alla pressione del tasto "segui" l'utente sia effettivamente loggato!
+                                        (sennò lo si ributta alla pagina di login) --}}
+                                    @endif
                                 @endif
                             </div>
                         </div>

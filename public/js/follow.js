@@ -9,7 +9,7 @@ function executeFollow() {
     });
     $.post("/follow",
         {
-            followed: (window.location.pathname).substring(window.location.pathname.lastIndexOf('/') + 1)
+            followed: parseInt($("#userID").text())
         },
         function (data, status, xhr) {
             $("#refreshing-container").load(location.href + " #refreshing-contained");
@@ -27,7 +27,7 @@ function executeUnfollow() {
     });
     $.post("/unfollow",
         {
-            unfollowed: (window.location.pathname).substring(window.location.pathname.lastIndexOf('/') + 1)
+            unfollowed: parseInt($("#userID").text())
         },
         function (data, status, xhr) {
             $("#refreshing-container").load(location.href + " #refreshing-contained");
