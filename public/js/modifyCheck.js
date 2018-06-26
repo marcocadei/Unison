@@ -157,7 +157,7 @@ function checkEmail(event, email){
  */
 function checkUser(event, user) {
 
-    const userRegex = /^[a-zA-Z0-9]+$/;
+    const userRegex = /^[\x20-\x7E]+$/;
 
     if (($(user).val().length == 0 || $(user).val().length > maxLength || !$(user).val().match(userRegex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(user).val().length != 0)  || event == null)) {
