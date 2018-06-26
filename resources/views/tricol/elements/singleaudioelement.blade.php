@@ -5,10 +5,10 @@
     <div class="row align-items-center justify-content-center">
         <div class="col-7 col-sm-4 col-md-2 p-1 pl-3 pr-3 pr-sm-1">
             @if(!isset($displayCounter) || !$displayCounter)
-                <img src="{{ asset($song["cover_art_url"]) }}" class="img-fluid w-100 p-0 m-auto"/>
+                <img src="{{ $song["cover_art_url"] }}" class="img-fluid w-100 p-0 m-auto"/>a
             @else
                 <div class="position-relative text-center">
-                    <img src="{{ asset($song["cover_art_url"]) }}" class="img-fluid w-100 p-0 m-auto filteredCoverArt" />
+                    <img src="{{ $song["cover_art_url"] }}" class="img-fluid w-100 p-0 m-auto filteredCoverArt" />
                     <h1 class="position-absolute boldText text-primary audioElementCounter">{{ $counter + 1 }}</h1>
                 </div>
             @endif
@@ -63,7 +63,7 @@
                         @if($song["dl_enabled"])
                         |
                         <span class="cursorPointer" >
-                            <a href="{{ asset($song["url"]) }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">
+                            <a href="{{ $song["url"] }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">
                                 <span class="fas fa-download"></span>
                             </a>
                         </span>
@@ -85,7 +85,7 @@
         <div class="col-12">
             <div class="card card-body py-2">
                 {{-- TODO da rimpiazzare con i dati veri --}}
-                <span class="smallText">Caricamento dati da Spotify in corso... [Track ID: {{ $song["spotify_id"] }}]</span>
+                <span class="smallText">Caricamento dati da Spotify in corso...</span>
                 <input type="hidden" value="{{ $song["spotify_id"] }}">
             </div>
         </div>
