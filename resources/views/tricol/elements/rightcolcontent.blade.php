@@ -7,7 +7,7 @@
         <a class="badge badge-pill badge-info" href="{{ url("/home") }}">Feed</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-info" href="/user/{{auth()->user()->username}}">Il tuo profilo</a>
+        <a class="badge badge-pill badge-info" href="/user/{{ urlencode(auth()->user()->username) }}">Il tuo profilo</a>
     </li>
     <li class="mb-2">
         <a class="badge badge-pill badge-info" href="{{ url("/top50") }}">Top tracks</a>
