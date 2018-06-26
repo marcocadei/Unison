@@ -5,7 +5,7 @@
     <div class="row align-items-center justify-content-center">
         <div class="col-7 col-sm-4 col-md-2 p-1 pl-3 pr-3 pr-sm-1">
             @if(!isset($displayCounter) || !$displayCounter)
-                <img src="{{ $song["cover_art_url"] }}" class="img-fluid w-100 p-0 m-auto"/>a
+                <img src="{{ $song["cover_art_url"] }}" class="img-fluid w-100 p-0 m-auto"/>
             @else
                 <div class="position-relative text-center">
                     <img src="{{ $song["cover_art_url"] }}" class="img-fluid w-100 p-0 m-auto filteredCoverArt" />
