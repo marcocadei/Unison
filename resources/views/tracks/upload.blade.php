@@ -70,7 +70,7 @@
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input form-control" id="trackSelect" name="trackSelect">
                             <label class="custom-file-label" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona una canzone! (Dimensione massima consentita: {{ $maxFileSize }})
+                                Seleziona un file valido (dimensione massima consentita: {{ $maxFileSize }}).
                             </div>
                         </div>
                     </div>
