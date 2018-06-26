@@ -11,35 +11,41 @@
 |
 */
 
+// Home page
 Route::get('/', 'BaseController@index')->name('index');
 
+// Login e registrazione e funzionalità correlate
 Route::get('/login', 'AuthController@create')->name('login');
-Route::get('/register', 'AuthController@create')->name('register');
 Route::post('/login', 'AuthController@login');
-Route::get('/logout', 'AuthController@logout')->name('logout');
+Route::get('/register', 'AuthController@create')->name('register');
 Route::post('/registration', 'AuthController@registration')->name('registration');
-
+Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::post('/checkNewUserCredentials', 'AuthController@checkNewUserCredentials');
 Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 
+// Modifica profilo utente
 Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
 
+// Following
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');
 
-// FIXME solo debug - poi eliminare
-Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');
-
+// Pagine con tracce audio
+Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
+Route::get('/user/{username}', 'TrackController@userProfile');
+Route::get('/top50', 'TrackController@top50')->name('top50');
 Route::get("/feed", function () {
     return redirect("/home");
 });
-Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
-Route::get('/user/{username}', 'TrackController@userProfile');
-Route::get('/top50', 'TrackController@top50');
 
+// Upload e funzionalità correlate
 Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name('upload');
 Route::post('/track', 'TrackController@store');
 Route::post('/checkSongExistence', 'TrackController@checkSongExistence');
 
+// Servizio di Spotify
 Route::post('/spotify/token', 'SpotifyController@token');
+
+// FIXME solo debug - poi eliminare
+Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');

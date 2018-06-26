@@ -8,6 +8,11 @@
         <ul class="navbar-nav flex-row px-2 px-md-0 text-nowrap">
             @if(auth()->check())
                 <li class="nav-item">
+                    <a class="nav-link px-2" href="{{ route('upload') }}">
+                        <span class="fas fa-cloud-upload-alt"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link px-2" href="{{ route('modify') }}">
                         <span class="fas fa-cogs"></span>
                     </a>
@@ -47,16 +52,8 @@
                     <a class="nav-link" href="{{ route('home') }}">Feed</a>
                 </li>
             @endif
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Top Charts
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Artisti</a>
-                    <a class="dropdown-item" href="#">Brani</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('top50') }}">Top Tracks</a>
             </li>
         </ul>
         <div class="w-100 mx-0 mx-md-3">
