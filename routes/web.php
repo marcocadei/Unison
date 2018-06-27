@@ -27,6 +27,8 @@ Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
 
+Route::post('/delete', 'UserController@delete');
+
 // Following
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');

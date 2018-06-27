@@ -61,6 +61,8 @@ $(document).ready(function () {
 
     $("#buttonMod").click(validateModify);
 
+    $("#buttonDel").click(checkDelete);
+
     // $("#SU").submit(function () {
     //     $("#buttonSU").attr("disabled", true);
     //     return true;
@@ -263,11 +265,20 @@ function checkFileField(field, choosed) {
  * @returns {string | *} La stringa che rappresenta il nome del file
  *          selezionato dall'utente tramite il chooser
  */
-function getChooserName(element){
+function getChooserName(element) {
     // Ottengo il nome del file
     let fileName = element.val();
     let lastSlash = fileName.lastIndexOf("\\");
     fileName = fileName.substring(lastSlash  + 1);
 
     return fileName;
+}
+
+function checkDelete(event) {
+    if(confirm("Vuoi davvero eliminare il tuo profilo e tutte le tracce associate?")) {
+        $('#buttonDel').submit();
+    }
+    else {
+        event.preventDefault();
+    }
 }

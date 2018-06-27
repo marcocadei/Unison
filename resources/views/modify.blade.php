@@ -91,6 +91,10 @@
                     </div>
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
                 </form>
+                <form class="px-2 px-md-5" action="/delete" method="post" id="del">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina profilo</button>
+                </form>
             </div>
         </div>
     </div>

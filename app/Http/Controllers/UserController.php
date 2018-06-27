@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Track;
 use App\Like;
 use App\Following;
 use App\User;
@@ -48,6 +49,14 @@ class UserController extends Controller
          * conferma all'utente l'avvenuta applicazione delle modifiche.
          */
         return redirect('modify')->with('viewMod', true);
+    }
+
+    public function delete() {
+        $user = User::find(auth()->user()->id);
+
+        $user->delete();
+
+        return redirect('login');
     }
 
     public function follow() {
