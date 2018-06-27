@@ -15,7 +15,7 @@
         <a class="badge badge-pill badge-primary" href="{{ url("/top50") }}">Top tracks</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/track/upload") }}">Carica una traccia</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/track/upload") }}">Upload</a>
     </li>
     <li class="mb-2">
         <a class="badge badge-pill badge-primary" href="{{ url("/modify") }}">Impostazioni</a>
