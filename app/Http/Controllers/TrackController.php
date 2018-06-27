@@ -57,6 +57,7 @@ class TrackController extends Controller
                 "artist" => $track->uploaderName,
                 "artist_id" => $track->uploader,
                 "url" => Storage::url($track->file),
+                "description" => $track->description,
                 "duration" => $duration,
                 "duration_hours" => $duration_hours,
                 "duration_mins" => $duration_mins,

@@ -78,10 +78,26 @@
                         </a>
                     </span>
                     @endif
+                    @if(!is_null($song["description"]) && strlen(trim($song["description"])) > 0)
+                    <span class="float-right text-right">
+                        <a class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#description-{{ $counter }}" role="button" aria-expanded="false" aria-controls="description-{{ $counter }}">
+                            <span class="fas fa-plus-circle"></span>
+                        </a>
+                    </span>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+    @if(!is_null($song["description"]) && strlen(trim($song["description"])) > 0)
+    <div class="row collapse my-2" id="description-{{ $counter }}">
+        <div class="col-12">
+            <div class="card card-body py-2">
+                <span class="smallText"><b>Descrizione:</b><br>{{ $song["description"] }}</span>
+            </div>
+        </div>
+    </div>
+    @endif
     @if(strcmp($song["spotify_id"], "0000000000000000000000") != 0)
     <div class="row collapse my-2" id="spotifyMetadata-{{ $counter }}">
         <div class="col-12">
