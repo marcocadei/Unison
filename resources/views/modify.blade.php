@@ -75,8 +75,6 @@
                         <div class="invalid-feedback">
                             Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
                             un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
-                            <br>
-                             ATTENZIONE: Se non desideri cambiare la tua password inserisci la tua password attuale per confermare le modifiche
                         </div>
                     </div>
                     <div class="form-group">
