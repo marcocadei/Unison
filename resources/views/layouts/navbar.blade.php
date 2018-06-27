@@ -59,7 +59,13 @@
         <div class="w-100 mx-0 mx-md-3">
             <form>
                 <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Cerca...">
+                    <select id="searchSelect" class="form-control center noOutline buttonWithoutShadow">
+                        <option value="2" selected> Brani </option>
+                        <option value="1"> Utenti </option>
+                    </select>
+
+                    <input type="search" class="form-control" placeholder="Cerca..." maxlength="128">
+
                     <div class="input-group-append">
                         <div class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></div>
                     </div>

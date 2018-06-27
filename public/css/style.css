@@ -176,3 +176,7 @@ img.filteredCoverArt {
 textarea.unresizable {
     resize: none;
 }
+
+#searchSelect {
+    max-width: 7em;
+}
