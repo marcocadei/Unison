@@ -44,7 +44,9 @@
                 <div>
                     <span class="float-left">
                         <span>
-                            <span class="@if($song["is_liked"]) buttonOn @endif cursorPointer" onclick="toggleLike(this, {{ $song["id"] }})">
+                            <span class="@if($song["is_liked"]) buttonOn @endif @if(auth()->check()) cursorPointer @endif"
+                                  @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif
+                            >
                                 <span class="fas fa-heart"></span>
                             </span>
                             {{-- TODO Realizzare lo script che fa mettere il mi piace cliccando qui --}}
