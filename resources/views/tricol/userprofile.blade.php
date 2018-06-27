@@ -52,7 +52,7 @@
                             <div class="col-12">
                                 @if(auth()->check())
                                     @if($userInfo["followed_by_logged_user"])
-                                        <button id="buttonUnfollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
+                                        <button id="buttonFollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
                                     @else
                                         <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
                                         {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
@@ -68,4 +68,9 @@
         </div>
     </div>
     <hr class="bg-secondary my-4 hrThick">
+@endsection
+
+@section('script_footer')
+    @parent
+    <script type="text/javascript" src="{{ asset('/js/follow.js') }}"></script>
 @endsection

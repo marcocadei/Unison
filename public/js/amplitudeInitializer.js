@@ -16,10 +16,10 @@ let amplitudeData = {
     "volume_increment": 5,
     "volume_decrement": 5,
     "bindings": {
-        "32": "play_pause", // Con il tasto spazio si avvia o si interrompe la riproduzione
+        "120": "play_pause", // Con il tasto F9 si avvia o si interrompe la riproduzione
         "37": "prev", // Con il tasto freccia sinistra si torna alla traccia precedente
         "39": "next", // Con il tasto freccia destra si va alla traccia successiva
-        "83": "shuffle" // Con il tasto S si attiva/disattiva la modalità casuale
+        "119": "shuffle" // Con il tasto F8 si attiva/disattiva la modalità casuale
     },
     "callbacks": {
         /*
