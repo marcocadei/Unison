@@ -35,4 +35,14 @@ class User extends Authenticatable
         return $query->where('username', $username);
     }
 
+    /**
+     * Restituisce gli utenti il cui username contiene la stringa specificata.
+     * @param $queryString string Stringa da cercare nell'username degli utenti presenti nel database.
+     */
+    public static function getSearchedUsers($queryString) {
+        return User::where('username', 'LIKE', '%' . $queryString . '%')
+            ->limit(50)
+            ->get();
+    }
+
 }
