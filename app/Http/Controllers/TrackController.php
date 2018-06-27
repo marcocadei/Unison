@@ -226,4 +226,25 @@ class TrackController extends Controller
         return view('tricol.top50', compact(['songs']));
     }
 
+    /**
+     * Restituisce la pagina con i risultati della ricerca.
+     */
+    public function search() {
+        /*
+         * Rimozione di tutti i caratteri non-ASCII.
+         */
+        $queryString = preg_replace('/[^\x20-\x7E]/','', request('searchInput'));
+
+        // Ricerca utenti
+        if (request('searchSelect') == 1) {
+            return abort(418);
+        }
+        // Ricerca brani
+        else {
+            $tracks = Track::getSearchedTracks($queryString);
+            $songs = $this->buildJSONArrayFromQueryOutput($tracks);
+            return view('tricol.searchTracks', compact(['songs', 'queryString']));
+        }
+    }
+
 }

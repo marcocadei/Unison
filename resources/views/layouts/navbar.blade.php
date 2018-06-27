@@ -57,17 +57,19 @@
             </li>
         </ul>
         <div class="w-100 mx-0 mx-md-3">
-            <form>
+            <form method="post" action="{{ route('search') }}">
+                {{ csrf_field() }}
+
                 <div class="input-group">
-                    <select id="searchSelect" class="form-control center noOutline buttonWithoutShadow">
-                        <option value="2" selected> Brani </option>
-                        <option value="1"> Utenti </option>
+                    <select id="searchSelect" name="searchSelect" class="form-control center noOutline buttonWithoutShadow">
+                        <option value="2"> Brani </option>
+                        <option value="1" @if(isset($usersSelectedInNavbarForm) && $usersSelectedInNavbarForm) selected @endif> Utenti </option>
                     </select>
 
-                    <input type="search" class="form-control" placeholder="Cerca..." maxlength="128">
+                    <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" required data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" title="<small>Spazi ripetuti e simboli non-ASCII non sono ammessi e verranno scartati.</small>">
 
                     <div class="input-group-append">
-                        <div class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></div>
+                        <button type="submit" class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></button>
                     </div>
                 </div>
             </form>

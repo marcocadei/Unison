@@ -47,6 +47,9 @@ Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name(
 Route::post('/track', 'TrackController@store');
 Route::post('/checkSongExistence', 'TrackController@checkSongExistence');
 
+// Ricerca
+Route::post('/search', 'TrackController@search')->name('search');
+
 // Servizio di Spotify
 Route::post('/spotify/token', 'SpotifyController@token');
 
