@@ -1,5 +1,5 @@
 maxLength = 64;
-maxLengthBio = 500;
+maxLengthBio = 200;
 // La scelta dell'immagine non è obbligatoria
 imageChosen = true;
 
