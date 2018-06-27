@@ -43,6 +43,8 @@
     <script type="text/javascript" src="{{ asset('js/retrieveSpotifyData.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('/js/follow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/like.js') }}"></script>
+
 
     {{-- IMPORTANTE: Lasciare questa inclusione sempre come ultima riga di questa sezione! --}}
     @include('tricol.elements.amplitudeinitializer')

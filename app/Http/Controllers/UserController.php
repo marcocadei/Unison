@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Like;
 use App\Following;
 use App\User;
 use Storage;
@@ -67,6 +68,32 @@ class UserController extends Controller
                         ->where('followed', '=', $unfollowedId)->first();
 
         $following->delete();
+
+        return response()->json(['result' => true]);
+    }
+
+    public function toggleLike() {
+
+        $likerId = auth()->user()->id;
+        $trackId = request('liked');
+
+        $result = Like::where('user_id', '=', $likerId)
+                    ->where('track', '=', $trackId)->exists();
+
+        if ($result) {
+            $like = Like::where('user_id', '=', $likerId)
+                        ->where('track', '=', $trackId)->first();
+
+            $like->delete();
+        }
+        else {
+            $like = new Like;
+
+            $like->user_id = $likerId;
+            $like->track = $trackId;
+
+            $like->save();
+        }
 
         return response()->json(['result' => true]);
     }

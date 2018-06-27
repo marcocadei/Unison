@@ -31,6 +31,9 @@ Route::post('/modify', 'UserController@update');
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');
 
+// Like
+Route::post('/like', 'UserController@toggleLike');
+
 // Pagine con tracce audio
 Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
 Route::get('/user/{userid}', 'TrackController@userProfile');
