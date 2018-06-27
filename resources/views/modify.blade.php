@@ -72,6 +72,7 @@
                     <div class="form-group">
                         <label for="passwordMod">Password:</label>
                         <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password...">
+                        <small class="form-text text-muted">Compila questo campo solo se intendi cambiare la tua password.</small>
                         <div class="invalid-feedback">
                             Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
                             un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
