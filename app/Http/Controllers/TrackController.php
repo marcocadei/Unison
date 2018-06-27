@@ -52,6 +52,7 @@ class TrackController extends Controller
             $playsToBeDisplayed = GeneralUtils::formatNumberWithMultipliers($track->plays);
 
             $songInfo = array(
+                "id" => $track->id,
                 "name" => $track->title,
                 "artist" => $track->uploaderName,
                 "artist_id" => $track->uploader,
@@ -92,11 +93,13 @@ class TrackController extends Controller
      */
     public function userProfile($userID) {
         /*
-         * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
-         * viene visualizzata una pagina d'errore.
+         * Si controlla che lo userID specificato nell'URL sia composto di sole cifre da 0 a 9.
          */
-        // Controllo che lo userID sia composto da sole cifre da 0 a 9
         if (ctype_digit($userID)) {
+            /*
+             * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
+             * viene visualizzata una pagina d'errore.
+             */
             $userExists = User::matchesID($userID)->exists();
             if (!$userExists) {
                 return abort(404);
