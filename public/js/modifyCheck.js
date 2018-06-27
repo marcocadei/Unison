@@ -9,6 +9,9 @@ imageChosen = true;
  */
 $(document).ready(function () {
 
+    let profilePicElement = $("form img");
+    let originalProfilePicSrc = profilePicElement.attr("src");
+
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
     $("#photoMod").on('change', function(){
@@ -31,13 +34,18 @@ $(document).ready(function () {
                 if (this.width != this.height || this.width < 150 || this.height < 150) {
                     $("#photoMod").addClass("is-invalid");
                     imageChosen = false;
+                    profilePicElement.attr("src", originalProfilePicSrc);
                 }
                 else {
                     $("#photoMod").removeClass("is-invalid");
                     imageChosen = true;
+                    profilePicElement.attr("src", img.src);
                 }
             };
             img.src = _URL.createObjectURL(file);
+        }
+        else {
+            profilePicElement.attr("src", originalProfilePicSrc);
         }
         checkFileField($("#photoMod"), imageChosen);
     });
