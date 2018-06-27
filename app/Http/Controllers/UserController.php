@@ -28,9 +28,14 @@ class UserController extends Controller
         $user->password = md5(request('passwordMod'));
         // Controllo che il campo per il caricamento dell'immagine non sia stato lasciato vuoto, altrimenti non faccio nulla
         if(request('photoMod') != null) {
-            $user->profile_pic= 'public/profilepics/'.request('photoMod')->getClientOriginalName();
+            $profilePicFormat = explode(".", request('photoMod')->getClientOriginalName());
+            $profilePicFormat = end($profilePicFormat);
+            $folder = 'public/profilepics/';
+            $fileName = $user->id . "_" . time() . "." . $profilePicFormat;
+            $user->profile_pic = $folder . $fileName;
+
             // Carico l'immagine sul server
-            Storage::putFileAs('public/profilepics', request()->file('photoMod'), request('photoMod')->getClientOriginalName());
+            Storage::putFileAs($folder, request()->file('photoMod'), $fileName);
         }
         $user->bio = request('bioMod');
         $user->save();
