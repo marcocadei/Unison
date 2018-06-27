@@ -27,4 +27,5 @@ function toggleLike(btnLike, idLiked) {
         .always(function () {
             $(btnLike).removeClass("disabledAnchor");
         });
+    delete $.ajaxSettings.headers['X-CSRF-TOKEN'];
 }
