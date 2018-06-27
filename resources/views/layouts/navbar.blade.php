@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li class="nav-item" title="Il tuo profilo">
-                    <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->username) }}">
+                    <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->id) }}">
                         <span class="fas fa-user"></span>
                     </a>
                 </li>

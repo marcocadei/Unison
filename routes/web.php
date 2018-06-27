@@ -33,7 +33,7 @@ Route::post('/unfollow', 'UserController@unfollow');
 
 // Pagine con tracce audio
 Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
-Route::get('/user/{username}', 'TrackController@userProfile');
+Route::get('/user/{userid}', 'TrackController@userProfile');
 Route::get('/top50', 'TrackController@top50')->name('top50');
 Route::get("/feed", function () {
     return redirect("/home");

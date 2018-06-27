@@ -8,7 +8,7 @@
     </li>
     @if(auth()->check())
         <li class="mb-2">
-            <a class="badge badge-pill badge-info" href="/user/{{ auth()->user()->username }}">Il tuo profilo</a>
+            <a class="badge badge-pill badge-info" href="/user/{{ auth()->user()->id }}">Il tuo profilo</a>
         </li>
     @endif
     <li class="mb-2">

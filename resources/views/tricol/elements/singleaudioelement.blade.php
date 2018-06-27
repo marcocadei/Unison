@@ -20,7 +20,7 @@
                         <span class="boldText text-primary buttonOn"><span class="fas fa-lock"></span></span>
                     @endif
                     <span class="boldText wordBreak">{{ $song["name"] }}</span> |
-                    <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist"]) }}">{{ $song["artist"] }}</a></span>
+                    <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist_id"]) }}">{{ $song["artist"] }}</a></span>
                 </div>
                 <div>
                     <span class="smallText text-black-50">{{ $song["date"] }}</span>

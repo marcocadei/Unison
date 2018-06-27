@@ -41,8 +41,7 @@ class TrackController extends Controller
              * vincoli di integrità referenziale all'interno del database l'uploader di una traccia sia sempre un
              * utente valido registrato nella tabella users.
              */
-            $uploaderName = User::matchesID($track->uploader)->value('username');
-            $track->uploader = $uploaderName;
+            $track->uploaderName = User::matchesID($track->uploader)->value('username');
 
             $duration = $track->duration;
             $duration_hours = GeneralUtils::formatNumberAsTwoDigits(floor($duration / 3600));
@@ -54,7 +53,8 @@ class TrackController extends Controller
 
             $songInfo = array(
                 "name" => $track->title,
-                "artist" => $track->uploader,
+                "artist" => $track->uploaderName,
+                "artist_id" => $track->uploader,
                 "url" => Storage::url($track->file),
                 "duration" => $duration,
                 "duration_hours" => $duration_hours,
@@ -90,12 +90,12 @@ class TrackController extends Controller
     /**
      * Restituisce la pagina profilo dell'utente specificato.
      */
-    public function userProfile($username) {
+    public function userProfile($userID) {
         /*
          * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
          * viene visualizzata una pagina d'errore.
          */
-        $userExists = User::matchesUsername($username)->exists();
+        $userExists = User::matchesID($userID)->exists();
         if (!$userExists) {
             return abort(404);
         }
@@ -103,29 +103,29 @@ class TrackController extends Controller
         /*
          * Record del database associato all'utente di cui si vuole visualizzare la pagina profilo.
          */
-        $userRecord = User::matchesUsername($username)->first();
+        $userRecord = User::matchesID($userID)->first();
 
         $sameAsLoggedUser = false;
         $followedByLoggedUser = false;
         if (auth()->check()) {
-            $sameAsLoggedUser = (strcmp($username, auth()->user()->username) == 0);
+            $sameAsLoggedUser = (strcmp($userID, auth()->user()->id) == 0);
             if (!$sameAsLoggedUser) {
-                $followedByLoggedUser = Following::matchesPair(auth()->user()->id, $userRecord->id)->exists();
+                $followedByLoggedUser = Following::matchesPair(auth()->user()->id, $userID)->exists();
             }
         }
 
-        $tracks = Track::getTracksByUser($userRecord->id, $sameAsLoggedUser);
+        $tracks = Track::getTracksByUser($userID, $sameAsLoggedUser);
         $songs = $this->buildJSONArrayFromQueryOutput($tracks);
 
         // Seguaci dell'utente di cui viene visualizzata la pagina profilo.
-        $numberOfFollowers = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollowed($userRecord->id)->count());
+        $numberOfFollowers = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollowed($userID)->count());
         // Utenti seguiti da quello di cui viene visualizzata la pagina profilo.
-        $numberOfFollowed = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollower($userRecord->id)->count());
+        $numberOfFollowed = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollower($userID)->count());
         // Numero totale di tracce caricate (incluse quelle private).
-        $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userRecord->id)->count());
+        $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userID)->count());
 
         $userInfo = array(
-            "user_id" => $userRecord->id,
+            "user_id" => $userID,
             "same_as_logged_user" => $sameAsLoggedUser,
             "followed_by_logged_user" => $followedByLoggedUser,
             "username" => $userRecord->username,
@@ -184,7 +184,7 @@ class TrackController extends Controller
         if (request('photoSelect') != null) {
             Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), auth()->user()->username."_".$timestamp.".".$coverArtFormat);
         }
-        return redirect('/user/'.auth()->user()->username);
+        return redirect('/user/' . auth()->user()->id);
     }
 
     public function checkSongExistence(){
