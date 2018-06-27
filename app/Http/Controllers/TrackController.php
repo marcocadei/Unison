@@ -95,7 +95,8 @@ class TrackController extends Controller
          * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
          * viene visualizzata una pagina d'errore.
          */
-        if (is_numeric($userID)) {
+        // Controllo che lo userID sia composto da sole cifre da 0 a 9
+        if (ctype_digit($userID)) {
             $userExists = User::matchesID($userID)->exists();
             if (!$userExists) {
                 return abort(404);
