@@ -4,27 +4,27 @@
 
 <ul>
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="{{ url("/home") }}">Feed</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/home") }}">Feed</a>
     </li>
     @if(auth()->check())
         <li class="mb-2">
-            <a class="badge badge-pill badge-secondary" href="/user/{{ auth()->user()->id }}">Il tuo profilo</a>
+            <a class="badge badge-pill badge-primary" href="/user/{{ auth()->user()->id }}">Il tuo profilo</a>
         </li>
     @endif
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="{{ url("/top50") }}">Top tracks</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/top50") }}">Top tracks</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="{{ url("/track/upload") }}">Carica una traccia</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/track/upload") }}">Carica una traccia</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="{{ url("/modify") }}">Impostazioni</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/modify") }}">Impostazioni</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="mailto:unison@altervista.org">Contattaci</a>
+        <a class="badge badge-pill badge-primary" href="mailto:unison@altervista.org">Contattaci</a>
     </li>
     <li class="mb-2">
-        <a class="badge badge-pill badge-secondary" href="{{ url("/") }}">Home page</a>
+        <a class="badge badge-pill badge-primary" href="{{ url("/") }}">Home page</a>
     </li>
     @if(auth()->check())
         <li class="mb-2">
