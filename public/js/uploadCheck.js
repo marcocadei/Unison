@@ -111,7 +111,9 @@ function validateUpload(event) {
         });
         $.post("/checkSongExistence",
             {
-                file: "public/tracks/"+$("#title").val()+"_"+$("#author").val()+trackName.substring(trackName.lastIndexOf("."))
+                //file: "public/tracks/"+$("#title").val()+"_"+$("#userID").val()+trackName.substring(trackName.lastIndexOf("."))
+                userID: $("#userID").val(),
+                title: $("#title").val()
             }, function (data, status, xhr) {
                 if (data.result) {
                     // Prima di terminare l'upload controllo se la canzone è presente su spotify

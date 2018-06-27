@@ -58,6 +58,8 @@
                 <form action="{{ url('track') }}" method="post" id="upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
+                    <!-- ID dell'utente -->
+                    <input type="hidden" id="userID" value="{{ $userID }}">
                     <div class="invalid-feedback">
                         Hai già caricato una canzone con quel titolo!
                     </div>

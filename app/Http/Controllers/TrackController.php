@@ -147,8 +147,9 @@ class TrackController extends Controller
     // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
     public function upload(){
         $username = auth()->user()->username;
+        $userID = auth()->user()->id;
         $maxFileSize = ini_get('upload_max_filesize');
-        return view('tracks.upload', compact(['username', 'maxFileSize']));
+        return view('tracks.upload', compact(['username', 'maxFileSize', 'userID']));
     }
 
     public function store() {
@@ -162,18 +163,18 @@ class TrackController extends Controller
         $track->title = request('title');
         $track->description = request('description');
         $track->duration = $duration;
-        //$track->file = 'public/tracks/'.request('trackSelect')->getClientOriginalName();
-        // Do al file il nome del titolo
-        $tmp1 = explode(".", request('trackSelect')->getClientOriginalName());
-        $track->file = 'public/tracks/'.request('title')."_".auth()->user()->username.".".end($tmp1);
+        // Do al file il nome del titolo -> NO! Potrebbero nascere dei problemi con caratteri come / sul FS
+        // Chiamo la traccia come: userID_timestamp.formato
+        $timestamp = time();
+        $trackFormat = explode(".", request('trackSelect')->getClientOriginalName());
+        $trackFormat = end($trackFormat);
+        $track->file = 'public/tracks/'.request('userID')."_".$timestamp.".".$trackFormat;
         // La cover art per la track può non essere specificata
-        $timestamp = null;
         $coverArtFormat = null;
         if (request('photoSelect') != null) {
-            $timestamp = time();
             $coverArtFormat = explode(".", request('photoSelect')->getClientOriginalName());
             $coverArtFormat = end($coverArtFormat);
-            $track->picture = 'public/trackthumbs/' . auth()->user()->username."_".$timestamp.".".$coverArtFormat;
+            $track->picture = 'public/trackthumbs/' .request('userID')."_".$timestamp.".".$coverArtFormat;
         }
         $track->uploader = auth()->user()->id;
         $track->dl_enabled = (request('allowDownload') ? 1 : 0);
@@ -185,17 +186,19 @@ class TrackController extends Controller
         $track->save();
 
         // Carico i file (traccia e relativa copertina) e li memorizzo sul server
-        Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('title')."_".auth()->user()->username.".".end($tmp1));
+        Storage::putFileAs('public/tracks', request()->file('trackSelect'), request('userID')."_".$timestamp.".".$trackFormat);
         // La cover art per la track può non essere specificata
         if (request('photoSelect') != null) {
-            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), auth()->user()->username."_".$timestamp.".".$coverArtFormat);
+            Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('userID')."_".$timestamp.".".$coverArtFormat);
         }
-        return redirect('/user/' . auth()->user()->id);
+        return redirect('/user/' .request('userID'));
     }
 
     public function checkSongExistence(){
         $result = \DB::table('tracks')
-            ->where('file', '=', request('file'))
+            ->join('users', 'tracks.uploader', '=', 'users.id')
+            ->where('users.id', '=', request('userID'))
+            ->where('tracks.title', '=', request('title'))
             ->exists();
 
         return response()->json(['result' => !$result]);
