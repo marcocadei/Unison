@@ -38,8 +38,8 @@ function follow(actionIsFollow) {
 
                 // Modifica del numero dei follower
                 // NB: Questa operazione viene eseguita SOLO se il numero dei follower è inferiore a 1000!
+                let followersSpan = button.parents(".row").prev().find("div:first-child > span:last-child");
                 if (!followersSpan.text().match(/[a-z]/i)) {
-                    let followersSpan = button.parents(".row").prev().find("div:first-child > span:last-child");
                     let followersCount = parseInt(followersSpan.text());
                     let delta = actionIsFollow ? +1 : -1;
                     followersSpan.text(followersCount + delta);
