@@ -25,7 +25,9 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
         $user->username = request('usernameMod');
         $user->email = request('emailMod');
-        $user->password = md5(request('passwordMod'));
+        if (!is_null(request('passwordMod'))) {
+            $user->password = md5(request('passwordMod'));
+        }
         // Controllo che il campo per il caricamento dell'immagine non sia stato lasciato vuoto, altrimenti non faccio nulla
         if(request('photoMod') != null) {
             $profilePicFormat = explode(".", request('photoMod')->getClientOriginalName());
