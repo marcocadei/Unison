@@ -34,7 +34,7 @@ function retrieveData(element){
             }
         })
             .then(function (oData) {
-                let dati = $("<ul></ul>");
+                let dati = $("<ul class='smallText m-0'></ul>");
                 // Spiegazione dei vari campi:
                 // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
                 // L'acousticness è la presenza di suoni "naturali" (piano, chitarra, voce), se ci sono
