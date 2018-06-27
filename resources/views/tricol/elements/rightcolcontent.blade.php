@@ -6,9 +6,11 @@
     <li class="mb-2">
         <a class="badge badge-pill badge-info" href="{{ url("/home") }}">Feed</a>
     </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-info" href="/user/{{ auth()->user()->username }}">Il tuo profilo</a>
-    </li>
+    @if(auth()->check())
+        <li class="mb-2">
+            <a class="badge badge-pill badge-info" href="/user/{{ auth()->user()->username }}">Il tuo profilo</a>
+        </li>
+    @endif
     <li class="mb-2">
         <a class="badge badge-pill badge-info" href="{{ url("/top50") }}">Top tracks</a>
     </li>
@@ -24,9 +26,11 @@
     <li class="mb-2">
         <a class="badge badge-pill badge-info" href="{{ url("/") }}">Home page</a>
     </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-danger" href="{{ route('logout') }}">Esci</a>
-    </li>
+    @if(auth()->check())
+        <li class="mb-2">
+            <a class="badge badge-pill badge-danger" href="{{ route('logout') }}">Esci</a>
+        </li>
+    @endif
 </ul>
 <h4>UNISON</h4>
 <small>
