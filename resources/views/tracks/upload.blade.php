@@ -59,7 +59,7 @@
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
                     <div class="invalid-feedback">
-                        Hai già caricato una canzone con quel titolo o con quel nome di file!
+                        Hai già caricato una canzone con quel titolo!
                     </div>
 
                     <div class="form-group">

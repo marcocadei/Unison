@@ -152,8 +152,10 @@ function checkSpotify(){
 
 function searchSong(token){
     // Gli spazi vanno sostituiti con %20 nell'url di richiesta
-    let artist = $("#author").val().replace(/ /g,"%20");
-    let track = $("#title").val().replace(/ /g,"%20");
+    // let artist = $("#author").val().replace(/ /g,"%20");
+    // let track = $("#title").val().replace(/ /g,"%20");
+    let artist = $("#author").val();
+    let track = $("#title").val();
     //'https://api.spotify.com/v1/search?q=track:Numb%20artist:Linkin%20Park&type=track&limit=1'
     //var token = data;
     $.ajax({
