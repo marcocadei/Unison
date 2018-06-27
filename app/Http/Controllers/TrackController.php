@@ -95,8 +95,13 @@ class TrackController extends Controller
          * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
          * viene visualizzata una pagina d'errore.
          */
-        $userExists = User::matchesID($userID)->exists();
-        if (!$userExists) {
+        if (is_numeric($userID)) {
+            $userExists = User::matchesID($userID)->exists();
+            if (!$userExists) {
+                return abort(404);
+            }
+        }
+        else {
             return abort(404);
         }
 
