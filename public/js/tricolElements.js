@@ -58,6 +58,16 @@ function initizalizePageElements() {
     thumbtack.click(scrollToCurrentTrack);
 
     skipper = $("#skipper");
+
+    // FUNZIONE SEGUENTE NON PIU UTILIZZATA - Il tasto è stato cambiato da spazio a F9
+
+    /*
+        Impedisce che la pressione della barra spaziatrice faccia scrollare la pagina (è il comportamento di default, ma
+        nelle pagine in cui c'è un player audio la barra spaziatrice è associata alla riproduzione).
+     */
+    // middleCol.onkeydown = function(e) {
+    //     return !(e.keyCode == 32);
+    // };
 }
 
 /**********************************************************
@@ -189,14 +199,6 @@ function scrollToCurrentTrack() {
 /**********************************************************
     Funzioni legate al player audio
 */
-
-/*
-    Impedisce che la pressione della barra spaziatrice faccia scrollare la pagina (è il comportamento di default, ma
-    nelle pagine in cui c'è un player audio la barra spaziatrice è associata alla riproduzione).
- */
-window.onkeydown = function(e) {
-    return !(e.keyCode == 32);
-};
 
 /*
  * Aggiunge ad ogni barra relativa ad una traccia audio l'handler dell'evento onclick.
