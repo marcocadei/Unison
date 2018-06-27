@@ -88,7 +88,7 @@ class Track extends Model
 
     /**
      * Restituisce le tracce il cui titolo contiene la stringa specificata.
-     * @param $queryString Stringa da cercare nel titolo delle tracce presenti nel database.
+     * @param $queryString string Stringa da cercare nel titolo delle tracce presenti nel database.
      */
     public static function getSearchedTracks($queryString) {
         return Track::notPrivate()
