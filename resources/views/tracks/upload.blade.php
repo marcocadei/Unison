@@ -58,8 +58,6 @@
                 <form action="{{ url('track') }}" method="post" id="upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
-                    <!-- ID dell'utente -->
-                    <input type="hidden" id="userID" value="{{ $userID }}">
                     <div class="invalid-feedback">
                         Hai già caricato una canzone con quel titolo!
                     </div>
@@ -67,6 +65,8 @@
                     <div class="form-group">
                         <label for="trackSelect">Canzone:</label>
                         <div class="custom-file">
+                            <!-- ID dell'utente -->
+                            <input type="hidden" name="userID" id="userID" value="{{ $userID }}">
                             <!-- Input type hidden che uso per recuperare l'informazione circa la massima dimensione del file che può essere caricato -->
                             <input type="hidden" name="maxFileSize" id="maxFileSize" value="{{ $maxFileSize }}">
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input form-control" id="trackSelect" name="trackSelect">
