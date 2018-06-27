@@ -73,4 +73,5 @@
 @section('script_footer')
     @parent
     <script type="text/javascript" src="{{ asset('/js/follow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/like.js') }}"></script>
 @endsection
