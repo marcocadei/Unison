@@ -28,6 +28,10 @@ Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
 Route::post('/delete', 'UserController@delete');
 
+// Modifica traccia
+Route::get('/track/{trackID}/edit', 'TrackController@editTrack');
+Route::post('/track/{trackID}/edit', 'TrackController@updateTrack');
+
 // Following
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');

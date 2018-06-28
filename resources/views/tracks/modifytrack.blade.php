@@ -1,0 +1,114 @@
+@extends('layouts.layout')
+
+@section('title')
+    Modifica della traccia {{ $trackRecord->title }}
+@endsection
+
+@section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="modTrackModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifica informazioni traccia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Modifica avvenuta con successo!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container h-100 mt-5 mb-3 pt-3">
+        <div class="row h-100 justify-content-center align-items-center">
+            <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
+            anche rispetto al verticale -->
+            <div class="col-sm-9 order-last col-md-3 order-md-first text-center">
+                <img class="loginImage rounded-circle img-fluid mt-3 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
+            </div>
+            <div class="col-sm-12 col-md-9 border-left pl-3">
+                <form class="px-2 px-md-5 py-3" action="{{ route("/track/" . $trackRecord->id . '/edit') }}" method="post" id="mod" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input type="hidden" class="form-control" id="formModify">
+                    <div class="invalid-feedback">
+                        Hai già caricato una canzone con quel titolo!
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <img class="img-fluid rounded-circle border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="photoMod">Inserisci la nuova immagine di copertina:</label>
+                        <div class="custom-file">
+                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
+                            <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
+                            <div class="invalid-feedback">
+                                L'immagine di copertina deve essere quadrata e almeno 150X150px!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Inserisci il nuovo titolo:</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}">
+                        <div class="invalid-feedback">
+                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Inserisci la nuova descrizione:</label>
+                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." value="{{ $trackRecord->description }}"></textarea>
+                        <div class="invalid-feedback">
+                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="checkbox" value="on" id="allowDownload" name="allowDownload">
+                        <label class="form-check-label" for="allowDownload">
+                            Consenti il download della traccia
+                        </label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="checkbox" value="on" id="private" name="private">
+                        <label class="form-check-label" for="private">
+                            Traccia privata
+                        </label>
+                    </div>
+
+                    <!-- input hidden usato per trasmettere lo spotify ID al server -->
+                    <input type="hidden" id="spotifyID" name="spotifyID">
+
+                    <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>
+                </form>
+                {{--TODO da fareeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee--}}
+                {{--<form class="px-2 px-md-5" action="/delete" method="post" id="del">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina traccia</button>
+                </form>--}}
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script_footer')
+    <!-- Altri script nostri -->
+    <!-- Script che effettuano i controlli sulla form di modifica e le chiamate
+         al server utilizzando Ajax -->
+    <script type="text/javascript" src="{{asset('js/modifyTrackCheck.js')}}"></script>
+
+    <!-- Script che implementa MD5 per evitare di mandare la password al server in chiaro -->
+    <script type="text/javascript" src="{{asset('js/libs/md5.js')}}"></script>
+
+    {{-- Attiva la finestra modale al caricamento della pagina; la variabile di sessione "viewMod" è settata solo
+    quando la pagina di modifica viene ricaricata a seguito di un aggiornamento dei dati. --}}
+    @if(session('viewMod'))
+        <script type="text/javascript">
+            $('#modModal').modal({
+                keyboard: true
+            });
+        </script>
+    @endif
+@endsection
