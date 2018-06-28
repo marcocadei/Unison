@@ -83,7 +83,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
                             <label class="custom-file-label" for="photoSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                L'immagine di copertina deve essere quadrata!
+                                Seleziona un file valido (l'immagine di copertina deve essere quadrata).
                             </div>
                         </div>
                     </div>

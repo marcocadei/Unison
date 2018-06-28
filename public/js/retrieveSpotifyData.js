@@ -14,15 +14,13 @@ $(document).ready(function () {
             //searchSong(token);
         },
         "json");
+})
+
+function retrieveData(element){
     // Questo rimuove l'header X-CSRF-TOKEN dalla richiesta ajax
     // Prima lo metto perché mi serve per ragioni di sicurezza imposte da Laravel
     // Ora lo tolgo perché spotify non si aspetta quell'header nella richiesta
     delete $.ajaxSettings.headers['X-CSRF-TOKEN'];
-
-    // TODO: mettere l'event listener
-})
-
-function retrieveData(element){
     // Se ho già recuperato i dati non li scarico una seconda volta
     if (!$(element).hasClass("retrieved")) {
         let id = $($(element).attr("href")).find("input").val();

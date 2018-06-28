@@ -20,25 +20,31 @@ $(document).ready(function () {
             trackChoosed = false;
         }
 
-        // Controllo che il file caricato non superi la dimensione massima consentita
-        let maxFileSize = parseInt($("#maxFileSize").val());
-        // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
-        // per effettuare il confronto devo riportare i MB in bit
-        if (this.files[0].size > maxFileSize * 1024 * 1024){
-            $("#trackSelect").addClass("is-invalid");
+        if (typeof this.files[0] !== 'undefined') {
+            // Controllo che il file caricato non superi la dimensione massima consentita
+            let maxFileSize = parseInt($("#maxFileSize").val());
+            // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
+            // per effettuare il confronto devo riportare i MB in bit
+            if (this.files[0].size > maxFileSize * 1024 * 1024) {
+                $("#trackSelect").addClass("is-invalid");
+                trackChoosed = false;
+            }
+            else {
+                $("#trackSelect").removeClass("is-invalid");
+                trackChoosed = true;
+            }
+
+            // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
+            // del file (senza il formato), ma è sempre possibile cambiarlo
+            let ultimo_punto = trackName.lastIndexOf(".");
+            $("#title").val(trackName.substring(0, ultimo_punto));
+            checkFileField($("#trackSelect"), trackChoosed);
+            checkTitle(null, $("#title"), maxLengthTitle);
+        }
+        else {
+            console.log("ciao");
             trackChoosed = false;
         }
-        else{
-            $("#trackSelect").removeClass("is-invalid");
-            trackChoosed = true;
-        }
-
-        // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
-        // del file (senza il formato), ma è sempre possibile cambiarlo
-        let ultimo_punto = trackName.lastIndexOf(".");
-        $("#title").val(trackName.substring(0, ultimo_punto));
-        checkFileField($("#trackSelect"), trackChoosed);
-        checkTitle(null, $("#title"), maxLengthTitle);
     });
 
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
@@ -118,9 +124,6 @@ function validateUpload(event) {
                 if (data.result) {
                     // Prima di terminare l'upload controllo se la canzone è presente su spotify
                     checkSpotify();
-                    // L'upload lo faccio solo dopo che l'utente ha premuto uno dei due
-                    // tasti della finestra modale (nel caso in cui essa sia mostrata)
-                    //$("#upload").submit();
                 }
                 else {
                     $("#formUpload").addClass("is-invalid");
@@ -146,20 +149,17 @@ function checkSpotify(){
             searchSong(token);
         },
         "json");
+}
+
+function searchSong(token){
+    let artist = $("#author").val();
+    let track = $("#title").val();
+
     // Questo rimuove l'header X-CSRF-TOKEN dalla richiesta ajax
     // Prima lo metto perché mi serve per ragioni di sicurezza imposte da Laravel
     // Ora lo tolgo perché spotify non si aspetta quell'header nella richiesta
     delete $.ajaxSettings.headers['X-CSRF-TOKEN'];
-}
-
-function searchSong(token){
-    // Gli spazi vanno sostituiti con %20 nell'url di richiesta
-    // let artist = $("#author").val().replace(/ /g,"%20");
-    // let track = $("#title").val().replace(/ /g,"%20");
-    let artist = $("#author").val();
-    let track = $("#title").val();
     //'https://api.spotify.com/v1/search?q=track:Numb%20artist:Linkin%20Park&type=track&limit=1'
-    //var token = data;
     $.ajax({
         url: 'https://api.spotify.com/v1/search?q=track:' + track + '%20artist:' + artist + '&type=track&limit=1',
         headers: {
@@ -235,8 +235,17 @@ function checkDescription(event, field, maxLength) {
 function checkFileField(field, choosed) {
     if(!choosed)
         field.addClass("is-invalid");
-    else
-        field.removeClass("is-invalid");
+    // Se la traccia/foto è selezionata
+    else{
+        // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
+        if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+            field.addClass("is-invalid");
+            choosed = false;
+        }
+        // Altrimenti è corretto
+        else
+            field.removeClass("is-invalid");
+    }
 
     return choosed;
 }
