@@ -374,4 +374,13 @@ class TrackController extends Controller
         return redirect()->route('modifyTrack', compact(['trackRecord']))->with('viewMod', true);
     }
 
+    public function deleteTrack($trackID) {
+
+        $track =  Track::where('id', '=', $trackID)->first();
+
+        $track->delete();
+
+        return redirect('login');
+    }
+
 }

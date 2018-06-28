@@ -44,6 +44,9 @@ $(document).ready(function () {
 
     // Prima di caricare la canzone controllo che tutti i campi siano compilati come richiesto
     $("#buttonModify").click(validateModify);
+
+    $("#buttonDel").click(openDeleteModal);
+    $("#buttonDefDel").click(executeDelete);
 });
 
 
@@ -219,4 +222,16 @@ function getChooserName(element){
     fileName = fileName.substring(lastSlash  + 1);
 
     return fileName;
+}
+
+function openDeleteModal (event) {
+    event.preventDefault();
+
+    $('#deleteModal').modal({
+        keyboard: true
+    });
+}
+
+function executeDelete() {
+    $('#buttonDel').parent().submit();
 }

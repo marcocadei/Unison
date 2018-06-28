@@ -31,6 +31,7 @@ Route::post('/delete', 'UserController@delete');
 // Modifica traccia
 Route::get('/track/edit/{trackID}', 'TrackController@editTrack')->name('modifyTrack');
 Route::post('/track/edit/{trackID}', 'TrackController@updateTrack');
+Route::post('/track/delete/{trackID}', 'TrackController@deleteTrack');
 
 // Following
 Route::post('/follow', 'UserController@follow');

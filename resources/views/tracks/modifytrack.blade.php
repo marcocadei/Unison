@@ -21,6 +21,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal eliminazione traccia -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminazione profilo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina definitivamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container h-100 mt-5 mb-3 pt-3">
         <div class="row h-100 justify-content-center align-items-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
@@ -83,11 +105,11 @@
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>
                 </form>
-                {{--TODO da fareeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee--}}
-                {{--<form class="px-2 px-md-5" action="/delete" method="post" id="del">
+
+                <form class="px-2 px-md-5" action="{{ asset("/track/delete/" . $trackRecord->id) }}" method="post" id="del">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina traccia</button>
-                </form>--}}
+                </form>
             </div>
         </div>
     </div>
