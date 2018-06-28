@@ -28,7 +28,7 @@ function showFollowed(followed){
         $("#followedList span").replaceWith("<span>Non segui nessuno attualmente.</span>");
     }
     else{
-        let followedList = $("<ul></ul>");
+        let followedList = $("<ul class='pl-2 my-auto'></ul>");
         for (let i = 0; i < followed.length; i++){
             let userLink = $("<li><a style='word-break: break-all' href='user/"+followed[i].id+"'>"+followed[i].name+"</a></li>");
             followedList.append(userLink);
@@ -65,7 +65,7 @@ function showFollowers(followers){
         $("#followerList span").replaceWith("<span>Non sei seguito da nessuno attualmente.</span>");
     }
     else{
-        let followerList = $("<ul></ul>");
+        let followerList = $("<ul class='pl-2 my-auto'></ul>");
         for (let i = 0; i < followers.length; i++){
             let userLink = $("<li><a style='word-break: break-all' href='user/"+followers[i].id+"'>"+followers[i].name+"</a></li>");
             followerList.append(userLink);
