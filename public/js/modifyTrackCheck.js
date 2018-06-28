@@ -7,7 +7,7 @@ imageChoosed = true;
 $(document).ready(function () {
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
-    $("#photoSelect").on('change',function(){
+    $("#photoMod").on('change',function(){
         photoName = getChooserName($(this));
         //replace the "Choose a file" label
         if (photoName.length > 0)
@@ -25,17 +25,17 @@ $(document).ready(function () {
             img = new Image();
             img.onload = function () {
                 if (this.width != this.height) {
-                    $("#photoSelect").addClass("is-invalid");
+                    $("#photoMod").addClass("is-invalid");
                     imageChoosed = false;
                 }
                 else {
-                    $("#photoSelect").removeClass("is-invalid");
+                    $("#photoMod").removeClass("is-invalid");
                     imageChoosed = true;
                 }
             };
             img.src = _URL.createObjectURL(file);
         }
-        checkFileField($("#photoSelect"), imageChoosed);
+        checkFileField($("#photoMod"), imageChoosed);
     });
 
     // Controllo sui campi titolo e descrizione

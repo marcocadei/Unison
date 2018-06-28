@@ -296,6 +296,27 @@ class TrackController extends Controller
 
     public function editTrack($trackID) {
 
+        $user = User::find(auth()->user()->id);
+        $userID = $user->id;
+
+        /*
+         * Si controlla che il trackID specificato nell'URL sia composto di sole cifre da 0 a 9.
+         */
+        if (ctype_digit($trackID)) {
+            /*
+             * Prima di tutto viene verificata l'esistenza della traccia; se è stata indicato una traccia inesistente o
+             * associata ad un altro utente, allora viene visualizzata una pagina d'errore.
+             */
+            $trackExists = Track::where('id', '=', $trackID)
+                ->where('uploader', '=', $userID)->exists();
+            if (!$trackExists) {
+                return abort(404);
+            }
+        }
+        else {
+            return abort(404);
+        }
+
         $trackRecord =  Track::where('id', '=', $trackID)->first();
 
         return view('tracks.modifytrack', compact(['trackRecord']));
@@ -303,7 +324,8 @@ class TrackController extends Controller
 
     public function updateTrack($trackID) {
 
-        $userID = auth()->user()->id;
+        $user = User::find(auth()->user()->id);
+        $userID = $user->id;
 
         /*
          * Si controlla che il trackID specificato nell'URL sia composto di sole cifre da 0 a 9.
@@ -328,7 +350,28 @@ class TrackController extends Controller
          */
         $trackRecord =  Track::where('id', '=', $trackID)->first();
 
-        return view('tracks.modifytrack', compact(['trackRecord']));
+        $trackRecord->title = request('title');
+        $trackRecord->description = request('description');
+        // Controllo che il campo per il caricamento dell'immagine non sia stato lasciato vuoto, altrimenti non faccio nulla
+        if(request('photoMod') != null) {
+            $coverArtFormat = explode(".", request('photoMod')->getClientOriginalName());
+            $coverArtFormat = end($coverArtFormat);
+            $trackRecord->picture = 'public/trackthumbs/' .request('userID')."_".time().".".$coverArtFormat;
+
+            Storage::putFileAs('public/trackthumbs', request()->file('photoMod'), request('userID')."_".time().".".$coverArtFormat);
+        }
+        $trackRecord->dl_enabled = (request('allowDownload') ? 1 : 0);
+        $trackRecord->private = (request('private') ? 1 : 0);
+
+
+        $trackRecord->save();
+
+        /*
+         * Dopo aver eseguito la modifica del database viene ricaricata la stessa pagina; viene però impostata a true
+         * la variabile di sessione "viewMod" in modo che al caricamento venga visualizzata la finestra modale che
+         * conferma all'utente l'avvenuta applicazione delle modifiche.
+         */
+        return redirect()->route('modifyTrack', compact(['trackRecord']))->with('viewMod', true);
     }
 
 }

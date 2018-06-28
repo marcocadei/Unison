@@ -29,7 +29,7 @@
                 <img class="loginImage rounded-circle img-fluid mt-3 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
             </div>
             <div class="col-sm-12 col-md-9 border-left pl-3">
-                <form class="px-2 px-md-5 py-3" action="{{ route("/track/" . $trackRecord->id . '/edit') }}" method="post" id="mod" enctype="multipart/form-data">
+                <form class="px-2 px-md-5 py-3" action="{{ asset("/track/edit/" .  $trackRecord->id) }}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
                     <div class="invalid-feedback">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Inserisci la nuova descrizione:</label>
-                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." value="{{ $trackRecord->description }}"></textarea>
+                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione...">{{ $trackRecord->description }}</textarea>
                         <div class="invalid-feedback">
                             Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
                         </div>
@@ -106,7 +106,7 @@
     quando la pagina di modifica viene ricaricata a seguito di un aggiornamento dei dati. --}}
     @if(session('viewMod'))
         <script type="text/javascript">
-            $('#modModal').modal({
+            $('#modTrackModal').modal({
                 keyboard: true
             });
         </script>
