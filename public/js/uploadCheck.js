@@ -10,10 +10,8 @@ $(document).ready(function () {
     $("#trackSelect").on('change',function(){
         trackChoosed = true;
         trackName = getChooserName($(this));
-        //replace the "Choose a file" label
-        if (trackName.length > 25)
-            $(this).next('.custom-file-label').html(trackName.substr(0, 23)+"...");
-        else if (trackName.length < 25 && trackName.length > 0)
+        // Sostituisco la scritta "Scegli file..."
+        if (trackName.length > 0)
             $(this).next('.custom-file-label').html(trackName);
         else {
             $(this).next('.custom-file-label').html("Scegli file...");

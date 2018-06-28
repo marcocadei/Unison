@@ -37,14 +37,14 @@ function retrieveData(element){
                 // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
                 // L'acousticness è la presenza di suoni "naturali" (piano, chitarra, voce), se ci sono
                 // tanti suono elettronici è bassa
-                dati.append("<li><b>Acusticità: </b>" + oData.acousticness + "</li>");
-                dati.append("<li><b>Danzabilità: </b>" + oData.danceability + "</li>");
-                dati.append("<li><b>Energia: </b>" + oData.energy + "</li>");
-                dati.append("<li><b>Vitalità: </b>" + oData.liveness + "</li>");
-                dati.append("<li><b>Rumorisità: </b>" + oData.loudness + "</li>");
+                dati.append("<li><b>Acousticness: </b>" + oData.acousticness + "</li>");
+                dati.append("<li><b>Danceability: </b>" + oData.danceability + "</li>");
+                dati.append("<li><b>Energy: </b>" + oData.energy + "</li>");
+                dati.append("<li><b>Liveness: </b>" + oData.liveness + "</li>");
+                dati.append("<li><b>Loudness: </b>" + oData.loudness + "</li>");
                 // Alta se ci sono tante parole, bassa altrimenti
-                dati.append("<li><b>Cantata: </b>" + oData.speechiness + "</li>");
-                dati.append("<li><b>Strumentalità: </b>" + oData.instrumentalness + "</li>");
+                dati.append("<li><b>Spechiness: </b>" + oData.speechiness + "</li>");
+                dati.append("<li><b>Instrumentalness: </b>" + oData.instrumentalness + "</li>");
 
                 $($(element).attr("href")).find("span").replaceWith(dati);
 

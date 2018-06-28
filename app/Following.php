@@ -25,7 +25,7 @@ class Following extends Model
     }
 
     public static function getFollower($userID){
-        return Following::where('followed', '=', $userID)
-            ->select('follower');
+        return Following::matchesFollower($userID)
+            ->join('users', 'followings.followed', '=', 'users.id');
     }
 }
