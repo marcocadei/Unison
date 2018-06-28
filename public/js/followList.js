@@ -13,7 +13,7 @@ function retrieveFollowedUsers(){
         });
         $.post("/followed",
             {
-                id: $("#userID").val()
+                id: $("#loggedUserID").val()
             },
             function (data, status, xhr) {
                 followed = data.result;
@@ -50,7 +50,7 @@ function retrieveFollowerUsers(){
         });
         $.post("/follower",
             {
-                id: $("#userID").val()
+                id: $("#loggedUserID").val()
             },
             function (data, status, xhr) {
                 followers = data.result;

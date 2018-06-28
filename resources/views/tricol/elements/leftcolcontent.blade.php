@@ -6,7 +6,7 @@
     <a class="badge badge-pill badge-success" href="{{ route('login') }}">Accedi</a> per scoprire di più
     sui tuoi follower e followed.
 @else
-    <input type="hidden" id="userID" value="{{ auth()->user()->id }}">
+    <input type="hidden" id="loggedUserID" value="{{ auth()->user()->id }}">
     <p>
         <b>
             <a class="btn btn-primary" data-toggle="collapse" href="#followedList" aria-expanded="false" aria-controls="followedList" id="buttonFollowed">
