@@ -1,5 +1,6 @@
-<b><h6>ALCUNI LINK UTILI</h6></b>
+{{-- TODO Ancora da realizzare tutto, per ora solo testo placeholder --}}
 
+<h4>LINK UTILI</h4>
 <ul>
     <li class="mb-2">
         <a class="badge badge-pill badge-primary" href="{{ url("/home") }}">Feed</a>
@@ -34,6 +35,7 @@
         </li>
     @endif
 </ul>
+
 <h4>UNISON</h4>
 <small>
     Ascoltare, condividire e scoprire nuova musica non è mai stato così facile.

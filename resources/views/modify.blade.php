@@ -40,7 +40,7 @@
                         <label for="photoMod">Immagine di profilo:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
-                            <label class="custom-file-label modal-open" for="photoMod">Scegli il file della nuova immagine di profilo</label>
+                            <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
                                 L'immagine di profilo deve essere quadrata e almeno 150X150px!
                             </div>
@@ -66,17 +66,16 @@
                         <label for="bioMod">Inserisci la nuova bio:</label>
                         <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable">{{ auth()->user()->bio }}</textarea>
                         <div class="invalid-feedback">
-                            Per favore specifica una bio valida: può contenere al massimo 500 caratteri.
+                            Per favore specifica una bio valida: può contenere al massimo 200 caratteri.
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="passwordMod">Password:</label>
                         <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password...">
+                        <small class="form-text text-muted">Compila questo campo solo se intendi cambiare la tua password.</small>
                         <div class="invalid-feedback">
                             Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
                             un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
-                            <br>
-                             ATTENZIONE: Se non desideri cambiare la tua password inserisci la tua password attuale per confermare le modifiche
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,6 +90,10 @@
                         Nome utente o email già utilizzati.
                     </div>
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
+                </form>
+                <form class="px-2 px-md-5" action="/delete" method="post" id="del">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina profilo</button>
                 </form>
             </div>
         </div>

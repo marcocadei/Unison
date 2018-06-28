@@ -51,6 +51,9 @@
                 integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
                 crossorigin="anonymous"></script>
 
+        <!-- Searchbar -->
+        <script type="text/javascript" src="{{asset('/js/searchbarCheck.js')}}"></script>
+
         <!-- Sezione per script specifici della pagina -->
         @yield('script_footer')
     </body>

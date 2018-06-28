@@ -26,6 +26,7 @@ Route::post('/checkUserCredentials', 'AuthController@checkUserCredentials');
 // Modifica profilo utente
 Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
+Route::post('/delete', 'UserController@delete');
 
 // Following
 Route::post('/follow', 'UserController@follow');
@@ -46,6 +47,9 @@ Route::get("/feed", function () {
 Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name('upload');
 Route::post('/track', 'TrackController@store');
 Route::post('/checkSongExistence', 'TrackController@checkSongExistence');
+
+// Ricerca
+Route::get('/search', 'TrackController@search')->name('search');
 
 // Servizio di Spotify
 Route::post('/spotify/token', 'SpotifyController@token');

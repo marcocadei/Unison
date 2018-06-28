@@ -1,5 +1,5 @@
 maxLength = 64;
-maxLengthBio = 500;
+maxLengthBio = 200;
 // La scelta dell'immagine non è obbligatoria
 imageChosen = true;
 
@@ -8,6 +8,9 @@ imageChosen = true;
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
+
+    let profilePicElement = $("form img");
+    let originalProfilePicSrc = profilePicElement.attr("src");
 
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
@@ -31,13 +34,18 @@ $(document).ready(function () {
                 if (this.width != this.height || this.width < 150 || this.height < 150) {
                     $("#photoMod").addClass("is-invalid");
                     imageChosen = false;
+                    profilePicElement.attr("src", originalProfilePicSrc);
                 }
                 else {
                     $("#photoMod").removeClass("is-invalid");
                     imageChosen = true;
+                    profilePicElement.attr("src", img.src);
                 }
             };
             img.src = _URL.createObjectURL(file);
+        }
+        else {
+            profilePicElement.attr("src", originalProfilePicSrc);
         }
         checkFileField($("#photoMod"), imageChosen);
     });
@@ -52,6 +60,8 @@ $(document).ready(function () {
     $("#bioMod").keyup(function(event) {checkBio(event, this, maxLengthBio)});
 
     $("#buttonMod").click(validateModify);
+
+    $("#buttonDel").click(checkDelete);
 
     // $("#SU").submit(function () {
     //     $("#buttonSU").attr("disabled", true);
@@ -255,11 +265,20 @@ function checkFileField(field, choosed) {
  * @returns {string | *} La stringa che rappresenta il nome del file
  *          selezionato dall'utente tramite il chooser
  */
-function getChooserName(element){
+function getChooserName(element) {
     // Ottengo il nome del file
     let fileName = element.val();
     let lastSlash = fileName.lastIndexOf("\\");
     fileName = fileName.substring(lastSlash  + 1);
 
     return fileName;
+}
+
+function checkDelete(event) {
+    if(confirm("Vuoi davvero eliminare il tuo profilo e tutte le tracce associate?")) {
+        $('#buttonDel').submit();
+    }
+    else {
+        event.preventDefault();
+    }
 }
