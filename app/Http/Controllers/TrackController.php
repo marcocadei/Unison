@@ -78,6 +78,34 @@ class TrackController extends Controller
         return $songs;
     }
 
+    private function buildUsersArrayFromQueryOutput($users) {
+        $usersArray = array();
+
+        foreach ($users as $user) {
+            $userID = $user->id;
+
+            // Seguaci dell'utente di cui viene visualizzata la pagina profilo.
+            $numberOfFollowers = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollowed($userID)->count());
+            // Utenti seguiti da quello di cui viene visualizzata la pagina profilo.
+            $numberOfFollowed = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollower($userID)->count());
+            // Numero totale di tracce caricate (incluse quelle private).
+            $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userID)->count());
+
+            $userInfo = array(
+                "user_id" => $userID,
+                "username" => $user->username,
+                "profile_pic" => Storage::url($user->profile_pic),
+                "followers" => $numberOfFollowers,
+                "following" => $numberOfFollowed,
+                "uploads" => $numberOfUploadedTracks
+            );
+
+            array_push($usersArray, $userInfo);
+        }
+
+        return $usersArray;
+    }
+
     /*
      * Di seguito i metodi che restituiscono le view vere e proprie.
      */
@@ -237,7 +265,17 @@ class TrackController extends Controller
 
         // Ricerca utenti
         if (request('searchSelect') == 1) {
-            return abort(418);
+            /*
+             * Nota: Questo array vuoto è necessario poiché anche la pagina con i risultati della ricerca per utente
+             * è una pagina "a tre colonne" e quindi si aspetta di avere un player audio. Eliminare questa variabile
+             * causa un errore durante la costruzione della view.
+             * NON TOGLIERE!
+             */
+            $songs = array();
+
+            $users = User::getSearchedUsers($queryString);
+            $users = $this->buildUsersArrayFromQueryOutput($users);
+            return view('tricol.searchUsers', compact(['users', 'songs', 'queryString']));
         }
         // Ricerca brani
         else {

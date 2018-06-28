@@ -57,7 +57,7 @@
             </li>
         </ul>
         <div class="w-100 mx-0 mx-md-3">
-            <form method="post" action="{{ route('search') }}">
+            <form method="get" action="{{ route('search') }}">
                 {{ csrf_field() }}
 
                 <div class="input-group">
@@ -66,7 +66,7 @@
                         <option value="1" @if(isset($usersSelectedInNavbarForm) && $usersSelectedInNavbarForm) selected @endif> Utenti </option>
                     </select>
 
-                    <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" required data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" title="<small>Spazi ripetuti e simboli non-ASCII non sono ammessi e verranno scartati.</small>">
+                    <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" required data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" title="<small>La stringa deve contenere almeno un carattere e non sono ammessi simboli non ASCII.</small>">
 
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></button>
