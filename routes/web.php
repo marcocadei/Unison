@@ -37,6 +37,9 @@ Route::post('/follower', 'UserController@followerList');
 // Like
 Route::post('/like', 'UserController@toggleLike');
 
+// Aggiornamento play count
+Route::post('/listened/{trackid}', 'TrackController@updatePlayCount');
+
 // Pagine con tracce audio
 Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
 Route::get('/user/{userid}', 'TrackController@userProfile');
