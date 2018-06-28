@@ -1,5 +1,3 @@
-{{-- TODO Ancora da realizzare tutto, per ora solo testo placeholder --}}
-
 <h4>LINK UTILI</h4>
 <ul>
     <li class="mb-2">
