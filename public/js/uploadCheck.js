@@ -166,11 +166,17 @@ function searchSong(token){
             Authorization: 'Bearer ' + token
         }
     })
-        .then( function(oData) {
+        .then(function(oData) {
             //console.log(oData.tracks.items[0].uri);
             // console.log(oData);
             mostraInfoSpotify(oData);
         })
+        .fail(function () {
+            // Se c'è un errore con spotify (magari il servizio non è disponibile) allora memorizzo la canzone
+            // senza alcuna associazione
+            $("#upload").submit();
+        })
+
 }
 
 function mostraInfoSpotify(data){

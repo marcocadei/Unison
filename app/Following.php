@@ -19,4 +19,13 @@ class Following extends Model
         return $query->where('followed', $followed);
     }
 
+    public static function getFollowed($userID){
+        return Following::where('follower', '=', $userID)
+            ->select('followed');
+    }
+
+    public static function getFollower($userID){
+        return Following::where('followed', '=', $userID)
+            ->select('follower');
+    }
 }
