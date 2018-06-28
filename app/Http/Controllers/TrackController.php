@@ -285,4 +285,41 @@ class TrackController extends Controller
         }
     }
 
+    public function editTrack($trackID) {
+
+        $trackRecord =  Track::where('id', '=', $trackID)->first();
+
+        return view('tracks.modifytrack', compact(['trackRecord']));
+    }
+
+    public function updateTrack($trackID) {
+
+        $userID = auth()->user()->id;
+
+        /*
+         * Si controlla che il trackID specificato nell'URL sia composto di sole cifre da 0 a 9.
+         */
+        if (ctype_digit($trackID)) {
+            /*
+             * Prima di tutto viene verificata l'esistenza della traccia; se è stata indicato una traccia inesistente o
+             * associata ad un altro utente, allora viene visualizzata una pagina d'errore.
+             */
+            $trackExists = Track::where('id', '=', $trackID)
+                ->where('uploader', '=', $userID)->exists();
+            if (!$trackExists) {
+                return abort(404);
+            }
+        }
+        else {
+            return abort(404);
+        }
+
+        /*
+         * Record del database associato alla track di cui si vuole visualizzare la pagina profilo.
+         */
+        $trackRecord =  Track::where('id', '=', $trackID)->first();
+
+        return view('tracks.modifytrack', compact(['trackRecord']));
+    }
+
 }
