@@ -6,37 +6,30 @@
     <a class="badge badge-pill badge-success" href="{{ route('login') }}">Accedi</a> per scoprire di più
     sui tuoi follower e followed.
 @else
+    <input type="hidden" id="userID" value="{{ auth()->user()->id }}">
     <p>
         <b>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-primary" data-toggle="collapse" href="#followedList" aria-expanded="false" aria-controls="followedList" id="buttonFollowed">
                 FOLLOWED
             </a>
         </b>
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="followedList">
         <div class="card card-body">
-            <ul style="word-break: break-all">
-                <a href="#">
-                    <li>
-                        Prova utente con nome moltoooooooooooooooooooooooooooooooooo lungo
-                    </li>
-                </a>
-            </ul>
-            <ul style="word-break: break-all">
-                <a href="#">
-                    <li>
-                        Prova utente con nome moltoooooooooooooooooooooooooooooooooo lungo
-                    </li>
-                </a>
-            </ul>
+            <span> Carico i followed... </span>
         </div>
     </div>
-    {{--@foreach($followed as $user)--}}
-        {{--<a href="{{ url('/user/'.$user) }}">Prova</a>--}}
-    {{--@endforeach--}}
 
-    {{--<b><h6>FOLLOWER</h6></b>--}}
-    {{--@foreach($follower as $user)--}}
-        {{--<a href="{{ url('/user/'.$user) }}">Prova</a>--}}
-    {{--@endforeach--}}
+    <p class="mt-5">
+        <b>
+            <a class="btn btn-primary" data-toggle="collapse" href="#followerList" aria-expanded="false" aria-controls="followerList" id="buttonFollower">
+                FOLLOWERS
+            </a>
+        </b>
+    </p>
+    <div class="collapse" id="followerList">
+        <div class="card card-body">
+            <span> Carico i followers... </span>
+        </div>
+    </div>
 @endif

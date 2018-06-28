@@ -115,4 +115,34 @@ class UserController extends Controller
 
         return response()->json(['result' => true]);
     }
+
+    public function followedList(){
+        $followed = Following::getFollowed(request('id'));
+
+        $followedList = array();
+        foreach($followed as $user){
+            $userInfo = array(
+                "id"=>$user->followed,
+                "name"=>$user->username
+            );
+            array_push($followedList, $userInfo);
+        }
+
+        return response()->json(['result' => $followedList]);
+    }
+
+    public function followerList(){
+        $followers = Following::getFollower(request('id'));
+
+        $followerList = array();
+        foreach($followers as $user){
+            $userInfo = array(
+                "id"=>$user->follower,
+                "name"=>$user->username
+            );
+            array_push($followerList, $userInfo);
+        }
+
+        return response()->json(['result' => $followerList]);
+    }
 }

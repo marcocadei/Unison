@@ -20,12 +20,16 @@ class Following extends Model
     }
 
     public static function getFollowed($userID){
-        return Following::where('follower', '=', $userID)
-            ->select('followed');
+        return Following::matchesFollower($userID)
+            ->join('users', 'followings.followed', '=', 'users.id')
+            ->select('followed', 'username')
+            ->get();
     }
 
     public static function getFollower($userID){
-        return Following::matchesFollower($userID)
-            ->join('users', 'followings.followed', '=', 'users.id');
+        return Following::matchesFollowed($userID)
+            ->join('users', 'followings.follower', '=', 'users.id')
+            ->select('follower', 'username')
+            ->get();
     }
 }

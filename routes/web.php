@@ -31,6 +31,8 @@ Route::post('/delete', 'UserController@delete');
 // Following
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');
+Route::post('/followed', 'UserController@followedList');
+Route::post('/follower', 'UserController@followerList');
 
 // Like
 Route::post('/like', 'UserController@toggleLike');
