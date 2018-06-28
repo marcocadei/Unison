@@ -44,15 +44,12 @@
                 <div>
                     <span class="float-left">
                         <span>
+                            {{-- L'icona del cuore è un bottone che esegue l'azione del like solo per gli utenti loggati. --}}
                             <span class="@if($song["is_liked"]) buttonOn @endif @if(auth()->check()) cursorPointer @endif"
                                   @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif
                             >
                                 <span class="fas fa-heart"></span>
                             </span>
-                            {{-- TODO Realizzare lo script che fa mettere il mi piace cliccando qui --}}
-                            {{-- ATTENZIONE! Le tracce in generale possono essere visualizzate anche da utenti non
-                            loggati (ad es la top 50 è sempre accessibile): accertarsi che ci sia un utente loggato
-                            prima di abilitare il collegamento del mipiace! --}}
                             <span class="smallText">{{ $song["likes"] }}</span>
                         </span>
                         |
@@ -102,7 +99,6 @@
     <div class="row collapse my-2" id="spotifyMetadata-{{ $counter }}">
         <div class="col-12">
             <div class="card card-body py-2">
-                {{-- TODO da rimpiazzare con i dati veri --}}
                 <span class="smallText">Caricamento dati da Spotify in corso...</span>
                 <input type="hidden" value="{{ $song["spotify_id"] }}">
             </div>

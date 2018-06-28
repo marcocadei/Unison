@@ -50,14 +50,12 @@
                                 </span>
                             </div>
                             <div class="col-12">
+                                {{-- Il bottone per il follow non viene visualizzato se l'utente non è loggato. --}}
                                 @if(auth()->check())
                                     @if($userInfo["followed_by_logged_user"])
                                         <button id="buttonFollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
                                     @else
                                         <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
-                                        {{-- TODO ATTENZIONE! si può accedere a questa pagina anche da non-loggati, quindi bisogna
-                                        controllare che alla pressione del tasto "segui" l'utente sia effettivamente loggato!
-                                        (sennò lo si ributta alla pagina di login) --}}
                                     @endif
                                 @endif
                             </div>
