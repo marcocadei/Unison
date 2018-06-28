@@ -34,8 +34,10 @@ $(document).ready(function () {
 
             // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
             // del file (senza il formato), ma è sempre possibile cambiarlo
+            // Se il nome del file è più lungo di #maxLengthTitle allora mantengo solo i primi #maxLengthTitle
+            // caratteri
             let ultimo_punto = trackName.lastIndexOf(".");
-            $("#title").val(trackName.substring(0, ultimo_punto));
+            $("#title").val((trackName.substring(0, ultimo_punto)).match(/^[\x20-\x7E]+$/).join('').substring(0, maxLengthTitle));
             checkFileField($("#trackSelect"), trackChoosed);
             checkTitle(null, $("#title"), maxLengthTitle);
         }
