@@ -54,6 +54,8 @@ class UserController extends Controller
     public function delete() {
         $user = User::find(auth()->user()->id);
 
+        auth()->logout();
+
         $user->delete();
 
         return redirect('login');

@@ -61,7 +61,8 @@ $(document).ready(function () {
 
     $("#buttonMod").click(validateModify);
 
-    $("#buttonDel").click(checkDelete);
+    $("#buttonDel").click(openDeleteModal);
+    $("#buttonDefDel").click(executeDelete);
 
     // $("#SU").submit(function () {
     //     $("#buttonSU").attr("disabled", true);
@@ -274,11 +275,14 @@ function getChooserName(element) {
     return fileName;
 }
 
-function checkDelete(event) {
-    if(confirm("Vuoi davvero eliminare il tuo profilo e tutte le tracce associate?")) {
-        $('#buttonDel').submit();
-    }
-    else {
-        event.preventDefault();
-    }
+function openDeleteModal (event) {
+    event.preventDefault();
+
+    $('#deleteModal').modal({
+        keyboard: true
+    });
+}
+
+function executeDelete() {
+    $('#buttonDel').parent().submit();
 }
