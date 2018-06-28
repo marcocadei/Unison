@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <!-- Modal -->
+    <!-- Modal conferma modifiche -->
     <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -21,6 +21,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal eliminazione profilo -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminazione profilo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina definitivamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container h-100 mt-5 mb-3 pt-3">
         <div class="row h-100 justify-content-center align-items-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
