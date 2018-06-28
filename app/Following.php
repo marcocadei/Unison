@@ -23,6 +23,7 @@ class Following extends Model
         return Following::matchesFollower($userID)
             ->join('users', 'followings.followed', '=', 'users.id')
             ->select('followed', 'username')
+            ->orderBy('username')
             ->get();
     }
 
@@ -30,6 +31,7 @@ class Following extends Model
         return Following::matchesFollowed($userID)
             ->join('users', 'followings.follower', '=', 'users.id')
             ->select('follower', 'username')
+            ->orderBy('username')
             ->get();
     }
 }

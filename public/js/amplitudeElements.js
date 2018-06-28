@@ -124,8 +124,14 @@ function updatePlayCount() {
         traccia attualmente riprodotta dall'utente.
      */
 
-    // TODO da fare!
-    console.log("+1");
+    console.log("+1"); // FIXME da rimuovere
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.post("/listened/" + parseInt(Amplitude.getActiveSongMetadata().id), {}, function (data, status, xhr) {}, "json");
 }
 
 /**********************************************************

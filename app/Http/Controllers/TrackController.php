@@ -176,6 +176,15 @@ class TrackController extends Controller
         return view('tricol.userprofile', compact(['songs', 'userInfo']));
     }
 
+    public function updatePlayCount($trackID) {
+        $track = Track::matchesID($trackID)->first();
+        $playCount = $track->plays;
+        $track->plays = $playCount + 1;
+        $track->save();
+
+        return response()->json(['result' => true]);
+    }
+
     // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
     public function upload(){
         $username = auth()->user()->username;
