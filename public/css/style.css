@@ -200,3 +200,8 @@ textarea.unresizable {
 .fileLabelHeightReset {
     height: calc(2.25rem) !important;
 }
+
+a.imageLink > img:hover {
+    opacity: 0.5;
+    filter: alpha(opacity = 50); /* Solo IE8 o precedenti */
+}

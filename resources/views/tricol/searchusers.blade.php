@@ -20,7 +20,7 @@
         @foreach($users as $userInfo)
         <div class="row align-items-center justify-content-center py-3">
             <div class="col-7 col-md-2 mb-2 mb-md-0">
-                <img class="img-fluid border border-primary rounded-circle" src="{{ $userInfo["profile_pic"] }}">
+                <a class="imageLink" href="{{ asset('/user/' . $userInfo["user_id"]) }}"><img class="img-fluid border border-primary rounded-circle" src="{{ $userInfo["profile_pic"] }}"></a>
             </div>
             <div class="col-12 col-md-10 text-left" id="refreshing-container">
                 <div id="refreshing-contained">
