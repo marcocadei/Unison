@@ -21,6 +21,10 @@ class Track extends Model
         return $query->where('uploader', $userID);
     }
 
+    public function scopeMatchesID($query, $trackID) {
+        return $query->where('id', $trackID);
+    }
+
     /**
      * @var int Numero (massimo) di tracce restituite da una singola interrogazione al database.
      */

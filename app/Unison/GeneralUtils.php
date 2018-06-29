@@ -23,7 +23,7 @@ class GeneralUtils
      */
     public static function formatNumberWithMultipliers($value) {
         $currentMultipliers = GeneralUtils::$multipliers;
-        while ($value > 1000 && strlen($currentMultipliers) > 1) {
+        while ($value >= 1000 && strlen($currentMultipliers) > 1) {
             $value = floor($value / 1000);
             $currentMultipliers = substr($currentMultipliers, 1);
         }

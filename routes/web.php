@@ -28,6 +28,11 @@ Route::get('/modify', 'UserController@edit')->name('modify');
 Route::post('/modify', 'UserController@update');
 Route::post('/delete', 'UserController@delete');
 
+// Modifica traccia
+Route::get('/track/edit/{trackID}', 'TrackController@editTrack')->name('modifyTrack');
+Route::post('/track/edit/{trackID}', 'TrackController@updateTrack');
+Route::post('/track/delete/{trackID}', 'TrackController@deleteTrack');
+
 // Following
 Route::post('/follow', 'UserController@follow');
 Route::post('/unfollow', 'UserController@unfollow');
@@ -36,6 +41,9 @@ Route::post('/follower', 'UserController@followerList');
 
 // Like
 Route::post('/like', 'UserController@toggleLike');
+
+// Aggiornamento play count
+Route::post('/listened/{trackid}', 'TrackController@updatePlayCount');
 
 // Pagine con tracce audio
 Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');

@@ -118,7 +118,7 @@ function validateModify(event) {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        // MODIFICA IN MODO TALE DA FARE IL CONTROLLO
+
         let $emailChanged = $("#emailMod").val() != $("#originalEmailMod").val();
         let $usernameChanged = $("#usernameMod").val() != $("#originalUsernameMod").val();
         if ($emailChanged || $usernameChanged) {
