@@ -33,7 +33,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-justify">
-                    <p class="modal-title">Vuoi davvero eliminare questa traccia? Questa azione non può essere annullata.</p>
+                    <p class="modal-title">Desideri davvero eliminare questa traccia? Questa azione non può essere annullata.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
@@ -55,7 +55,7 @@
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
                     <div class="invalid-feedback">
-                        Hai già caricato una canzone con quel titolo!
+                        Hai già caricato una canzone con quel titolo.
                     </div>
                     <div class="row mb-3">
                         <div class="col-12">
@@ -68,7 +68,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
                             <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
-                                L'immagine di copertina deve essere quadrata e almeno 150X150px!
+                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>

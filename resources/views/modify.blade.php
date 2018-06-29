@@ -33,7 +33,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-justify">
-                    <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
+                    <p class="modal-title">Desideri davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
@@ -64,7 +64,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
                             <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
+                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <label for="emailMod">Inserisci la nuova email:</label>
                         <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }}">
                         <div class="invalid-feedback">
-                            Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri).
+                            Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,14 +81,14 @@
                         <label for="usernameMod">Inserisci il nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}">
                         <div class="invalid-feedback">
-                            Per favore specifica uno username valido: può contenere solamente lettere e/o numeri (lunghezza massima consentita 64 caratteri).
+                            Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Inserisci la nuova bio:</label>
                         <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable">{{ auth()->user()->bio }}</textarea>
                         <div class="invalid-feedback">
-                            Per favore specifica una bio valida: può contenere al massimo 200 caratteri.
+                            Per favore specifica una bio valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
                         </div>
                     </div>
                     <div class="form-group">
@@ -109,7 +109,7 @@
                     </div>
                     <input type="hidden" class="form-control" id="formMod">
                     <div class="invalid-feedback">
-                        Nome utente o email già utilizzati.
+                        È già presente un utente con quel nome utente o con quella e-mail.
                     </div>
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
                 </form>

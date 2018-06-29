@@ -59,7 +59,7 @@
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formUpload">
                     <div class="invalid-feedback">
-                        Hai già caricato una canzone con quel titolo!
+                        Hai già caricato una canzone con quel titolo.
                     </div>
 
                     <div class="form-group">
@@ -76,7 +76,7 @@
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
                             <label class="custom-file-label modal-open" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).
+                                Per favore seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
                             <label class="custom-file-label modal-open" for="photoSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
+                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>

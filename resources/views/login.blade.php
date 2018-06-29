@@ -60,7 +60,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSU">
                             <div class="invalid-feedback">
-                                Username o e-mail già presente.
+                                È già presente un utente con quel nome utente o con quella e-mail.
                             </div>
                             <div class="form-group">
                                 <label for="emailSU">Email:</label>
