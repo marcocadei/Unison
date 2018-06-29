@@ -125,13 +125,6 @@ class TrackController extends Controller
         return $queryResult->extractChunk($offset)->get();
     }
 
-//    FIXME - Solo debug - Poi togliere!
-    public function allTracks() {
-        $tracks = Track::getAllTracks();
-        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-        return view('tricol.feed', compact(['songs']));
-    }
-
     public function upload() {
         // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
         $username = auth()->user()->username;

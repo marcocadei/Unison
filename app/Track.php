@@ -40,19 +40,6 @@ class Track extends Model
      */
     public static $topTracksChunkSize = 50;
 
-//    FIXME - Solo debug - Poi togliere!
-    public static function getAllTracks() {
-        return Track::all();
-    }
-
-//    FIXME - Solo debug - Poi togliere!
-    public static function getAllNonPrivateTracks() {
-        return Track::notPrivate()->get();
-    }
-
-// TODO Tutte le funzioni getTracksQualcosa() devono poi avere agganciato un ->limit(XX)
-// per impedire che ne vengano caricate chissà quante, le chiamate successive devono poi avere un ->offset(XX)
-
     /**
      * Restituisce tutte le tracce dell'utente specificato, in ordine cronologico inverso.
      * @param $userID integer ID dell'utente.
