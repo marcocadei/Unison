@@ -16,6 +16,11 @@
         <div class="col-12 col-sm-8 col-md-10">
             <div class="py-1">
                 <div>
+                    @if(auth()->check())
+                        @if($song["artist_id"] == auth()->user()->id)
+                            <a class="boldText text-primary buttonOn" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit"></span></a>
+                        @endif
+                    @endif
                     @if($song["private"])
                         <span class="boldText text-primary buttonOn"><span class="fas fa-lock"></span></span>
                     @endif
