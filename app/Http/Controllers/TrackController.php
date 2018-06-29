@@ -381,7 +381,7 @@ class TrackController extends Controller
 
         $track->delete();
 
-        return redirect('login');
+        return redirect('/user/' . auth()->user()->id);
     }
 
 }
