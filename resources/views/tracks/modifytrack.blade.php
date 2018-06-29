@@ -59,7 +59,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-12">
-                            <img class="img-fluid rounded-circle border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
+                            <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
                         </div>
                     </div>
                     <div class="form-group">
