@@ -25,20 +25,29 @@ $(document).ready(function () {
         let _URL = window.URL || window.webkitURL;
         let file, img;
         if ((file = this.files[0])) {
-            img = new Image();
-            img.onload = function () {
-                if (this.width != this.height || this.width < 150 || this.height < 150) {
-                    $("#photoMod").addClass("is-invalid");
-                    imageChoosed = false;
-                    profilePicElement.attr("src", originalProfilePicSrc);
-                }
-                else {
-                    $("#photoMod").removeClass("is-invalid");
-                    imageChoosed = true;
-                    profilePicElement.attr("src", img.src);
-                }
-            };
-            img.src = _URL.createObjectURL(file);
+            let imageFormat = photoName.substring(photoName.lastIndexOf("."));
+            let allowedFormat = [".jpg", ".jpeg", ".png"];
+
+            if (allowedFormat.indexOf(imageFormat) != -1) {
+                img = new Image();
+                img.onload = function () {
+                    if (this.width != this.height || this.width < 150 || this.height < 150) {
+                        $("#photoMod").addClass("is-invalid");
+                        imageChoosed = false;
+                        profilePicElement.attr("src", originalProfilePicSrc);
+                    }
+                    else {
+                        $("#photoMod").removeClass("is-invalid");
+                        imageChoosed = true;
+                        profilePicElement.attr("src", img.src);
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+            else{
+                $("#photoMod").addClass("is-invalid");
+                imageChoosed = false;
+            }
         }
         else {
             profilePicElement.attr("src", originalProfilePicSrc);
@@ -140,11 +149,29 @@ function checkDescription(event, field, maxLength) {
     }
 }
 
+// function checkFileField(field, choosed) {
+//     if(!choosed)
+//         field.addClass("is-invalid");
+//     else
+//         field.removeClass("is-invalid");
+//
+//     return choosed;
+// }
+
 function checkFileField(field, choosed) {
     if(!choosed)
         field.addClass("is-invalid");
-    else
-        field.removeClass("is-invalid");
+    // Se la traccia/foto è selezionata
+    else{
+        // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
+        if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+            field.addClass("is-invalid");
+            choosed = false;
+        }
+        // Altrimenti è corretto
+        else
+            field.removeClass("is-invalid");
+    }
 
     return choosed;
 }

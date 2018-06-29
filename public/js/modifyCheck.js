@@ -258,11 +258,28 @@ function checkBio(event, bio, maxLenghtBio) {
     }
 }
 
+// function checkFileField(field, choosed) {
+//     if(!choosed)
+//         field.addClass("is-invalid");
+//     else
+//         field.removeClass("is-invalid");
+//
+//     return choosed;
+// }
 function checkFileField(field, choosed) {
     if(!choosed)
         field.addClass("is-invalid");
-    else
-        field.removeClass("is-invalid");
+    // Se la traccia/foto è selezionata
+    else{
+        // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
+        if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+            field.addClass("is-invalid");
+            choosed = false;
+        }
+        // Altrimenti è corretto
+        else
+            field.removeClass("is-invalid");
+    }
 
     return choosed;
 }
