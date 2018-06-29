@@ -5,10 +5,14 @@ trackChoosed = false;
 imageChoosed = true;
 
 $(document).ready(function () {
+
+    let profilePicElement = $("form img");
+    let originalProfilePicSrc = profilePicElement.attr("src");
+
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
     $("#photoMod").on('change',function(){
-        photoName = getChooserName($(this));
+        let photoName = getChooserName($(this));
         //replace the "Choose a file" label
         if (photoName.length > 0)
             $(this).next('.custom-file-label').html(photoName);
@@ -23,16 +27,21 @@ $(document).ready(function () {
         if ((file = this.files[0])) {
             img = new Image();
             img.onload = function () {
-                if (this.width != this.height) {
+                if (this.width != this.height || this.width < 150 || this.height < 150) {
                     $("#photoMod").addClass("is-invalid");
                     imageChoosed = false;
+                    profilePicElement.attr("src", originalProfilePicSrc);
                 }
                 else {
                     $("#photoMod").removeClass("is-invalid");
                     imageChoosed = true;
+                    profilePicElement.attr("src", img.src);
                 }
             };
             img.src = _URL.createObjectURL(file);
+        }
+        else {
+            profilePicElement.attr("src", originalProfilePicSrc);
         }
         checkFileField($("#photoMod"), imageChoosed);
     });
