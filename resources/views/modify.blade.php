@@ -64,7 +64,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
                             <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
-                                L'immagine di profilo deve essere quadrata e almeno 150X150px!
+                                Seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>

@@ -69,10 +69,14 @@
                             <input type="hidden" name="userID" id="userID" value="{{ $userID }}">
                             <!-- Input type hidden che uso per recuperare l'informazione circa la massima dimensione del file che può essere caricato -->
                             <input type="hidden" name="maxFileSize" id="maxFileSize" value="{{ $maxFileSize }}">
+                            <!-- Input che uso per salvare la durata della canzone caricata -->
+                            <input type="hidden" name="duration" id="duration" value="">
+                            <!-- Elemento che uso per recuperare la durata della canzone -->
+                            <audio id="audio"></audio>
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
                             <label class="custom-file-label modal-open" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona un file valido (dimensione massima consentita: {{ $maxFileSize }}).
+                                Seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).
                             </div>
                         </div>
                     </div>
@@ -83,7 +87,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
                             <label class="custom-file-label modal-open" for="photoSelect">Scegli file...</label>
                             <div class="invalid-feedback">
-                                Seleziona un file valido (l'immagine di copertina deve essere quadrata).
+                                Seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>
