@@ -87,14 +87,14 @@
                         </div>
                     </div>
                     <div class="form-group form-check">
-                        <input class="form-check-input" type="checkbox" value="on" id="allowDownload" name="allowDownload">
+                        <input class="form-check-input" type="checkbox" value="on" @if($trackRecord->dl_enabled) checked @endif id="allowDownload" name="allowDownload">
                         <label class="form-check-label" for="allowDownload">
                             Consenti il download della traccia
                         </label>
                     </div>
 
                     <div class="form-group form-check">
-                        <input class="form-check-input" type="checkbox" value="on" id="private" name="private">
+                        <input class="form-check-input" type="checkbox" value="on" @if($trackRecord->private) checked @endif id="private" name="private">
                         <label class="form-check-label" for="private">
                             Traccia privata
                         </label>
