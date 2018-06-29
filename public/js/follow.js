@@ -50,7 +50,7 @@ function follow(actionIsFollow) {
                 button.attr("onclick", newFunction + "()");
 
                 // Modifica dell'elenco dei followed
-                if (actionIsFollow) $("#followedList ul").append($("<li><a style='word-break: break-all' href='/user/"+$("#userID").text()+"'>"+$("#username").text()+"</a></li>"));
+                if (actionIsFollow) $("#followedList ul").append($("<li><a style='word-break: break-all' href='/user/"+$("#userID").text().trim()+"'>"+$("#username").text()+"</a></li>"));
                 else{
                     let username = $("#username").text();
                     $("#followedList li:contains("+username+")").remove();
