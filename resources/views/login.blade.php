@@ -73,7 +73,7 @@
                                 <label for="usernameSU">Username:</label>
                                 <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username valido: (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                                    Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                                 </div>
                             </div>
                             <div class="form-group">
