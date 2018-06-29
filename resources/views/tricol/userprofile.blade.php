@@ -48,6 +48,9 @@
                                 <span class="bg-primary text-primary" id="userID">
                                     {{ $userInfo["user_id"] }}
                                 </span>
+                                <span class="bg-primary text-primary" id="username">
+                                    {{ $userInfo["username"] }}
+                                </span>
                             </div>
                             <div class="col-12">
                                 {{-- Il bottone per il follow non viene visualizzato se l'utente non è loggato. --}}
