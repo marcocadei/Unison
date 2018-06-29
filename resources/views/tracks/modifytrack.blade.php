@@ -54,10 +54,6 @@
                 <form class="px-2 px-md-5 py-3" action="{{ asset("/track/edit/" .  $trackRecord->id) }}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
-                    <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
-                    <div class="invalid-feedback">
-                        Hai già caricato una canzone con quel titolo.
-                    </div>
                     <div class="row mb-3">
                         <div class="col-12">
                             <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
@@ -100,6 +96,11 @@
                         <label class="form-check-label" for="private">
                             Traccia privata
                         </label>
+                    </div>
+
+                    <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
+                    <div class="invalid-feedback">
+                        Hai già caricato una canzone con quel titolo.
                     </div>
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>

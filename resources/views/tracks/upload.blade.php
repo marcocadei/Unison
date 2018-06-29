@@ -57,10 +57,6 @@
             <div class="col-12 col-md-6">
                 <form action="{{ url('track') }}" method="post" id="upload" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <input type="hidden" class="form-control" id="formUpload">
-                    <div class="invalid-feedback">
-                        Hai già caricato una canzone con quel titolo.
-                    </div>
 
                     <div class="form-group">
                         <label for="trackSelect">Canzone:</label>
@@ -132,6 +128,11 @@
 
                     <!-- input hidden usato per trasmettere lo spotify ID al server -->
                     <input type="hidden" id="spotifyID" name="spotifyID">
+
+                    <input type="hidden" class="form-control" id="formUpload">
+                    <div class="invalid-feedback">
+                        Hai già caricato una canzone con quel titolo.
+                    </div>
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonUpload">Carica</button>
                 </form>
