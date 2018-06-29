@@ -32,12 +32,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-justify">
                     <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina definitivamente</button>
+                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina</button>
                 </div>
             </div>
         </div>
