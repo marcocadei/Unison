@@ -63,7 +63,7 @@
                         <label for="photoMod">Inserisci la nuova immagine di copertina:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
-                            <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
+                            <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
                                 Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
