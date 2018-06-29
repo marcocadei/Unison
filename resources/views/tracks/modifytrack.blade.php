@@ -100,9 +100,6 @@
                         </label>
                     </div>
 
-                    <!-- input hidden usato per trasmettere lo spotify ID al server -->
-                    <input type="hidden" id="spotifyID" name="spotifyID">
-
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>
                 </form>
 
