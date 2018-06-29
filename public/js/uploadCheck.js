@@ -65,34 +65,40 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html("Scegli file...");
         }
 
-        // Codice javascript per recuperare le dimensioni dell'immagine
-        // selezionata dall'utente
-        let _URL = window.URL || window.webkitURL;
-        let file, img;
-        if ((file = this.files[0])) {
-            let imageFormat = photoName.substring(photoName.lastIndexOf("."));
-            let allowedFormat = [".jpg", ".jpeg", ".png"];
+        if (photoName.length > 0) {
+            // Codice javascript per recuperare le dimensioni dell'immagine
+            // selezionata dall'utente
+            let _URL = window.URL || window.webkitURL;
+            let file, img;
+            if (file = this.files[0]) {
+                let imageFormat = photoName.substring(photoName.lastIndexOf("."));
+                let allowedFormat = [".jpg", ".jpeg", ".png"];
 
-            if (allowedFormat.indexOf(imageFormat) != -1) {
-                img = new Image();
-                img.onload = function () {
-                    if (this.width != this.height || this.width < 150) {
-                        $("#photoSelect").addClass("is-invalid");
-                        imageChoosed = false;
-                    }
-                    else {
-                        $("#photoSelect").removeClass("is-invalid");
-                        imageChoosed = true;
-                    }
-                };
-                img.src = _URL.createObjectURL(file);
+                if (allowedFormat.indexOf(imageFormat) != -1) {
+                    img = new Image();
+                    img.onload = function () {
+                        if (this.width != this.height || this.width < 150) {
+                            $("#photoSelect").addClass("is-invalid");
+                            imageChoosed = false;
+                        }
+                        else {
+                            $("#photoSelect").removeClass("is-invalid");
+                            imageChoosed = true;
+                        }
+                    };
+                    img.src = _URL.createObjectURL(file);
+                }
+                else {
+                    $("#photoSelect").addClass("is-invalid");
+                    imageChoosed = false;
+                }
             }
-            else{
-                $("#photoSelect").addClass("is-invalid");
-                imageChoosed = false;
-            }
+            checkFileField($("#photoSelect"), imageChoosed);
         }
-        checkFileField($("#photoSelect"), imageChoosed);
+        else{
+            $("#photoSelect").removeClass("is-invalid");
+            imageChoosed = true;
+        }
     });
 
     // Ottengo la durata della canzone e la metto in un elemento nasconto per trasmetterla al server
