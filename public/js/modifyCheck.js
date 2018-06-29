@@ -23,39 +23,46 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html("Scegli file...");
         }
 
-        // Codice javascript per recuperare le dimensioni dell'immagine
-        // selezionata dall'utente
-        let _URL = window.URL || window.webkitURL;
-        let file, img;
-        if ((file = this.files[0])) {
-            let imageFormat = photoName.substring(photoName.lastIndexOf("."));
-            let allowedFormat = [".jpg", ".jpeg", ".png"];
+        if (photoName.length > 0) {
+            // Codice javascript per recuperare le dimensioni dell'immagine
+            // selezionata dall'utente
+            let _URL = window.URL || window.webkitURL;
+            let file, img;
+            if ((file = this.files[0])) {
+                let imageFormat = photoName.substring(photoName.lastIndexOf("."));
+                let allowedFormat = [".jpg", ".jpeg", ".png"];
 
-            if (allowedFormat.indexOf(imageFormat) != -1) {
-                img = new Image();
-                img.onload = function () {
-                    if (this.width != this.height || this.width < 150 || this.height < 150) {
-                        $("#photoMod").addClass("is-invalid");
-                        imageChosen = false;
-                        profilePicElement.attr("src", originalProfilePicSrc);
-                    }
-                    else {
-                        $("#photoMod").removeClass("is-invalid");
-                        imageChosen = true;
-                        profilePicElement.attr("src", img.src);
-                    }
-                };
-                img.src = _URL.createObjectURL(file);
+                if (allowedFormat.indexOf(imageFormat) != -1) {
+                    img = new Image();
+                    img.onload = function () {
+                        if (this.width != this.height || this.width < 150 || this.height < 150) {
+                            $("#photoMod").addClass("is-invalid");
+                            imageChosen = false;
+                            profilePicElement.attr("src", originalProfilePicSrc);
+                        }
+                        else {
+                            $("#photoMod").removeClass("is-invalid");
+                            imageChosen = true;
+                            profilePicElement.attr("src", img.src);
+                        }
+                    };
+                    img.src = _URL.createObjectURL(file);
+                }
+                else {
+                    $("#photoMod").addClass("is-invalid");
+                    imageChosen = false;
+                }
             }
-            else{
-                $("#photoMod").addClass("is-invalid");
-                imageChosen = false;
+            else {
+                profilePicElement.attr("src", originalProfilePicSrc);
             }
+            checkFileField($("#photoMod"), imageChosen);
         }
         else {
+            $("#photoMod").removeClass("is-invalid");
+            imageChosen = true;
             profilePicElement.attr("src", originalProfilePicSrc);
         }
-        checkFileField($("#photoMod"), imageChosen);
     });
     $("#emailMod").keyup(function(event) {checkEmail(event, this)});
     // Questo handler serve perché se mentre si digita l'email compaiono i suggerimenti del browser
