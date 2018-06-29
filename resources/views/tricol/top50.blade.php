@@ -1,4 +1,5 @@
 @php($displayCounter = true)
+@php($dropPageCount = true)
 
 @extends('tricol.layouts.mainlayout')
 
