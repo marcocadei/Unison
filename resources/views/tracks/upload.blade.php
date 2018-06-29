@@ -70,7 +70,7 @@
                             <!-- Elemento che uso per recuperare la durata della canzone -->
                             <audio id="audio"></audio>
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
-                            <label class="custom-file-label modal-open" for="trackSelect">Scegli file...</label>
+                            <label class="custom-file-label modal-open fileLabelHeightReset" for="trackSelect">Scegli file...</label>
                             <div class="invalid-feedback">
                                 Per favore seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).
                             </div>
@@ -81,7 +81,7 @@
                         <label for="photoSelect">Immagine:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
-                            <label class="custom-file-label modal-open" for="photoSelect">Scegli file...</label>
+                            <label class="custom-file-label modal-open fileLabelHeightReset" for="photoSelect">Scegli file...</label>
                             <div class="invalid-feedback">
                                 Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>

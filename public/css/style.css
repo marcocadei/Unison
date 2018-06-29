@@ -196,3 +196,7 @@ textarea.unresizable {
         appearance: none;
     }
 }
+
+.fileLabelHeightReset {
+    height: calc(2.25rem) !important;
+}
