@@ -397,14 +397,14 @@ class TrackController extends Controller
 
             $users = User::getSearchedUsers($queryString);
             $users = $this->buildUsersArrayFromQueryOutput($users);
-            return view('tricol.searchUsers', compact(['users', 'songs', 'queryString']));
+            return view('tricol.searchusers', compact(['users', 'songs', 'queryString']));
         }
         // Ricerca brani
         else {
             $tracks = Track::getSearchedTracks($queryString);
             $trackCount = $tracks->count();
             $songs = $this->buildJSONArrayFromQueryOutput($this->getRightChunk($tracks));
-            return view('tricol.searchTracks', compact(['songs', 'trackCount', 'queryString']));
+            return view('tricol.searchtracks', compact(['songs', 'trackCount', 'queryString']));
         }
     }
 

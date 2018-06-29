@@ -4,7 +4,7 @@
             <div class="col-sm-12 col-md-4 mx-auto mt-4 border-left pl-3">
                 <h1 class="text-uppercase mb-4 font-weight-bold">Unison</h1>
                 <p>
-                    Ascoltare, condividire e scoprire nuova musica non è mai stato così facile.<br>
+                    Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.<br>
                     Immergiti nel mondo Unison e vivi un'esperienza unica.
                 </p>
             </div>
