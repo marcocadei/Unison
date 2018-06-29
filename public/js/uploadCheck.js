@@ -63,7 +63,6 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html(photoName);
         else{
             $(this).next('.custom-file-label').html("Scegli file...");
-            imageChoosed;
         }
 
         // Codice javascript per recuperare le dimensioni dell'immagine
