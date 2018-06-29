@@ -29,7 +29,7 @@ Route::post('/modify', 'UserController@update');
 Route::post('/delete', 'UserController@delete');
 
 // Modifica traccia
-Route::get('/track/edit/{trackID}', 'TrackController@editTrack')->name('modifyTrack');
+Route::get('/track/edit/{trackID}', 'TrackController@editTrack')->middleware('auth')->name('modifyTrack');
 Route::post('/track/edit/{trackID}', 'TrackController@updateTrack');
 Route::post('/track/delete/{trackID}', 'TrackController@deleteTrack');
 

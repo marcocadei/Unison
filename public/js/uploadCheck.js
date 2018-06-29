@@ -3,6 +3,7 @@ maxLengthDescription = 200;
 trackChoosed = false;
 // La scelta dell'immagine non è obbligatoria
 imageChoosed = true;
+let objectUrl;
 
 $(document).ready(function () {
     // Dopo aver selezionato una traccia aggiorno la textbox corrispondente
@@ -18,7 +19,13 @@ $(document).ready(function () {
             trackChoosed = false;
         }
 
-        if (typeof this.files[0] !== 'undefined') {
+        let trackFormat = trackName.substring(trackName.lastIndexOf("."));
+        let allowedFormat = [".mp3", ".m4a"];
+        if (typeof this.files[0] !== 'undefined' && allowedFormat.indexOf(trackFormat) != -1) {
+            //  Inizializzo il tag audio con il file caricato
+            objectUrl = URL.createObjectURL(this.files[0]);
+            $("#audio").prop("src", objectUrl);
+
             // Controllo che il file caricato non superi la dimensione massima consentita
             let maxFileSize = parseInt($("#maxFileSize").val());
             // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
@@ -37,12 +44,12 @@ $(document).ready(function () {
             // Se il nome del file è più lungo di #maxLengthTitle allora mantengo solo i primi #maxLengthTitle
             // caratteri
             let ultimo_punto = trackName.lastIndexOf(".");
-            $("#title").val((trackName.substring(0, ultimo_punto)).match(/^[\x20-\x7E]+$/).join('').substring(0, maxLengthTitle));
+            $("#title").val((trackName.substring(0, ultimo_punto)).replace(/[^\x20-\x7E]/gi, '').substring(0, maxLengthTitle));
             checkFileField($("#trackSelect"), trackChoosed);
             checkTitle(null, $("#title"), maxLengthTitle);
         }
         else {
-            console.log("ciao");
+            $("#trackSelect").addClass("is-invalid");
             trackChoosed = false;
         }
     });
@@ -56,7 +63,6 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html(photoName);
         else{
             $(this).next('.custom-file-label').html("Scegli file...");
-            imageChoosed;
         }
 
         // Codice javascript per recuperare le dimensioni dell'immagine
@@ -64,20 +70,36 @@ $(document).ready(function () {
         let _URL = window.URL || window.webkitURL;
         let file, img;
         if ((file = this.files[0])) {
-            img = new Image();
-            img.onload = function () {
-                if (this.width != this.height) {
-                    $("#photoSelect").addClass("is-invalid");
-                    imageChoosed = false;
-                }
-                else {
-                    $("#photoSelect").removeClass("is-invalid");
-                    imageChoosed = true;
-                }
-            };
-            img.src = _URL.createObjectURL(file);
+            let imageFormat = photoName.substring(photoName.lastIndexOf("."));
+            let allowedFormat = [".jpg", ".jpeg", ".png"];
+
+            if (allowedFormat.indexOf(imageFormat) != -1) {
+                img = new Image();
+                img.onload = function () {
+                    if (this.width != this.height || this.width < 150) {
+                        $("#photoSelect").addClass("is-invalid");
+                        imageChoosed = false;
+                    }
+                    else {
+                        $("#photoSelect").removeClass("is-invalid");
+                        imageChoosed = true;
+                    }
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+            else{
+                $("#photoSelect").addClass("is-invalid");
+                imageChoosed = false;
+            }
         }
         checkFileField($("#photoSelect"), imageChoosed);
+    });
+
+    // Ottengo la durata della canzone e la metto in un elemento nasconto per trasmetterla al server
+    $("#audio").on("canplaythrough", function(e) {
+        var seconds = e.currentTarget.duration;
+        $("#duration").val(parseInt(seconds));
+        URL.revokeObjectURL(objectUrl);
     });
 
     // Controllo sui campi titolo e descrizione

@@ -27,17 +27,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Eliminazione profilo</h5>
+                    <h5 class="modal-title">Eliminazione traccia</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
+                <div class="modal-body text-justify">
+                    <p class="modal-title">Vuoi davvero eliminare questa traccia? Questa azione non può essere annullata.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina definitivamente</button>
+                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina</button>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-12">
-                            <img class="img-fluid rounded-circle border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
+                            <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -99,9 +99,6 @@
                             Traccia privata
                         </label>
                     </div>
-
-                    <!-- input hidden usato per trasmettere lo spotify ID al server -->
-                    <input type="hidden" id="spotifyID" name="spotifyID">
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>
                 </form>

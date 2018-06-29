@@ -196,7 +196,8 @@ class TrackController extends Controller
     public function store() {
         // Recupero la durata della canzone caricata
         $mp3file = new MP3File(request('trackSelect'));
-        $duration = intval($mp3file->getDurationEstimate());
+        //$duration = intval($mp3file->getDurationEstimate());
+        $duration = request('duration');
 
         // Creo la traccia in modo tale da poterla salvare sul DB
         $track = new Track;
@@ -380,7 +381,7 @@ class TrackController extends Controller
 
         $track->delete();
 
-        return redirect('login');
+        return redirect('/user/' . auth()->user()->id);
     }
 
 }

@@ -48,6 +48,13 @@ function follow(actionIsFollow) {
                 // Modifica della funzione associata al bottone
                 let newFunction = actionIsFollow ? "executeUnfollow" : "executeFollow";
                 button.attr("onclick", newFunction + "()");
+
+                // Modifica dell'elenco dei followed
+                if (actionIsFollow) $("#followedList ul").append($("<li><a style='word-break: break-all' href='/user/"+$("#userID").text().trim()+"'>"+$("#username").text()+"</a></li>"));
+                else{
+                    let username = $("#username").text();
+                    $("#followedList li:contains("+username+")").remove();
+                }
             }
 
             button.attr("disabled", false);

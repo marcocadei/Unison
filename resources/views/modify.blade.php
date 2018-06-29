@@ -32,12 +32,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-justify">
                     <p class="modal-title">Vuoi davvero eliminare il tuo profilo e tutte le tracce associate? Questa azione non può essere annullata.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina definitivamente</button>
+                    <button type="button" class="btn btn-danger" id="buttonDefDel">Elimina</button>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
                             <label class="custom-file-label modal-open" for="photoMod">Scegli file...</label>
                             <div class="invalid-feedback">
-                                L'immagine di profilo deve essere quadrata e almeno 150X150px!
+                                Seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
                             </div>
                         </div>
                     </div>
