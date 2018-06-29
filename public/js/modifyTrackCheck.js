@@ -74,21 +74,30 @@ function validateModify(event) {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $.post("/checkSongExistence",
-            {
-                //file: "public/tracks/"+$("#title").val()+"_"+$("#userID").val()+trackName.substring(trackName.lastIndexOf("."))
-                userID: $("#userID").val(),
-                title: $("#title").val()
-            }, function (data, status, xhr) {
-                if (data.result) {
-                    $("#mod").submit();
-                }
-                else {
-                    $("#formModify").addClass("is-invalid");
-                    // Se i dati inseriti erano sbagliati allora riabilito il bottone di caricamento
-                    $("#buttonModify").attr("disabled", false);
-                }
-            }, "json");
+
+        let titleChanged = $("#title").val() != $("#originalTitle").val();
+        if (titleChanged) {
+            let titleToSend = titleChanged ? $("#title").val() : '';
+
+            $.post("/checkSongExistence",
+                {
+                    //file: "public/tracks/"+$("#title").val()+"_"+$("#userID").val()+trackName.substring(trackName.lastIndexOf("."))
+                    userID: $("#userID").val(),
+                    title: titleToSend
+                }, function (data, status, xhr) {
+                    if (data.result) {
+                        $("#mod").submit();
+                    }
+                    else {
+                        $("#formModify").addClass("is-invalid");
+                        // Se i dati inseriti erano sbagliati allora riabilito il bottone di caricamento
+                        $("#buttonModify").attr("disabled", false);
+                    }
+                }, "json");
+        }
+        else {
+            $("#mod").submit();
+        }
     }
 }
 

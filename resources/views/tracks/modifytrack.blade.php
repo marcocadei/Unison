@@ -54,6 +54,7 @@
                 <form class="px-2 px-md-5 py-3" action="{{ asset("/track/edit/" .  $trackRecord->id) }}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
+                    <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
                     <div class="invalid-feedback">
                         Hai già caricato una canzone con quel titolo.
                     </div>
@@ -75,6 +76,7 @@
                     <div class="form-group">
                         <label for="title">Inserisci il nuovo titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}">
+                        <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <div class="invalid-feedback">
                             Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>
