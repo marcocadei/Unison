@@ -1,13 +1,12 @@
 maxLengthTitle = 64;
 maxLengthDescription = 200;
-trackChoosed = false;
 // La scelta dell'immagine non è obbligatoria
 imageChoosed = true;
 
 $(document).ready(function () {
 
-    let profilePicElement = $("form img");
-    let originalProfilePicSrc = profilePicElement.attr("src");
+    let coverArtElement = $("form img");
+    let originalCoverArtSrc = coverArtElement.attr("src");
 
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
@@ -34,23 +33,24 @@ $(document).ready(function () {
                     if (this.width != this.height || this.width < 150 || this.height < 150) {
                         $("#photoMod").addClass("is-invalid");
                         imageChoosed = false;
-                        profilePicElement.attr("src", originalProfilePicSrc);
+                        coverArtElement.attr("src", originalCoverArtSrc);
                     }
                     else {
                         $("#photoMod").removeClass("is-invalid");
                         imageChoosed = true;
-                        profilePicElement.attr("src", img.src);
+                        coverArtElement.attr("src", img.src);
                     }
                 };
                 img.src = _URL.createObjectURL(file);
-            }
             else{
                 $("#photoMod").addClass("is-invalid");
                 imageChoosed = false;
+                coverArtElement.attr("src", img.src);
             }
         }
         else {
-            profilePicElement.attr("src", originalProfilePicSrc);
+            $("#photoMod").removeClass("is-invalid");
+            coverArtElement.attr("src", originalCoverArtSrc);
         }
         checkFileField($("#photoMod"), imageChoosed);
     });
