@@ -15,13 +15,12 @@ $(document).ready(function () {
     // Dopo aver selezionato una foto aggiorno la textbox corrispondente
     // in modo che contenga il titolo della foto selezionata
     $("#photoMod").on('change', function(){
-        $photoName = getChooserName($(this));
+        let photoName = getChooserName($(this));
         //replace the "Choose a file" label
-        if ($photoName.length > 0)
-            $(this).next('.custom-file-label').html($photoName);
+        if (photoName.length > 0)
+            $(this).next('.custom-file-label').html(photoName);
         else{
             $(this).next('.custom-file-label').html("Scegli file...");
-            imageChosen;
         }
 
         // Codice javascript per recuperare le dimensioni dell'immagine
@@ -29,7 +28,7 @@ $(document).ready(function () {
         let _URL = window.URL || window.webkitURL;
         let file, img;
         if ((file = this.files[0])) {
-            let imageFormat = $photoName.substring($photoName.lastIndexOf("."));
+            let imageFormat = photoName.substring(photoName.lastIndexOf("."));
             let allowedFormat = [".jpg", ".jpeg", ".png"];
 
             if (allowedFormat.indexOf(imageFormat) != -1) {
@@ -119,15 +118,15 @@ function validateModify(event) {
             }
         });
 
-        let $emailChanged = $("#emailMod").val() != $("#originalEmailMod").val();
-        let $usernameChanged = $("#usernameMod").val() != $("#originalUsernameMod").val();
-        if ($emailChanged || $usernameChanged) {
-            let $emailToSend = $emailChanged ? $("#emailMod").val() : '';
-            let $usernameToSend = $usernameChanged ? $("#usernameMod").val() : '';
+        let emailChanged = $("#emailMod").val() != $("#originalEmailMod").val();
+        let usernameChanged = $("#usernameMod").val() != $("#originalUsernameMod").val();
+        if (emailChanged || usernameChanged) {
+            let emailToSend = emailChanged ? $("#emailMod").val() : '';
+            let usernameToSend = usernameChanged ? $("#usernameMod").val() : '';
             $.post("/checkNewUserCredentials",
                 {
-                    username: $usernameToSend,
-                    email: $emailToSend
+                    username: usernameToSend,
+                    email: emailToSend
                 }, function (data, status, xhr) {
                     if (data.result) {
                         $("#mod").submit();
