@@ -49,9 +49,10 @@ Route::post('/listened/{trackid}', 'TrackController@updatePlayCount');
 Route::get("/home", "TrackController@userFeed")->middleware('auth')->name('home');
 Route::get('/user/{userid}', 'TrackController@userProfile');
 Route::get('/top50', 'TrackController@top50')->name('top50');
-Route::get("/feed", function () {
-    return redirect("/home");
-});
+//Route::get("/feed", function () {
+//    return redirect("/home");
+//});
+Route::get("/feed", 'UserController@feed');
 
 // Upload e funzionalità correlate
 Route::get('/track/upload', 'TrackController@upload')->middleware('auth')->name('upload');

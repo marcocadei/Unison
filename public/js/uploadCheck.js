@@ -323,7 +323,11 @@ function checkDeletedTrack(field, choosed, event) {
         fr.onload = function (e) {
             //alert("File is readable");
             checkFileField(field, choosed, false);
-            checkDeletedPhoto($("#photoSelect"), imageChoosed, event);
+            if (getChooserName($("#photoSelect")) != "")
+                checkDeletedPhoto($("#photoSelect"), imageChoosed, event);
+            else
+                validateUpload(event);
+
         };
         fr.onerror = function (e) {
             if (e.target.error.name == "NotFoundError") {
@@ -349,7 +353,7 @@ function checkDeletedPhoto(field, choosed, event) {
         fr.onload = function (e) {
             //alert("File is readable");
             checkFileField(field, choosed, false);
-            validateUpload(event)
+            validateUpload(event);
         };
         fr.onerror = function (e) {
             if (e.target.error.name == "NotFoundError") {

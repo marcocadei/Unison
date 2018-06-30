@@ -21,6 +21,10 @@ class UserController extends Controller
         return view('modify');
     }
 
+    public function feed() {
+        return redirect("/home");
+    }
+
     public function update() {
         // Chiamato da ajax restituisce json
         $user = User::find(auth()->user()->id);
