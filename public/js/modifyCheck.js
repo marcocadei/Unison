@@ -74,15 +74,13 @@ $(document).ready(function () {
     $("#repeatPasswordMod").keyup(function(event) {checkRepeatPassword(event, this);});
     $("#bioMod").keyup(function(event) {checkBio(event, this, maxLengthBio)});
 
-    $("#buttonMod").click(validateModify);
-
     $("#buttonDel").click(openDeleteModal);
     $("#buttonDefDel").click(executeDelete);
 
-    // $("#SU").submit(function () {
-    //     $("#buttonSU").attr("disabled", true);
-    //     return true;
-    // });
+    $("#buttonMod").click(function (event) {
+        event.preventDefault();
+        checkDeletedPhoto($("#photoMod"), imageChosen, event);
+    });
 });
 
 
@@ -273,22 +271,71 @@ function checkBio(event, bio, maxLenghtBio) {
 //
 //     return choosed;
 // }
-function checkFileField(field, choosed) {
+// function checkFileField(field, choosed) {
+//     if(!choosed)
+//         field.addClass("is-invalid");
+//     // Se la traccia/foto è selezionata
+//     else{
+//         // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
+//         if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+//             field.addClass("is-invalid");
+//             choosed = false;
+//         }
+//         // Altrimenti è corretto
+//         else
+//             field.removeClass("is-invalid");
+//     }
+//
+//     return choosed;
+// }
+
+function checkFileField(field, choosed, deleted) {
     if(!choosed)
         field.addClass("is-invalid");
-    // Se la traccia/foto è selezionata
+    // Se la traccia è selezionata
     else{
-        // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
-        if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+        // console.log(typeof document.getElementById(field.attr("id")).files[0] === 'undefined');
+        // if (typeof document.getElementById(field.attr("id")).files[0] === 'undefined') {
+        //     field.addClass("is-invalid");
+        //     choosed = false;
+        // }
+        if (deleted){
             field.addClass("is-invalid");
             choosed = false;
         }
         // Altrimenti è corretto
-        else
+        else {
             field.removeClass("is-invalid");
+        }
     }
 
     return choosed;
+}
+
+function checkDeletedPhoto(field, choosed, event) {
+    let result = null;
+    input = document.getElementById(field.attr("id"));
+    if (input.files.length > 0) {
+        var file = input.files[0];
+        var fr = new FileReader();
+
+        fr.onload = function (e) {
+            //alert("File is readable");
+            checkFileField(field, choosed, false);
+            validateModify(event);
+        };
+        fr.onerror = function (e) {
+            if (e.target.error.name == "NotFoundError") {
+                //alert("File deleted");
+                result = checkFileField(field, choosed, true);
+            }
+        }
+        fr.readAsText(file);
+    } else {
+        // no file choosen yet
+        return checkFileField(field, choosed, false);
+    }
+
 }
 
 /**
