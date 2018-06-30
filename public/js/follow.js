@@ -52,7 +52,7 @@ function follow(actionIsFollow) {
                 // Modifica dell'elenco dei followed
                 if (actionIsFollow) $("#followedList ul").append($("<li><a style='word-break: break-all' href='/user/"+$("#userID").text().trim()+"'>"+$("#username").text()+"</a></li>"));
                 else{
-                    let username = $("#username").text();
+                    let username = $("#username").text().trim();
                     $("#followedList li:contains("+username+")").remove();
                 }
             }
