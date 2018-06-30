@@ -11,7 +11,7 @@ function validateQueryString (event) {
     let searchbar = $("nav form input[type=search]");
 
     let queryString = searchbar.val();
-    let asciiQueryString = queryString.replace(/[^\x20-\x7E]/g, "");
+    let asciiQueryString = queryString.replace(/[^\x20-\x7E\xC0-\xFF]/g, "");
     if (asciiQueryString !== queryString || asciiQueryString.trim().length <= 0) {
         // Attivazione del tooltip e focus forzato sull'elemento <input>.
         searchbar.tooltip('show');

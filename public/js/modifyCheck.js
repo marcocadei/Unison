@@ -159,7 +159,7 @@ function validateModify(event) {
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
 function checkEmail(event, email){
-    const emailRegex = /\S+@\S+\.\S+/;
+    const emailRegex = /^[\x21-\x7E]+@[\x21-\x7E]+\.[\x21-\x7E]+$/;
 
     if (($(email).val().length == 0 || $(email).val().length > maxLength || !$(email).val().match(emailRegex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(email).val().length != 0)  || event == null)) {
@@ -181,7 +181,7 @@ function checkEmail(event, email){
  */
 function checkUser(event, user) {
 
-    const userRegex = /^[\x20-\x7E]+$/;
+    const userRegex = /^[\x20-\x7E\xC0-\xFF]+$/;
 
     if (($(user).val().length == 0 || $(user).val().length > maxLength || !$(user).val().match(userRegex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(user).val().length != 0)  || event == null)) {
@@ -252,7 +252,8 @@ function checkRepeatPassword(event, repwd) {
  * @returns {boolean} true se il valore è valido, false altrimenti
  */
 function checkBio(event, bio, maxLenghtBio) {
-    if (($(bio).val().length > maxLengthBio)
+    const regex = /^[\x20-\x7E\xC0-\xFF]*$/;
+    if (($(bio).val().length > maxLengthBio || !$(bio).val().match(regex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(user).val().length != 0)  || event == null)) {
         $(bio).addClass("is-invalid");
         return false;

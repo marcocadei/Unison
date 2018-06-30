@@ -132,7 +132,7 @@ function validateModify(event) {
 
 function checkTitle(event, field, maxLength) {
 
-    const regex = /^[\x20-\x7E]+$/;
+    const regex = /^[\x20-\x7E\xC0-\xFF]+$/;
 
     if (($(field).val().length == 0 || $(field).val().length > maxLength || !$(field).val().match(regex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(field).val().length != 0)  || event == null)) {
@@ -147,7 +147,7 @@ function checkTitle(event, field, maxLength) {
 
 function checkDescription(event, field, maxLength) {
 
-    const regex = /^[\x20-\x7E]*$/;
+    const regex = /^[\x20-\x7E\xC0-\xFF]*$/;
 
     if (($(field).val().length > maxLength || !$(field).val().match(regex))
         && ((event!= null && event.keyCode != 9) || (event!= null && event.keyCode == 9 && $(field).val().length != 0)  || event == null)) {
