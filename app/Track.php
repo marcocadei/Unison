@@ -25,24 +25,26 @@ class Track extends Model
         return $query->where('id', $trackID);
     }
 
+    public function scopeExtractChunk($query, $offset = 0) {
+        return $query->offset($offset * Track::$chunkSize)->limit(Track::$chunkSize);
+    }
+
     /**
      * @var int Numero (massimo) di tracce restituite da una singola interrogazione al database.
      */
-    private static $chunkSize = 50;
+    public static $chunkSize = 10;
+    // FIXME rimettere a 50 alla fine!!
 
-//    FIXME - Solo debug - Poi togliere!
-    public static function getAllTracks() {
-        return Track::all();
-    }
+    /**
+     * @var int Numero (massimo) di tracce restituite per l'interrogazione relativa alle top tracks.
+     */
+    public static $topTracksChunkSize = 50;
 
-//    FIXME - Solo debug - Poi togliere!
-    public static function getAllNonPrivateTracks() {
-        return Track::notPrivate()->get();
-    }
-
-// TODO Tutte le funzioni getTracksQualcosa() devono poi avere agganciato un ->limit(XX)
-// per impedire che ne vengano caricate chissà quante, le chiamate successive devono poi avere un ->offset(XX)
-
+    /**
+     * Restituisce tutte le tracce dell'utente specificato, in ordine cronologico inverso.
+     * @param $userID integer ID dell'utente.
+     * @param $includePrivateTracks boolean Indica se includere o meno le tracce private.
+     */
     public static function getTracksByUser($userID, $includePrivateTracks) {
         /*
          * Recupera tutte le tracce dell'utente specificato, incluse quelle private.
@@ -60,9 +62,7 @@ class Track extends Model
          * stesso valore per il campo "created_at") queste risultano ordinate per ID.
          */
         return $tracksToReturn
-            ->orderByDesc('created_at')
-            ->limit(Track::$chunkSize)
-            ->get();
+            ->orderByDesc('created_at');
     }
 
     /**
@@ -71,13 +71,10 @@ class Track extends Model
      * @param $userID integer Utente di cui caricare il feed.
      */
     public static function getFeedTracks($userID) {
-        return Following::matchesFollower($userID)
-            ->join('tracks', 'tracks.uploader', '=', 'followings.followed')
-            ->where('private', false)
-            ->orderByDesc('tracks.created_at')
-            ->offset(0)
-            ->limit(Track::$chunkSize)
-            ->get();
+        return Track::notPrivate()
+            ->join('followings', 'tracks.uploader', '=', 'followings.followed')
+            ->where('followings.follower', $userID)
+            ->orderByDesc('tracks.created_at');
     }
 
     /**
@@ -86,8 +83,7 @@ class Track extends Model
     public static function getTopTracks() {
         return Track::notPrivate()
             ->orderByDesc('plays')
-            ->limit(Track::$chunkSize)
-            ->get();
+            ->limit(Track::$topTracksChunkSize);
     }
 
     /**
@@ -96,9 +92,7 @@ class Track extends Model
      */
     public static function getSearchedTracks($queryString) {
         return Track::notPrivate()
-            ->where('title', 'LIKE', '%' . $queryString . '%')
-            ->limit(Track::$chunkSize)
-            ->get();
+            ->where('title', 'LIKE', '%' . $queryString . '%');
     }
 
 }

@@ -36,6 +36,6 @@
 
 <h4>UNISON</h4>
 <small>
-    Ascoltare, condividire e scoprire nuova musica non è mai stato così facile.
+    Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.
     Immergiti nel mondo Unison e vivi un'esperienza unica.
 </small>

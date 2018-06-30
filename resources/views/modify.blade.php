@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Inserisci la nuova bio:</label>
-                        <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable">{{ auth()->user()->bio }}</textarea>
+                        <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio...">{{ auth()->user()->bio }}</textarea>
                         <div class="invalid-feedback">
                             Per favore specifica una bio valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
                         </div>

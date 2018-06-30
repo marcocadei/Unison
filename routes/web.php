@@ -63,6 +63,3 @@ Route::get('/search', 'TrackController@search')->name('search');
 
 // Servizio di Spotify
 Route::post('/spotify/token', 'SpotifyController@token');
-
-// FIXME solo debug - poi eliminare
-Route::get('/alltracks', 'TrackController@allTracks')->middleware('auth');

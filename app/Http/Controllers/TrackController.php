@@ -78,6 +78,13 @@ class TrackController extends Controller
         return $songs;
     }
 
+    /**
+     * Costruisce, a partire da un insieme di record letti dalla tabella 'users' del database, l'array contenente
+     * tutti i metadati utilizzati relativi a tali utenti. Questo metodo è utilizzato unicamente per la pagina di
+     * ricerca utenti(vedi view tricol.searchusers).
+     * @param $users array Insieme di record letti dalla tabella 'users' del database.
+     * @return array Array contenente i metadati relativi agli utenti specificati nell'array in input.
+     */
     private function buildUsersArrayFromQueryOutput($users) {
         $usersArray = array();
 
@@ -106,87 +113,20 @@ class TrackController extends Controller
         return $usersArray;
     }
 
-    /*
-     * Di seguito i metodi che restituiscono le view vere e proprie.
-     */
-
-//    FIXME - Solo debug - Poi togliere!
-    public function allTracks() {
-        $tracks = Track::getAllTracks();
-        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-        return view('tricol.feed', compact(['songs']));
-    }
-
     /**
-     * Restituisce la pagina profilo dell'utente specificato.
+     * Estrae, a partire dalle righe selezionate con una query sul database specificate in input, la porzione corretta
+     * basandosi sul parametro 'page' della query string con cui è stato effettuato l'accesso alla pagina.
+     * @param $queryResult array Porzione di tracce determinata in base al valore indicato per il parametro 'page'
+     * nella query string (in assenza del quale si utilizza il valore 0).
      */
-    public function userProfile($userID) {
-        /*
-         * Si controlla che lo userID specificato nell'URL sia composto di sole cifre da 0 a 9.
-         */
-        if (ctype_digit($userID)) {
-            /*
-             * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
-             * viene visualizzata una pagina d'errore.
-             */
-            $userExists = User::matchesID($userID)->exists();
-            if (!$userExists) {
-                return abort(404);
-            }
-        }
-        else {
-            return abort(404);
-        }
-
-        /*
-         * Record del database associato all'utente di cui si vuole visualizzare la pagina profilo.
-         */
-        $userRecord = User::matchesID($userID)->first();
-
-        $sameAsLoggedUser = false;
-        $followedByLoggedUser = false;
-        if (auth()->check()) {
-            $sameAsLoggedUser = (strcmp($userID, auth()->user()->id) == 0);
-            if (!$sameAsLoggedUser) {
-                $followedByLoggedUser = Following::matchesPair(auth()->user()->id, $userID)->exists();
-            }
-        }
-
-        $tracks = Track::getTracksByUser($userID, $sameAsLoggedUser);
-        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-
-        // Seguaci dell'utente di cui viene visualizzata la pagina profilo.
-        $numberOfFollowers = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollowed($userID)->count());
-        // Utenti seguiti da quello di cui viene visualizzata la pagina profilo.
-        $numberOfFollowed = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollower($userID)->count());
-        // Numero totale di tracce caricate (incluse quelle private).
-        $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userID)->count());
-
-        $userInfo = array(
-            "user_id" => $userID,
-            "same_as_logged_user" => $sameAsLoggedUser,
-            "followed_by_logged_user" => $followedByLoggedUser,
-            "username" => $userRecord->username,
-            "profile_pic" => Storage::url($userRecord->profile_pic),
-            "bio" => $userRecord->bio,
-            "followers" => $numberOfFollowers,
-            "following" => $numberOfFollowed,
-            "uploads" => $numberOfUploadedTracks
-        );
-        return view('tricol.userprofile', compact(['songs', 'userInfo']));
+    private function getRightChunk($queryResult) {
+        $page = request('page');
+        $offset = ctype_digit($page) ? intval($page) : 0;
+        return $queryResult->extractChunk($offset)->get();
     }
 
-    public function updatePlayCount($trackID) {
-        $track = Track::matchesID($trackID)->first();
-        $playCount = $track->plays;
-        $track->plays = $playCount + 1;
-        $track->save();
-
-        return response()->json(['result' => true]);
-    }
-
-    // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
-    public function upload(){
+    public function upload() {
+        // Restituisco una pagina che presenta un'interfaccia per poter caricare una canzone
         $username = auth()->user()->username;
         $userID = auth()->user()->id;
         $maxFileSize = ini_get('upload_max_filesize');
@@ -234,65 +174,6 @@ class TrackController extends Controller
             Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('userID')."_".$timestamp.".".$coverArtFormat);
         }
         return redirect('/user/' .request('userID'));
-    }
-
-    public function checkSongExistence(){
-        $result = \DB::table('tracks')
-            ->join('users', 'tracks.uploader', '=', 'users.id')
-            ->where('users.id', '=', request('userID'))
-            ->where('tracks.title', '=', request('title'))
-            ->exists();
-
-        return response()->json(['result' => !$result]);
-    }
-
-    /**
-     * Restituisce il feed dell'utente attualmente loggato.
-     */
-    public function userFeed() {
-        $tracks = Track::getFeedTracks(auth()->user()->id);
-        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-        return view('tricol.feed', compact(['songs']));
-    }
-
-    /**
-     * Restituisce la pagina con i brani più ascoltati di sempre.
-     */
-    public function top50() {
-        $tracks = Track::getTopTracks();
-        $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-        return view('tricol.top50', compact(['songs']));
-    }
-
-    /**
-     * Restituisce la pagina con i risultati della ricerca.
-     */
-    public function search() {
-        /*
-         * Rimozione di tutti i caratteri non-ASCII.
-         */
-        $queryString = preg_replace('/[^\x20-\x7E]/','', request('searchInput'));
-
-        // Ricerca utenti
-        if (request('searchSelect') == 1) {
-            /*
-             * Nota: Questo array vuoto è necessario poiché anche la pagina con i risultati della ricerca per utente
-             * è una pagina "a tre colonne" e quindi si aspetta di avere un player audio. Eliminare questa variabile
-             * causa un errore durante la costruzione della view.
-             * NON TOGLIERE!
-             */
-            $songs = array();
-
-            $users = User::getSearchedUsers($queryString);
-            $users = $this->buildUsersArrayFromQueryOutput($users);
-            return view('tricol.searchUsers', compact(['users', 'songs', 'queryString']));
-        }
-        // Ricerca brani
-        else {
-            $tracks = Track::getSearchedTracks($queryString);
-            $songs = $this->buildJSONArrayFromQueryOutput($tracks);
-            return view('tricol.searchTracks', compact(['songs', 'queryString']));
-        }
     }
 
     public function editTrack($trackID) {
@@ -382,6 +263,149 @@ class TrackController extends Controller
         $track->delete();
 
         return redirect('/user/' . auth()->user()->id);
+    }
+
+    /*
+     * Funzioni che restituiscono un JSON chiamate via AJAX.
+     */
+
+    public function updatePlayCount($trackID) {
+        $track = Track::matchesID($trackID)->first();
+        $playCount = $track->plays;
+        $track->plays = $playCount + 1;
+        $track->save();
+
+        return response()->json(['result' => true]);
+    }
+
+    public function checkSongExistence(){
+        $result = \DB::table('tracks')
+            ->join('users', 'tracks.uploader', '=', 'users.id')
+            ->where('users.id', '=', request('userID'))
+            ->where('tracks.title', '=', request('title'))
+            ->exists();
+
+        return response()->json(['result' => !$result]);
+    }
+
+    /*
+     * Di seguito i metodi che restituiscono le view vere e proprie.
+     */
+
+    /**
+     * Restituisce la pagina profilo dell'utente specificato.
+     */
+    public function userProfile($userID) {
+        /*
+         * Si controlla che lo userID specificato nell'URL sia composto di sole cifre da 0 a 9.
+         */
+        if (ctype_digit($userID)) {
+            /*
+             * Prima di tutto viene verificata l'esistenza dell'utente; se è stato indicato un utente inesistente allora
+             * viene visualizzata una pagina d'errore.
+             */
+            $userExists = User::matchesID($userID)->exists();
+            if (!$userExists) {
+                return abort(404);
+            }
+        }
+        else {
+            return abort(404);
+        }
+
+        /*
+         * Record del database associato all'utente di cui si vuole visualizzare la pagina profilo.
+         */
+        $userRecord = User::matchesID($userID)->first();
+
+        $sameAsLoggedUser = false;
+        $followedByLoggedUser = false;
+        if (auth()->check()) {
+            $sameAsLoggedUser = (strcmp($userID, auth()->user()->id) == 0);
+            if (!$sameAsLoggedUser) {
+                $followedByLoggedUser = Following::matchesPair(auth()->user()->id, $userID)->exists();
+            }
+        }
+
+        $tracks = Track::getTracksByUser($userID, $sameAsLoggedUser);
+        $trackCount = $tracks->count();
+        $songs = $this->buildJSONArrayFromQueryOutput($this->getRightChunk($tracks));
+
+        // Seguaci dell'utente di cui viene visualizzata la pagina profilo.
+        $numberOfFollowers = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollowed($userID)->count());
+        // Utenti seguiti da quello di cui viene visualizzata la pagina profilo.
+        $numberOfFollowed = GeneralUtils::formatNumberWithMultipliers(Following::matchesFollower($userID)->count());
+        // Numero totale di tracce caricate (incluse quelle private).
+        $numberOfUploadedTracks = GeneralUtils::formatNumberWithMultipliers(Track::matchesUserID($userID)->count());
+
+        $userInfo = array(
+            "user_id" => $userID,
+            "same_as_logged_user" => $sameAsLoggedUser,
+            "followed_by_logged_user" => $followedByLoggedUser,
+            "username" => $userRecord->username,
+            "profile_pic" => Storage::url($userRecord->profile_pic),
+            "bio" => $userRecord->bio,
+            "followers" => $numberOfFollowers,
+            "following" => $numberOfFollowed,
+            "uploads" => $numberOfUploadedTracks
+        );
+        return view('tricol.userprofile', compact(['songs', 'trackCount', 'userInfo']));
+    }
+
+    /**
+     * Restituisce il feed dell'utente attualmente loggato.
+     */
+    public function userFeed() {
+        $tracks = Track::getFeedTracks(auth()->user()->id);
+        $trackCount = $tracks->count();
+        $songs = $this->buildJSONArrayFromQueryOutput($this->getRightChunk($tracks));
+        return view('tricol.feed', compact(['songs', 'trackCount']));
+    }
+
+    /**
+     * Restituisce la pagina con i brani più ascoltati di sempre.
+     */
+    public function top50() {
+        $tracks = Track::getTopTracks();
+        $trackCount = $tracks->count();
+        $songs = $this->buildJSONArrayFromQueryOutput($tracks->get());
+        return view('tricol.top50', compact(['songs', 'trackCount']));
+    }
+
+    /**
+     * Restituisce la pagina con i risultati della ricerca.
+     */
+    public function search() {
+        if (!request('searchInput')) {
+            return abort(404);
+        }
+
+        /*
+         * Rimozione di tutti i caratteri non-ASCII.
+         */
+        $queryString = preg_replace('/[^\x20-\x7E]/','', request('searchInput'));
+
+        // Ricerca utenti
+        if (request('searchSelect') == 1) {
+            /*
+             * Nota: Questo array vuoto è necessario poiché anche la pagina con i risultati della ricerca per utente
+             * è una pagina "a tre colonne" e quindi si aspetta di avere un player audio. Eliminare questa variabile
+             * causa un errore durante la costruzione della view.
+             * NON TOGLIERE!
+             */
+            $songs = array();
+
+            $users = User::getSearchedUsers($queryString);
+            $users = $this->buildUsersArrayFromQueryOutput($users);
+            return view('tricol.searchusers', compact(['users', 'songs', 'queryString']));
+        }
+        // Ricerca brani
+        else {
+            $tracks = Track::getSearchedTracks($queryString);
+            $trackCount = $tracks->count();
+            $songs = $this->buildJSONArrayFromQueryOutput($this->getRightChunk($tracks));
+            return view('tricol.searchtracks', compact(['songs', 'trackCount', 'queryString']));
+        }
     }
 
 }
