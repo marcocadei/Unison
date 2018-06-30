@@ -222,7 +222,7 @@ function searchSong(token){
 function mostraInfoSpotify(data){
     // Mostro la finestra di spotify solo se ho trovato qualcosa e l'artista trovato è colui che sta
     // caricando la canzone, altrimenti non faccio nulla
-    if(data.tracks.items.length > 0 && data.tracks.items[0].artists[0].name == $("#author").val()) {
+    if(data.tracks.items.length > 0 && data.tracks.items[0].artists[0].name.includes($("#author").val())) {
         // Recupero l'id dell'elemento che è stato premuto per uscire dalla finestra modale
         // in base al risultato che ottengo effettuo delle operazioni diverse
         $('#spotifyModal').on('hide.bs.modal', function (e) {
