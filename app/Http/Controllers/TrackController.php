@@ -195,7 +195,7 @@ class TrackController extends Controller
 
     public function store() {
         // Recupero la durata della canzone caricata
-        $mp3file = new MP3File(request('trackSelect'));
+        //$mp3file = new MP3File(request('trackSelect'));
         //$duration = intval($mp3file->getDurationEstimate());
         $duration = request('duration');
 

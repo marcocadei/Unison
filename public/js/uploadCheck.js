@@ -18,35 +18,40 @@ $(document).ready(function () {
             $(this).next('.custom-file-label').html("Scegli file...");
             trackChoosed = false;
         }
+        if (trackName.length > 0) {
+            let trackFormat = trackName.substring(trackName.lastIndexOf("."));
+            let allowedFormat = [".mp3", ".m4a"];
+            if (typeof this.files[0] !== 'undefined' && allowedFormat.indexOf(trackFormat) != -1) {
+                //  Inizializzo il tag audio con il file caricato
+                objectUrl = URL.createObjectURL(this.files[0]);
+                $("#audio").prop("src", objectUrl);
 
-        let trackFormat = trackName.substring(trackName.lastIndexOf("."));
-        let allowedFormat = [".mp3", ".m4a"];
-        if (typeof this.files[0] !== 'undefined' && allowedFormat.indexOf(trackFormat) != -1) {
-            //  Inizializzo il tag audio con il file caricato
-            objectUrl = URL.createObjectURL(this.files[0]);
-            $("#audio").prop("src", objectUrl);
+                // Controllo che il file caricato non superi la dimensione massima consentita
+                let maxFileSize = parseInt($("#maxFileSize").val());
+                // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
+                // per effettuare il confronto devo riportare i MB in bit
+                if (this.files[0].size > maxFileSize * 1024 * 1024) {
+                    $("#trackSelect").addClass("is-invalid");
+                    trackChoosed = false;
+                }
+                else {
+                    $("#trackSelect").removeClass("is-invalid");
+                    trackChoosed = true;
+                }
 
-            // Controllo che il file caricato non superi la dimensione massima consentita
-            let maxFileSize = parseInt($("#maxFileSize").val());
-            // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
-            // per effettuare il confronto devo riportare i MB in bit
-            if (this.files[0].size > maxFileSize * 1024 * 1024) {
+                // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
+                // del file (senza il formato), ma è sempre possibile cambiarlo
+                // Se il nome del file è più lungo di #maxLengthTitle allora mantengo solo i primi #maxLengthTitle
+                // caratteri
+                let ultimo_punto = trackName.lastIndexOf(".");
+                $("#title").val((trackName.substring(0, ultimo_punto)).replace(/[^\x20-\x7E]/gi, '').substring(0, maxLengthTitle));
+                checkFileField($("#trackSelect"), trackChoosed);
+                checkTitle(null, $("#title"), maxLengthTitle);
+            }
+            else {
                 $("#trackSelect").addClass("is-invalid");
                 trackChoosed = false;
             }
-            else {
-                $("#trackSelect").removeClass("is-invalid");
-                trackChoosed = true;
-            }
-
-            // Dopo aver selezionato la traccia propongo all'utente come titolo il nome
-            // del file (senza il formato), ma è sempre possibile cambiarlo
-            // Se il nome del file è più lungo di #maxLengthTitle allora mantengo solo i primi #maxLengthTitle
-            // caratteri
-            let ultimo_punto = trackName.lastIndexOf(".");
-            $("#title").val((trackName.substring(0, ultimo_punto)).replace(/[^\x20-\x7E]/gi, '').substring(0, maxLengthTitle));
-            checkFileField($("#trackSelect"), trackChoosed);
-            checkTitle(null, $("#title"), maxLengthTitle);
         }
         else {
             $("#trackSelect").addClass("is-invalid");
@@ -113,11 +118,16 @@ $(document).ready(function () {
     $("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
 
     // Prima di caricare la canzone controllo che tutti i campi siano compilati come richiesto
-    $("#buttonUpload").click(validateUpload);
+    //$("#buttonUpload").click(validateUpload);
+    $("#buttonUpload").click(function (event) {
+        event.preventDefault();
+        checkDeletedTrack($("#trackSelect"), trackChoosed, event);
+    });
+
 });
 
 
-function validateUpload(event) {
+function validateUpload(event, checkFile) {
     // Di default disabilito il submit della form, che effettuo solo dopo
     // che sia i controlli lato client che lato server sono stati superati
     event.preventDefault();
@@ -126,8 +136,9 @@ function validateUpload(event) {
     $("#formUpload").removeClass("is-invalid");
 
     let nextPage = true;
-    nextPage &= checkFileField($("#trackSelect"), trackChoosed);
-    nextPage &= checkFileField($("#photoSelect"), imageChoosed);
+    // nextPage &= checkFile;
+    //nextPage &= checkFileField($("#trackSelect"), trackChoosed);
+    //nextPage &= checkFileField($("#photoSelect"), imageChoosed);
     nextPage &= checkTitle(event, $("#title"), maxLengthTitle);
     nextPage &= checkDescription(event, $("#description"), maxLengthDescription);
 
@@ -200,6 +211,7 @@ function searchSong(token){
             mostraInfoSpotify(oData);
         })
         .fail(function () {
+            console.log("ciao1");
             // Se c'è un errore con spotify (magari il servizio non è disponibile) allora memorizzo la canzone
             // senza alcuna associazione
             $("#upload").submit();
@@ -231,7 +243,9 @@ function mostraInfoSpotify(data){
         });
     }
     else{
+        console.log("ciao2");
         $("#upload").submit();
+        //document.getElementById("upload").submit();
     }
 }
 
@@ -266,22 +280,89 @@ function checkDescription(event, field, maxLength) {
     }
 }
 
-function checkFileField(field, choosed) {
+function checkFileField(field, choosed, deleted) {
     if(!choosed)
         field.addClass("is-invalid");
-    // Se la traccia/foto è selezionata
+    // Se la traccia è selezionata
     else{
-        // Ma la sua dimensione è zero (è stato rimosso o spostato) allora riporto un errore
-        if (typeof document.getElementById(field.attr("id")).files[0] !== 'undefined' && document.getElementById(field.attr("id")).files[0].size == 0) {
+        // console.log(typeof document.getElementById(field.attr("id")).files[0] === 'undefined');
+        // if (typeof document.getElementById(field.attr("id")).files[0] === 'undefined') {
+        //     field.addClass("is-invalid");
+        //     choosed = false;
+        // }
+        if (deleted){
             field.addClass("is-invalid");
             choosed = false;
         }
         // Altrimenti è corretto
-        else
+        else {
             field.removeClass("is-invalid");
+        }
     }
 
     return choosed;
+}
+
+// function checkFileField(field, choosed) {
+//     if(!choosed)
+//         field.addClass("is-invalid");
+//     else
+//         field.removeClass("is-invalid");
+//
+//     checkDeleted();
+//     return choosed;
+// }
+
+function checkDeletedTrack(field, choosed, event) {
+    let result = null;
+    input = document.getElementById(field.attr("id"));
+    if (input.files.length > 0) {
+        var file = input.files[0];
+        var fr = new FileReader();
+
+        fr.onload = function (e) {
+            //alert("File is readable");
+            checkFileField(field, choosed, false);
+            checkDeletedPhoto($("#photoSelect"), imageChoosed, event);
+        };
+        fr.onerror = function (e) {
+            if (e.target.error.name == "NotFoundError") {
+                //alert("File deleted");
+                result = checkFileField(field, choosed, true);
+            }
+        }
+        fr.readAsText(file);
+    } else {
+        // no file choosen yet
+        return checkFileField(field, choosed, false);
+    }
+
+}
+
+function checkDeletedPhoto(field, choosed, event) {
+    let result = null;
+    input = document.getElementById(field.attr("id"));
+    if (input.files.length > 0) {
+        var file = input.files[0];
+        var fr = new FileReader();
+
+        fr.onload = function (e) {
+            //alert("File is readable");
+            checkFileField(field, choosed, false);
+            validateUpload(event)
+        };
+        fr.onerror = function (e) {
+            if (e.target.error.name == "NotFoundError") {
+                //alert("File deleted");
+                result = checkFileField(field, choosed, true);
+            }
+        }
+        fr.readAsText(file);
+    } else {
+        // no file choosen yet
+        return checkFileField(field, choosed, false);
+    }
+
 }
 
 
