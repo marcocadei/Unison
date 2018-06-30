@@ -92,7 +92,7 @@
                         <label for="title">Titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo...">
                         <div class="invalid-feedback">
-                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
                         <label for="author">Autore:</label>
                         <input type="text" class="form-control" id="author" name="author" value="{{ $username }}" disabled>
                         <div class="invalid-feedback">
-                            Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
 
@@ -108,7 +108,7 @@
                         <label for="description">Descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..."></textarea>
                         <div class="invalid-feedback">
-                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
 

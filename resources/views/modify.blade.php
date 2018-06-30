@@ -81,14 +81,14 @@
                         <label for="usernameMod">Inserisci il nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}">
                         <div class="invalid-feedback">
-                            Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Inserisci la nuova bio:</label>
                         <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio...">{{ auth()->user()->bio }}</textarea>
                         <div class="invalid-feedback">
-                            Per favore specifica una bio valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica una bio valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
                     <div class="form-group">

@@ -74,14 +74,14 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}">
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <div class="invalid-feedback">
-                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Inserisci la nuova descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione...">{{ $trackRecord->description }}</textarea>
                         <div class="invalid-feedback">
-                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili).
+                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
                     </div>
                     <div class="form-group form-check">

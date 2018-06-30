@@ -42,7 +42,7 @@
                                 <label for="usernameSI">Username o email:</label>
                                 <input type="text" class="form-control" id="usernameSI" name="usernameSI" placeholder="Inserisci username o email...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                                 </div>
                             </div>
                             <div class="form-group">
@@ -73,7 +73,7 @@
                                 <label for="usernameSU">Username:</label>
                                 <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username...">
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                                    Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                                 </div>
                             </div>
                             <div class="form-group">
