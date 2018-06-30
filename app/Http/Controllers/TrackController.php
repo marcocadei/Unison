@@ -383,7 +383,7 @@ class TrackController extends Controller
         /*
          * Rimozione di tutti i caratteri non-ASCII.
          */
-        $queryString = preg_replace('/[^\x20-\x7E]/','', request('searchInput'));
+        $queryString = preg_replace('/[^\x20-\x7E\xC0-\xFF]/u','', request('searchInput'));
 
         // Ricerca utenti
         if (request('searchSelect') == 1) {
