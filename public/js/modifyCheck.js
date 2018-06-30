@@ -321,10 +321,12 @@ function checkDeletedPhoto(field, choosed, event) {
 
         fr.onload = function (e) {
             //alert("File is readable");
+            //console.log("ciao2");
             checkFileField(field, choosed, false);
             validateModify(event);
         };
         fr.onerror = function (e) {
+            //console.log("ciao3");
             if (e.target.error.name == "NotFoundError") {
                 //alert("File deleted");
                 result = checkFileField(field, choosed, true);
@@ -332,8 +334,9 @@ function checkDeletedPhoto(field, choosed, event) {
         }
         fr.readAsText(file);
     } else {
-        // no file choosen yet
-        return checkFileField(field, choosed, false);
+        //console.log("ciao");
+        result = checkFileField(field, choosed, false);
+        validateModify(event);
     }
 
 }

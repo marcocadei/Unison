@@ -231,7 +231,8 @@ function checkDeletedPhoto(field, choosed, event) {
         fr.readAsText(file);
     } else {
         // no file choosen yet
-        return checkFileField(field, choosed, false);
+        result =  checkFileField(field, choosed, false);
+        validateModify(event);
     }
 
 }
