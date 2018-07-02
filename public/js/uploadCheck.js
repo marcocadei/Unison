@@ -137,8 +137,8 @@ function validateUpload(event, checkFile) {
 
     let nextPage = true;
     // nextPage &= checkFile;
-    //nextPage &= checkFileField($("#trackSelect"), trackChoosed);
-    //nextPage &= checkFileField($("#photoSelect"), imageChoosed);
+    nextPage &= checkFileField($("#trackSelect"), trackChoosed, false);
+    nextPage &= checkFileField($("#photoSelect"), imageChoosed, false);
     nextPage &= checkTitle(event, $("#title"), maxLengthTitle);
     nextPage &= checkDescription(event, $("#description"), maxLengthDescription);
 

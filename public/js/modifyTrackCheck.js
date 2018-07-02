@@ -87,7 +87,7 @@ function validateModify(event) {
     $("#formModify").removeClass("is-invalid");
 
     let nextPage = true;
-    // nextPage &= checkFileField($("#photoMod"), imageChoosed);
+    nextPage &= checkFileField($("#photoMod"), imageChoosed, false);
     nextPage &= checkTitle(event, $("#title"), maxLengthTitle);
     nextPage &= checkDescription(event, $("#description"), maxLengthDescription);
 
