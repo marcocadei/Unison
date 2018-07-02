@@ -11,7 +11,6 @@ use App\User;
 use App\Like;
 use App\Following;
 use App\Unison\GeneralUtils;
-use App\Unison\MP3File;
 use Storage;
 
 class TrackController extends Controller
@@ -135,8 +134,6 @@ class TrackController extends Controller
 
     public function store() {
         // Recupero la durata della canzone caricata
-        //$mp3file = new MP3File(request('trackSelect'));
-        //$duration = intval($mp3file->getDurationEstimate());
         $duration = request('duration');
 
         // Creo la traccia in modo tale da poterla salvare sul DB
