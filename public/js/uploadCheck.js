@@ -206,12 +206,9 @@ function searchSong(token){
         }
     })
         .then(function(oData) {
-            //console.log(oData.tracks.items[0].uri);
-            // console.log(oData);
             mostraInfoSpotify(oData);
         })
         .fail(function () {
-            console.log("ciao1");
             // Se c'è un errore con spotify (magari il servizio non è disponibile) allora memorizzo la canzone
             // senza alcuna associazione
             $("#upload").submit();
@@ -243,7 +240,6 @@ function mostraInfoSpotify(data){
         });
     }
     else{
-        console.log("ciao2");
         $("#upload").submit();
         //document.getElementById("upload").submit();
     }
@@ -285,7 +281,6 @@ function checkFileField(field, choosed, deleted) {
         field.addClass("is-invalid");
     // Se la traccia è selezionata
     else{
-        // console.log(typeof document.getElementById(field.attr("id")).files[0] === 'undefined');
         // if (typeof document.getElementById(field.attr("id")).files[0] === 'undefined') {
         //     field.addClass("is-invalid");
         //     choosed = false;

@@ -192,7 +192,6 @@ function checkFileField(field, choosed, deleted) {
         field.addClass("is-invalid");
     // Se la traccia è selezionata
     else{
-        // console.log(typeof document.getElementById(field.attr("id")).files[0] === 'undefined');
         // if (typeof document.getElementById(field.attr("id")).files[0] === 'undefined') {
         //     field.addClass("is-invalid");
         //     choosed = false;

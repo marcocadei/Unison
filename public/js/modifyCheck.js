@@ -295,7 +295,6 @@ function checkFileField(field, choosed, deleted) {
         field.addClass("is-invalid");
     // Se la traccia è selezionata
     else{
-        // console.log(typeof document.getElementById(field.attr("id")).files[0] === 'undefined');
         // if (typeof document.getElementById(field.attr("id")).files[0] === 'undefined') {
         //     field.addClass("is-invalid");
         //     choosed = false;
@@ -322,12 +321,10 @@ function checkDeletedPhoto(field, choosed, event) {
 
         fr.onload = function (e) {
             //alert("File is readable");
-            //console.log("ciao2");
             checkFileField(field, choosed, false);
             validateModify(event);
         };
         fr.onerror = function (e) {
-            //console.log("ciao3");
             if (e.target.error.name == "NotFoundError") {
                 //alert("File deleted");
                 result = checkFileField(field, choosed, true);
@@ -335,7 +332,6 @@ function checkDeletedPhoto(field, choosed, event) {
         }
         fr.readAsText(file);
     } else {
-        //console.log("ciao");
         result = checkFileField(field, choosed, false);
         validateModify(event);
     }
