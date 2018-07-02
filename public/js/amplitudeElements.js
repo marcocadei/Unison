@@ -124,8 +124,6 @@ function updatePlayCount() {
         traccia attualmente riprodotta dall'utente.
      */
 
-    console.log("+1"); // FIXME da rimuovere
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

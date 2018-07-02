@@ -12,7 +12,7 @@ use Storage;
 
 class UserController extends Controller
 {
-    //FIXME verificare che si debba passare per il middleware (cioè verificare che l'utente sia loggato) per ogni azione del controller
+
     public function __construct() {
         $this->middleware('auth');
     }

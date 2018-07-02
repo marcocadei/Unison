@@ -33,7 +33,6 @@ class Track extends Model
      * @var int Numero (massimo) di tracce restituite da una singola interrogazione al database.
      */
     public static $chunkSize = 10;
-    // FIXME rimettere a 50 alla fine!!
 
     /**
      * @var int Numero (massimo) di tracce restituite per l'interrogazione relativa alle top tracks.
