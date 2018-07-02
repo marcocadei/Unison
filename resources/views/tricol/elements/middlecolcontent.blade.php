@@ -1,6 +1,6 @@
 <div> <!-- Questo div vuoto serve per raggruppare assieme la colonna centrale e il bottone per tornare in cima -->
     <div class="container w-100">
-        <div id="replaceableContent"> {{-- TODO intervenire su questo div per realizzare la single-page-application --}}
+        <div id="replaceableContent">
             <div id="middleColHeader" class="mb-3">
                 {{-- Inserire qui gli elementi da visualizzare in testa alla colonna centrale, prima del blocco con
                 le tracce audio. --}}

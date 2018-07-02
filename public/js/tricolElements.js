@@ -184,9 +184,6 @@ function topFunction() {
 function setThumbtackDestination() {
     let activeIndex = Amplitude.getActiveIndex();
     thumbtackDestination = $("#song-played-progress-" + activeIndex).parents(".audioElementContainer");
-
-    /* TODO la puntina dev'essere resettata a middleCol ad ogni pressione di un "carica altro" o in generale
-    in qualunque momento si chiami bindNewElements() per evitare di referenziare qualcosa di inesistente */
 }
 
 /**

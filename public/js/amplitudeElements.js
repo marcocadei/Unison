@@ -146,7 +146,3 @@ function updatePlayCount() {
 function disableMainPlayButton() {
     $("#audioNavButtons > li > a").addClass("disabledAnchor");
 }
-
-
-// TODO scrivere il codice per la riattivazione/ridisattivazione dei bottoni della navbar inferiore quando si aggiornano
-// le tracce con Amplitude.bindNewElements

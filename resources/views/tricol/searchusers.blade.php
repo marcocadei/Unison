@@ -50,5 +50,3 @@
         @endforeach
     </div>
 @endsection
-
-{{-- TODO nascondere il div con id allaudioelements --}}
