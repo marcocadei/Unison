@@ -79,8 +79,7 @@ class AuthController extends Controller
                 ->orWhere('email', '=', request('usernameSI'))->first();
 
         // il secondo parametro viene usato per ricordarsi dell'utente fin quando esso non slogga manualmente
-        // FIXME il valore booleano impostato qua deve essere uguale a quello usato nella funzione register!
-        auth()->login($user, false);
+        auth()->login($user, true);
 
         return redirect()->home();
     }
