@@ -31,7 +31,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="annullaModal">Non collegare</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="collegaModal">Collega canzone</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="collegaModal">Collega</button>
                 </div>
             </div>
         </div>

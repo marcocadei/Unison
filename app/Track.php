@@ -74,6 +74,7 @@ class Track extends Model
         return Track::notPrivate()
             ->join('followings', 'tracks.uploader', '=', 'followings.followed')
             ->where('followings.follower', $userID)
+            ->select('tracks.*')
             ->orderByDesc('tracks.created_at');
     }
 
