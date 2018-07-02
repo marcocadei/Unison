@@ -54,8 +54,9 @@ function retrieveData(element){
             .fail(function () {
                 // Se c'è un errore con spotify (magari il servizio non è disponibile) allora memorizzo la canzone
                 // senza alcuna associazione
-                let dati = $("<ul class='smallText m-0'></ul>");
+                let dati = $("<span class='smallText'></span>");
                 dati.append("C'è stato un errore e non è attualmente possibile recuperare i dati.");
+                $($(element).attr("href")).find("span").replaceWith(dati);
             })
     }
 }
