@@ -11,7 +11,7 @@
 let amplitudeData = {
     "autoplay": false, // Al caricamento della pagina la riproduzione non parte in automatico
     "default_album_art": "/dbres/trackthumbs/trackdefault.png",
-    "debug": "true",
+    "debug": false,
     "volume": 50,
     "volume_increment": 5,
     "volume_decrement": 5,
