@@ -3,7 +3,7 @@
 A social music site developed in PHP with the Laravel framework, version 5.6
 
 ## Features
-Login and Registration of users
+Login and Registration of users <br>
 Feed with the songs uploaded by your followed artists, divided in pages
 The possibility to like the songs
 A counter of reproductions
