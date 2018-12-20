@@ -2,12 +2,14 @@
     {{--<span>--}}
         {{--Attualmente non sei loggato e non è possibile mostrare la lista degli utenti che segui e che ti seguono.--}}
     {{--</span>--}}
-    <p class="text-left">
+    <p class="smallText bigLineHeight">
         Attualmente non sei loggato e non è possibile mostrare la lista degli utenti che segui e che ti seguono.
     </p>
     <br>
-    <a class="badge badge-pill badge-success" href="{{ route('login') }}">Accedi</a> per scoprire di più
-    sui tuoi follower e followed.
+    <p class="smallText bigLineHeight">
+        <a class="badge badge-pill badge-success" href="{{ route('login') }}">Accedi</a> per scoprire di più
+        sui tuoi follower e followed.
+    </p>
 @else
     <input type="hidden" id="loggedUserID" value="{{ auth()->user()->id }}">
     <p>

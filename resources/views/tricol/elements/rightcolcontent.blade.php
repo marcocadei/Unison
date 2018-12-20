@@ -30,7 +30,7 @@
         {{--Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.--}}
         {{--Immergiti nel mondo Unison e vivi un'esperienza unica.--}}
     {{--</small>--}}
-    <p class="text-left">
+    <p class="smallText bigLineHeight">
         Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.
         Immergiti nel mondo Unison e vivi un'esperienza unica.
     </p>

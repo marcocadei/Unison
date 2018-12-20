@@ -27,7 +27,7 @@ function retrieveFollowedUsers(){
 
 function showFollowed(followed){
     if (followed.length == 0){
-        $("#followedList span").replaceWith("<span>Non segui nessuno attualmente.</span>");
+        $("#followedList span").replaceWith("<span class='text-left smallText'>Non segui nessuno attualmente.</span>");
     }
     else{
         let followedList = $("<ul class='pl-2 my-auto'></ul>");
@@ -64,7 +64,7 @@ function retrieveFollowerUsers(){
 
 function showFollowers(followers){
     if (followers.length == 0){
-        $("#followerList span").replaceWith("<span>Non sei seguito da nessuno attualmente.</span>");
+        $("#followerList span").replaceWith("<span class='text-left smallText'>Non sei seguito da nessuno attualmente.</span>");
     }
     else{
         let followerList = $("<ul class='pl-2 my-auto'></ul>");
