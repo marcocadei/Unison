@@ -3,14 +3,14 @@
   * che i diversi campi siano stati riempiti in modo appropriato
   */
 $(document).ready(function () {
-    $("#emailSU").keyup(function(event) {checkEmail(event, this)});
+    //$("#emailSU").keyup(function(event) {checkEmail(event, this)});
     // Questo handler serve perché se mentre si digita l'email compaiono i suggerimenti del browser
     // e si seleziona una voce con le frecce e poi si preme tab, su firefox l'evento keyup non si
     // scatena, mentre su chrome va
-    $("#emailSU").focusout(function(event) {checkEmail(event, this)});
-    $("#usernameSU").keyup(function(event) {checkUser(event, this)});
-    $("#passwordSU").keyup(function(event) {checkPassword(event, this)});
-    $("#repeatPasswordSU").keyup(function(event) {checkRepeatPassword(event, this);});
+    //$("#emailSU").focusout(function(event) {checkEmail(event, this)});
+    //$("#usernameSU").keyup(function(event) {checkUser(event, this)});
+    // $("#passwordSU").keyup(function(event) {checkPassword(event, this)});
+    // $("#repeatPasswordSU").keyup(function(event) {checkRepeatPassword(event, this);});
 
     $("#buttonSU").click(validateSignUp);
 

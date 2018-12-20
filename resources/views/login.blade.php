@@ -35,22 +35,22 @@
                         <form class="p-5" action="{{route('login')}}" method="post" id="SI">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSI">
-                            <div class="invalid-feedback">
-                                Nome utente o password non validi.
-                            </div>
                             <div class="form-group">
                                 <label for="usernameSI">Username o email:</label>
                                 <input type="text" class="form-control" id="usernameSI" name="usernameSI" placeholder="Inserisci username o email...">
-                                <div class="invalid-feedback">
-                                    Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
-                                </div>
+                                {{--<div class="invalid-feedback">--}}
+                                    {{--Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).--}}
+                                {{--</div>--}}
                             </div>
                             <div class="form-group">
                                 <label for="passwordSI">Password:</label>
                                 <input type="password" class="form-control" id="passwordSI" name="passwordSI" placeholder="Inserisci password...">
-                                <div class="invalid-feedback">
-                                    Per favore specifica una password valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
-                                </div>
+                                {{--<div class="invalid-feedback">--}}
+                                    {{--Per favore specifica una password valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).--}}
+                                {{--</div>--}}
+                            </div>
+                            <div class="invalid-feedback border border-danger text-center p-1">
+                                Nome utente o password non validi.
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSI">Accedi</button>
                         </form>
@@ -64,31 +64,43 @@
                             </div>
                             <div class="form-group">
                                 <label for="emailSU">Email:</label>
-                                <input type="email" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email...">
+                                <input type="text" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email..." aria-describedby="emailHelpBlock">
+                                <small id="emailHelpBlock" class="form-text text-muted">
+                                    Per favore inserisici una mail valida. esempio: mariorossi@libero.it
+                                </small>
                                 <div class="invalid-feedback">
-                                    Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                                    Il valore inserito non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="usernameSU">Username:</label>
-                                <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username...">
+                                <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username..." aria-describedby="usernameHelpBlock">
+                                <small id="usernameHelpBlock" class="form-text text-muted">
+                                    Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura
+                                </small>
                                 <div class="invalid-feedback">
-                                    Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                                    Il valore inserito non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordSU">Password:</label>
-                                <input type="password" class="form-control" id="passwordSU" name="passwordSU" placeholder="Inserisci password...">
+                                <input type="password" class="form-control" id="passwordSU" name="passwordSU" placeholder="Inserisci password..." aria-describedby="passwordHelpBlock">
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Per favore inserisci una password valida: almeno 8 caratteri, con una minuscola, una maiuscola,
+                                    un numero e un simbolo di punteggiatura
+                                </small>
                                 <div class="invalid-feedback">
-                                    Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
-                                    un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                                    Il valore inserito non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="repeatPasswordSU">Ripeti password:</label>
-                                <input type="password" class="form-control" id="repeatPasswordSU" name="repeatPasswordSU" placeholder="Reinserisci password...">
-                                <div class="invalid-feedback">
+                                <input type="password" class="form-control" id="repeatPasswordSU" name="repeatPasswordSU" placeholder="Reinserisci password..." aria-describedby="repeatPasswordHelpBlock">
+                                <small id="repeatPasswordHelpBlock" class="form-text text-muted">
                                     Per favore reinserisci la stessa password.
+                                </small>
+                                <div class="invalid-feedback">
+                                    Il valore inserito non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSU">Registra account</button>

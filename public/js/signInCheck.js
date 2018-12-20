@@ -3,8 +3,8 @@
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
-    $("#usernameSI").keyup(function(event) {checkUser(event, this)});
-    $("#passwordSI").keyup(function(event) {checkPassword(event, this)});
+    //$("#usernameSI").keyup(function(event) {checkUser(event, this)});
+    //$("#passwordSI").keyup(function(event) {checkPassword(event, this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
     // Perché in validateLogin di default disabilito il comportamento del submit e solo
     // se le credenziali sono corrette allora faccio il submit della form. Quindi se qui
@@ -39,8 +39,8 @@ function validateLogin(event){
     // $("#SI input[type != hidden]").each(function () {
     //      nextPage &= checkFieldSI(null, this);
     // });
-    nextPage &= checkUser(event, $("#usernameSI"));
-    nextPage &= checkPassword(event, $("#passwordSI"));
+    //nextPage &= checkUser(event, $("#usernameSI"));
+    //nextPage &= checkPassword(event, $("#passwordSI"));
 
     // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali corrispondano a quelle di un utente precedentemente registrato
