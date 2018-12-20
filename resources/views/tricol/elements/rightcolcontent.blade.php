@@ -1,41 +1,37 @@
-<h4>LINK UTILI</h4>
-<ul>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/home") }}">Feed</a>
-    </li>
-    @if(auth()->check())
-        <li class="mb-2">
-            <a class="badge badge-pill badge-primary" href="/user/{{ auth()->user()->id }}">Il tuo profilo</a>
-        </li>
-    @endif
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/top50") }}">Top tracks</a>
-    </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/track/upload") }}">Upload</a>
-    </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/modify") }}">Impostazioni</a>
-    </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="mailto:unison@altervista.org">Contattaci</a>
-    </li>
-    <li class="mb-2">
-        <a class="badge badge-pill badge-primary" href="{{ url("/") }}">Home page</a>
-    </li>
-    @if(auth()->check())
-        <li class="mb-2">
-            <a class="badge badge-pill badge-danger" href="{{ route('logout') }}">Esci</a>
-        </li>
-    @else
-        <li class="mb-2">
-            <a class="badge badge-pill badge-success" href="{{ route('register') }}">Registrati</a>
-        </li>
-    @endif
-</ul>
-
-<h4>UNISON</h4>
-<small>
-    Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.
-    Immergiti nel mondo Unison e vivi un'esperienza unica.
-</small>
+@if(auth()->check())
+    <input type="hidden" id="loggedUserID" value="{{ auth()->user()->id }}">
+    {{--<p>--}}
+        {{--<b>--}}
+            {{--<a class="btn btn-primary" data-toggle="collapse" href="#followedList" aria-expanded="false" aria-controls="followedList" id="buttonFollowed">--}}
+                {{--FOLLOWED--}}
+            {{--</a>--}}
+        {{--</b>--}}
+    {{--</p>--}}
+    {{--<div class="collapse" id="followedList">--}}
+        {{--<div class="card card-body">--}}
+            {{--<span> Carico i followed... </span>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    <p>
+        <b>
+            <a class="btn btn-primary" data-toggle="collapse" href="#followerList" aria-expanded="false" aria-controls="followerList" id="buttonFollower">
+                FOLLOWERS
+            </a>
+        </b>
+    </p>
+    <div class="collapse" id="followerList">
+        <div class="card card-body">
+            <span> Carico i followers... </span>
+        </div>
+    </div>
+@else
+    <h4>UNISON</h4>
+    {{--<small>--}}
+        {{--Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.--}}
+        {{--Immergiti nel mondo Unison e vivi un'esperienza unica.--}}
+    {{--</small>--}}
+    <p class="text-left">
+        Ascoltare, condividere e scoprire nuova musica non è mai stato così facile.
+        Immergiti nel mondo Unison e vivi un'esperienza unica.
+    </p>
+@endif
