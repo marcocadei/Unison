@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $("#followedList").collapse();
+    $("#followerList").collapse();
     $("#followedList").on('shown.bs.collapse', retrieveFollowedUsers);
     $("#followerList").on('shown.bs.collapse', retrieveFollowerUsers);
 })
