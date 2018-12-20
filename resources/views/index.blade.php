@@ -11,7 +11,9 @@
                 <li data-target="#homepageSlideshow" data-slide-to="0" class="active"></li>
             @endif
             <li data-target="#homepageSlideshow" data-slide-to="1" @if(auth()->check()) class="active" @endif></li>
-            <li data-target="#homepageSlideshow" data-slide-to="2"></li>
+            @if(auth()->check())
+                <li data-target="#homepageSlideshow" data-slide-to="2"></li>
+            @endif
         </ol>
         <div class="carousel-inner" role="listbox">
             @if(!auth()->check())
@@ -32,14 +34,16 @@
                     <p>Ascolta subito i brani più di tendenza in questo momento.</p>
                 </div>
             </div>
-            <div class="carousel-item carouselElement">
-                <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeMicrophone.jpg')}}" alt="Carica nuova traccia">
-                <div class="carousel-caption d-md-block">
-                    <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('upload') }}">Carica nuova traccia</a>
-                    <h3 class="font-weight-bold">Condividi la tua musica con il mondo intero.</h3>
-                    <p>Unison è la piattaforma giusta per far sentire la tua voce.</p>
+            @if(auth()->check())
+                <div class="carousel-item carouselElement">
+                    <img class="h-100 w-100 d-block imageCover" src="{{asset('images/homeMicrophone.jpg')}}" alt="Carica nuova traccia">
+                    <div class="carousel-caption d-md-block">
+                        <a class="btn btn-primary my-5 p-4 buttonText" href="{{ route('upload') }}">Carica nuova traccia</a>
+                        <h3 class="font-weight-bold">Condividi la tua musica con il mondo intero.</h3>
+                        <p>Unison è la piattaforma giusta per far sentire la tua voce.</p>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <a class="carousel-control-prev" href="#homepageSlideshow" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
