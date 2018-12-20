@@ -59,9 +59,6 @@
                         <form class="p-5" action="{{ route("registration") }}" method="post" id="SU">
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" id="formSU">
-                            <div class="invalid-feedback">
-                                È già presente un utente con quel nome utente o con quella e-mail.
-                            </div>
                             <div class="form-group">
                                 <label for="emailSU">Email:</label>
                                 <input type="text" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email..." aria-describedby="emailHelpBlock">
@@ -102,6 +99,9 @@
                                 <div class="invalid-feedback">
                                     Il valore inserito non rispetta alcune delle indicazioni fornite
                                 </div>
+                            </div>
+                            <div class="invalid-feedback border border-danger text-center p-1">
+                                È già presente un utente con quel nome utente o con quella e-mail.
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonSU">Registra account</button>
                         </form>
