@@ -91,6 +91,7 @@
                     <div class="form-group">
                         <label for="title">Titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo...">
+                        <small class="form-text text-muted">Per favore inserisci un titolo differente da quelli delle tue tracce precedenti.</small>
                         <div class="invalid-feedback">
                             Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>

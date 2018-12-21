@@ -72,6 +72,7 @@
                     <div class="form-group">
                         <label for="title">Inserisci il nuovo titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}">
+                        <small class="form-text text-muted">Per favore inserisci un titolo differente da quelli delle tue tracce precedenti.</small>
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <div class="invalid-feedback">
                             Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
