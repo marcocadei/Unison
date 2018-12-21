@@ -28,7 +28,7 @@
                     <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist_id"]) }}">{{ $song["artist"] }}</a></span>
                 </div>
                 <div>
-                    <span class="smallText text-black-50">{{ $song["date"] }}</span>
+                    <span class="smallText text-black-50">Data di pubblicazione: {{ $song["date"] }}</span>
                 </div>
             </div>
             <div class="row align-items-center py-1">
