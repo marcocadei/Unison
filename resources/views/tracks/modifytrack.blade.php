@@ -62,27 +62,36 @@
                     <div class="form-group">
                         <label for="photoMod">Inserisci la nuova immagine di copertina:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
+                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
+                            <small id="photoHelpBlock" class="form-text text-muted">
+                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                            </small>
                             <div class="invalid-feedback">
-                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
+                                L'immagine inserita non rispetta alcune delle indicazioni fornite
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="title">Inserisci il nuovo titolo:</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}">
-                        <small class="form-text text-muted">Per favore inserisci un titolo differente da quelli delle tue tracce precedenti.</small>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}" aria-describedby="titleHelpBlock">
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
+                        <small id="titleHelpBlock" class="form-text text-muted">
+                            Per favore inserisci uno titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                            Il titolo deve essere diverso da quello delle tracce che hai già caricato
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            Il titolo inserito non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Inserisci la nuova descrizione:</label>
-                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione...">{{ $trackRecord->description }}</textarea>
+                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock">{{ $trackRecord->description }}</textarea>
+                        <small id="descriptionelpBlock" class="form-text text-muted">
+                            Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            La descrizione inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group form-check">
@@ -100,7 +109,7 @@
                     </div>
 
                     <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback border border-danger text-center p-1 mb-4">
                         Hai già caricato una canzone con quel titolo.
                     </div>
                     <div class="form-row">

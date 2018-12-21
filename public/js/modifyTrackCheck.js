@@ -32,7 +32,7 @@ $(document).ready(function () {
                     img = new Image();
                     img.onload = function () {
                         if (this.width != this.height || this.width < 150 || this.height < 150) {
-                            $("#photoMod").addClass("is-invalid");
+                            //$("#photoMod").addClass("is-invalid");
                             imageChoosed = false;
                             coverArtElement.attr("src", originalCoverArtSrc);
                         }
@@ -45,7 +45,7 @@ $(document).ready(function () {
                     img.src = _URL.createObjectURL(file);
                 }
                 else{
-                    $("#photoMod").addClass("is-invalid");
+                    //$("#photoMod").addClass("is-invalid");
                     imageChoosed = false;
                     coverArtElement.attr("src", img.src);
                 }
@@ -64,8 +64,18 @@ $(document).ready(function () {
     });
 
     // Controllo sui campi titolo e descrizione
-    $("#title").keyup(function(event) {checkTitle(event, this, maxLengthTitle)});
-    $("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
+    //$("#title").keyup(function(event) {checkTitle(event, this, maxLengthTitle)});
+    //$("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
+    $("#title").focusin(function (event) {
+        $("#title").removeClass("is-invalid");
+        $("#formModify").removeClass("is-invalid");
+    });
+    $("#description").focusin(function (event) {
+        $("#description").removeClass("is-invalid");
+    });
+    $("#photoMod").focusin(function (event) {
+        $("#photoMod").removeClass("is-invalid");
+    });
 
     // Prima di caricare la canzone controllo che tutti i campi siano compilati come richiesto
     $("#buttonModify").click(function (event) {

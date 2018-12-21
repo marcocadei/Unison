@@ -75,7 +75,7 @@ $(document).ready(function () {
     //$("#bioMod").keyup(function(event) {checkBio(event, this, maxLengthBio)});
     $("#photoMod").focusin(function (event) {
         $("#photoMod").removeClass("is-invalid");
-    })
+    });
     $("#emailMod").focusin(function (event) {
         $("#emailMod").removeClass("is-invalid");
         $("#formMod").removeClass("is-invalid");
