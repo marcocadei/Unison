@@ -111,7 +111,17 @@
                     <div class="invalid-feedback">
                         È già presente un utente con quel nome utente o con quella e-mail.
                     </div>
-                    <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonMod">Conferma modifiche</button>
+                    <div class="form-row">
+                        <div class="col">
+                            <a class="btn-block btn btn-outline-secondary" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn-block btn btn-primary" id="buttonMod">Conferma modifiche</button>
+                        </div>
+                    </div>
+
+
+
                 </form>
                 <form class="px-2 px-md-5" action="/delete" method="post" id="del">
                     {{ csrf_field() }}
