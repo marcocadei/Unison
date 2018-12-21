@@ -69,10 +69,14 @@
                             <input type="hidden" name="duration" id="duration" value="">
                             <!-- Elemento che uso per recuperare la durata della canzone -->
                             <audio id="audio"></audio>
-                            <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect">
+                            <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect" aria-describedby="trackHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="trackSelect">Scegli file...</label>
+                            <small id="trackHelpBlock" class="form-text text-muted">
+                                Per favore inserisci una canzone in un formato valido [.mp3, .m4a]
+                                {{--Per favore seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).--}}
+                            </small>
                             <div class="invalid-feedback">
-                                Per favore seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).
+                                La canzone inserita non rispetta alcune delle indicazioni fornite
                             </div>
                         </div>
                     </div>
@@ -80,20 +84,26 @@
                     <div class="form-group">
                         <label for="photoSelect">Immagine:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect">
+                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoSelect">Scegli file...</label>
+                            <small id="photoHelpBlock" class="form-text text-muted">
+                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                            </small>
                             <div class="invalid-feedback">
-                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
+                                L'immagine inserita non rispetta alcune delle indicazioni fornite
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="title">Titolo:</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo...">
-                        <small class="form-text text-muted">Per favore inserisci un titolo differente da quelli delle tue tracce precedenti.</small>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." aria-describedby="titleHelpBlock">
+                        <small id="titleHelpBlock" class="form-text text-muted">
+                            Per favore inserisci un titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                            Il titolo deve essere diverso da quello delle tracce che hai già caricato
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica un titolo valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            Il titolo inserito non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
 
@@ -107,9 +117,12 @@
 
                     <div class="form-group">
                         <label for="description">Descrizione:</label>
-                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..."></textarea>
+                        <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock"></textarea>
+                        <small id="descriptionHelpBlock" class="form-text text-muted">
+                            Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica una descrizione valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            La descrizione inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
 
@@ -131,7 +144,7 @@
                     <input type="hidden" id="spotifyID" name="spotifyID">
 
                     <input type="hidden" class="form-control" id="formUpload">
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback border border-danger text-center p-1 mb-4">
                         Hai già caricato una canzone con quel titolo.
                     </div>
 

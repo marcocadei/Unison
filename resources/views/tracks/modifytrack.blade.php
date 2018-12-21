@@ -77,7 +77,7 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}" aria-describedby="titleHelpBlock">
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <small id="titleHelpBlock" class="form-text text-muted">
-                            Per favore inserisci uno titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                            Per favore inserisci un titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
                             Il titolo deve essere diverso da quello delle tracce che hai già caricato
                         </small>
                         <div class="invalid-feedback">
@@ -87,7 +87,7 @@
                     <div class="form-group">
                         <label for="description">Inserisci la nuova descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock">{{ $trackRecord->description }}</textarea>
-                        <small id="descriptionelpBlock" class="form-text text-muted">
+                        <small id="descriptionHelpBlock" class="form-text text-muted">
                             Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
                         </small>
                         <div class="invalid-feedback">

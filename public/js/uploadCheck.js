@@ -31,7 +31,7 @@ $(document).ready(function () {
                 // Dato che la maxFileSize che mi ridà il server è in MB mentre this.files[0].size va in bit
                 // per effettuare il confronto devo riportare i MB in bit
                 if (this.files[0].size > maxFileSize * 1024 * 1024) {
-                    $("#trackSelect").addClass("is-invalid");
+                    //$("#trackSelect").addClass("is-invalid");
                     trackChoosed = false;
                 }
                 else {
@@ -49,12 +49,12 @@ $(document).ready(function () {
                 checkTitle(null, $("#title"), maxLengthTitle);
             }
             else {
-                $("#trackSelect").addClass("is-invalid");
+                //$("#trackSelect").addClass("is-invalid");
                 trackChoosed = false;
             }
         }
         else {
-            $("#trackSelect").addClass("is-invalid");
+            //$("#trackSelect").addClass("is-invalid");
             trackChoosed = false;
         }
     });
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     img = new Image();
                     img.onload = function () {
                         if (this.width != this.height || this.width < 150) {
-                            $("#photoSelect").addClass("is-invalid");
+                            //$("#photoSelect").addClass("is-invalid");
                             imageChoosed = false;
                         }
                         else {
@@ -94,7 +94,7 @@ $(document).ready(function () {
                     img.src = _URL.createObjectURL(file);
                 }
                 else {
-                    $("#photoSelect").addClass("is-invalid");
+                    //$("#photoSelect").addClass("is-invalid");
                     imageChoosed = false;
                 }
             }
@@ -114,8 +114,21 @@ $(document).ready(function () {
     });
 
     // Controllo sui campi titolo e descrizione
-    $("#title").keyup(function(event) {checkTitle(event, this, maxLengthTitle)});
-    $("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
+    //$("#title").keyup(function(event) {checkTitle(event, this, maxLengthTitle)});
+    //$("#description").keyup(function(event) {checkDescription(event, this, maxLengthDescription)});
+    $("#title").focusin(function (event) {
+        $("#title").removeClass("is-invalid");
+        $("#formUpload").removeClass("is-invalid");
+    });
+    $("#description").focusin(function (event) {
+        $("#description").removeClass("is-invalid");
+    });
+    $("#photoSelect").focusin(function (event) {
+        $("#photoSelect").removeClass("is-invalid");
+    });
+    $("#trackSelect").focusin(function (event) {
+        $("#trackSelect").removeClass("is-invalid");
+    });
 
     // Prima di caricare la canzone controllo che tutti i campi siano compilati come richiesto
     //$("#buttonUpload").click(validateUpload);
