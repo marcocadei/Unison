@@ -72,6 +72,7 @@
                         <input type="hidden" id="originalEmailMod" name="originalEmailMod" value="{{ auth()->user()->email }}">
                         <label for="emailMod">Inserisci la nuova email:</label>
                         <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }}">
+                        <small class="form-text text-muted">Per favore inserisci una e-mail differente da quelle già presenti.</small>
                         <div class="invalid-feedback">
                             Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
                         </div>
@@ -80,6 +81,7 @@
                         <input type="hidden" id="originalUsernameMod" name="originalUsernameMod" value="{{ auth()->user()->username }}">
                         <label for="usernameMod">Inserisci il nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}">
+                        <small class="form-text text-muted">Per favore inserisci un username differente da quelli già presenti.</small>
                         <div class="invalid-feedback">
                             Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
                         </div>
@@ -119,9 +121,6 @@
                             <button type="submit" class="btn-block btn btn-primary" id="buttonMod">Conferma modifiche</button>
                         </div>
                     </div>
-
-
-
                 </form>
                 <form class="px-2 px-md-5" action="/delete" method="post" id="del">
                     {{ csrf_field() }}
