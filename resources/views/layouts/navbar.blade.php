@@ -53,7 +53,7 @@
                 </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('top50') }}">Top Tracks</a>
+                <a class="nav-link" href="{{ route('top50') }}">I più ascoltati</a>
             </li>
         </ul>
         <div class="w-100 mx-0 mx-md-3">
