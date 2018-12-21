@@ -105,6 +105,7 @@
                     <div class="form-group">
                         <label for="repeatPasswordMod">Ripeti password:</label>
                         <input type="password" class="form-control" id="repeatPasswordMod" name="repeatPasswordMod" placeholder="Reinserisci password...">
+                        <small class="form-text text-muted">Compila questo campo solo se intendi cambiare la tua password.</small>
                         <div class="invalid-feedback">
                             Per favore reinserisci la stessa password.
                         </div>
