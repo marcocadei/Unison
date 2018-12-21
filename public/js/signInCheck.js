@@ -3,6 +3,9 @@
  * che i diversi campi siano stati riempiti in modo appropriato
  */
 $(document).ready(function () {
+    // Tolgo il messaggio di errore solo quando il campo username prende il focus e non la pwd perché
+    // l'errore è dato dallo username
+    $("#usernameSI").focusin(function(event) {removeError()});
     //$("#usernameSI").keyup(function(event) {checkUser(event, this)});
     //$("#passwordSI").keyup(function(event) {checkPassword(event, this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
@@ -16,6 +19,14 @@ $(document).ready(function () {
     //     return true;
     // });
 });
+
+/**
+ * Nasconde l'eventuale messaggio di errore associato alla form dovuto al fatto
+ * che l'utente aveva inserito in precedenza delle credenziali errate.
+ */
+function removeError(){
+    $("#formSI").removeClass("is-invalid");
+}
 
 
 /**

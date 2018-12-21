@@ -11,6 +11,20 @@ $(document).ready(function () {
     //$("#usernameSU").keyup(function(event) {checkUser(event, this)});
     // $("#passwordSU").keyup(function(event) {checkPassword(event, this)});
     // $("#repeatPasswordSU").keyup(function(event) {checkRepeatPassword(event, this);});
+    $("#emailSU").focusin(function (event) {
+        $("#formSU").removeClass("is-invalid");
+        $("#emailSU").removeClass("is-invalid");
+    });
+    $("#usernameSU").focusin(function (event) {
+        $("#formSU").removeClass("is-invalid");
+        $("#usernameSu").removeClass("is-invalid");
+    });
+    $("#passwordSU").focusin(function (event) {
+        $("#passwordSU").removeClass("is-invalid");
+    });
+    $("#repeatPasswordSU").focusin(function (event) {
+        $("#repeatPasswordSU").removeClass("is-invalid");
+    });
 
     $("#buttonSU").click(validateSignUp);
 
