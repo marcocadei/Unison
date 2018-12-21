@@ -61,57 +61,74 @@
                     <div class="form-group">
                         <label for="photoMod">Immagine di profilo:</label>
                         <div class="custom-file">
-                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod">
+                            <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
+                            <small id="photoHelpBlock" class="form-text text-muted">
+                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                            </small>
                             <div class="invalid-feedback">
-                                Per favore seleziona un file valido [.jpeg, .jpg, .png] (l'immagine di copertina deve essere quadrata e almeno 150x150).
+                                L'immagine inserita non rispetta alcune delle indicazioni fornite
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="hidden" id="originalEmailMod" name="originalEmailMod" value="{{ auth()->user()->email }}">
                         <label for="emailMod">Inserisci la nuova email:</label>
-                        <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }}">
-                        <small class="form-text text-muted">Per favore inserisci una e-mail differente da quelle già presenti.</small>
+                        <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }} " aria-describedby="emailHelpBlock">
+                        <small id="emailHelpBlock" class="form-text text-muted">
+                            Per favore inserisci una mail valida. Esempio: mariorossi@libero.it <br>
+                            La mail non deve essere già associata ad un altro utente
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            La mail inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="hidden" id="originalUsernameMod" name="originalUsernameMod" value="{{ auth()->user()->username }}">
                         <label for="usernameMod">Inserisci il nuovo username:</label>
-                        <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}">
-                        <small class="form-text text-muted">Per favore inserisci un username differente da quelli già presenti.</small>
+                        <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}" aria-describedby="usernameHelpBlock">
+                        <small id="usernameHelpBlock" class="form-text text-muted">
+                            Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                            Lo username non deve essere già associato ad un altro utente
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica uno username valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            Lo username inserito non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Inserisci la nuova bio:</label>
-                        <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio...">{{ auth()->user()->bio }}</textarea>
+                        <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio..." aria-describedby="bioHelpBlock">{{ auth()->user()->bio }}</textarea>
+                        <small id="bioHelpBlock" class="form-text text-muted">
+                            Per favore inserisci una bio valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica una bio valida (lunghezza massima consentita 200 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            La bio inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="passwordMod">Password:</label>
-                        <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password...">
-                        <small class="form-text text-muted">Compila questo campo solo se intendi cambiare la tua password.</small>
+                        <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password..." aria-describedby="passwordHelpBlock">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Compila questo campo solo se intendi cambiare la tua password <br>
+                            Per favore inserisci una password valida: almeno 8 caratteri, con una minuscola, una maiuscola,
+                            un numero e un simbolo di punteggiatura
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore specifica una password valida: deve contenere almeno 8 caratteri, di cui almeno una lettera minuscola, una maiuscola,
-                            un numero e un carattere speciale (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).
+                            La password inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="repeatPasswordMod">Ripeti password:</label>
-                        <input type="password" class="form-control" id="repeatPasswordMod" name="repeatPasswordMod" placeholder="Reinserisci password...">
-                        <small class="form-text text-muted">Compila questo campo solo se intendi cambiare la tua password.</small>
+                        <input type="password" class="form-control" id="repeatPasswordMod" name="repeatPasswordMod" placeholder="Reinserisci password..." aria-describedby="repeatPasswordHelpBlock">
+                        <small id="repeatPasswordHelpBlock" class="form-text text-muted">
+                            Compila questo campo solo se intendi cambiare la tua password
+                        </small>
                         <div class="invalid-feedback">
-                            Per favore reinserisci la stessa password.
+                            La password inserita non rispetta alcune delle indicazioni fornite
                         </div>
                     </div>
                     <input type="hidden" class="form-control" id="formMod">
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback border border-danger text-center p-1 mb-4">
                         È già presente un utente con quel nome utente o con quella e-mail.
                     </div>
                     <div class="form-row">

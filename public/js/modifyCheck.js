@@ -36,7 +36,7 @@ $(document).ready(function () {
                     img = new Image();
                     img.onload = function () {
                         if (this.width != this.height || this.width < 150 || this.height < 150) {
-                            $("#photoMod").addClass("is-invalid");
+                            //$("#photoMod").addClass("is-invalid");
                             imageChosen = false;
                             profilePicElement.attr("src", originalProfilePicSrc);
                         }
@@ -49,7 +49,7 @@ $(document).ready(function () {
                     img.src = _URL.createObjectURL(file);
                 }
                 else {
-                    $("#photoMod").addClass("is-invalid");
+                    //$("#photoMod").addClass("is-invalid");
                     imageChosen = false;
                 }
             }
@@ -64,15 +64,35 @@ $(document).ready(function () {
             profilePicElement.attr("src", originalProfilePicSrc);
         }
     });
-    $("#emailMod").keyup(function(event) {checkEmail(event, this)});
+    //$("#emailMod").keyup(function(event) {checkEmail(event, this)});
     // Questo handler serve perché se mentre si digita l'email compaiono i suggerimenti del browser
     // e si seleziona una voce con le frecce e poi si preme tab, su firefox l'evento keyup non si
     // scatena, mentre su chrome va
-    $("#emailMod").focusout(function(event) {checkEmail(event, this)});
-    $("#usernameMod").keyup(function(event) {checkUser(event, this)});
-    $("#passwordMod").keyup(function(event) {checkPassword(event, this)});
-    $("#repeatPasswordMod").keyup(function(event) {checkRepeatPassword(event, this);});
-    $("#bioMod").keyup(function(event) {checkBio(event, this, maxLengthBio)});
+    //$("#emailMod").focusout(function(event) {checkEmail(event, this)});
+    //$("#usernameMod").keyup(function(event) {checkUser(event, this)});
+    //$("#passwordMod").keyup(function(event) {checkPassword(event, this)});
+    //$("#repeatPasswordMod").keyup(function(event) {checkRepeatPassword(event, this);});
+    //$("#bioMod").keyup(function(event) {checkBio(event, this, maxLengthBio)});
+    $("#photoMod").focusin(function (event) {
+        $("#photoMod").removeClass("is-invalid");
+    })
+    $("#emailMod").focusin(function (event) {
+        $("#emailMod").removeClass("is-invalid");
+        $("#formMod").removeClass("is-invalid");
+    });
+    $("#usernameMod").focusin(function (event) {
+        $("#usernameMod").removeClass("is-invalid");
+        $("#formMod").removeClass("is-invalid");
+    });
+    $("#bioMod").focusin(function (event) {
+        $("#bioMod").removeClass("is-invalid");
+    });
+    $("#passwordMod").focusin(function (event) {
+        $("#passwordMod").removeClass("is-invalid");
+    });
+    $("#repeatPasswordMod").focusin(function (event) {
+        $("#repeatPasswordMod").removeClass("is-invalid");
+    });
 
     $("#buttonDel").click(openDeleteModal);
     $("#buttonDefDel").click(executeDelete);

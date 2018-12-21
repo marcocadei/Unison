@@ -63,10 +63,10 @@
                                 <label for="emailSU">Email:</label>
                                 <input type="text" class="form-control" id="emailSU" name="emailSU" placeholder="Inserisci email..." aria-describedby="emailHelpBlock">
                                 <small id="emailHelpBlock" class="form-text text-muted">
-                                    Per favore inserisici una mail valida. esempio: mariorossi@libero.it
+                                    Per favore inserisci una mail valida. Esempio: mariorossi@libero.it
                                 </small>
                                 <div class="invalid-feedback">
-                                    Il valore inserito non rispetta alcune delle indicazioni fornite
+                                    La mail inserita non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,7 +76,7 @@
                                     Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura
                                 </small>
                                 <div class="invalid-feedback">
-                                    Il valore inserito non rispetta alcune delle indicazioni fornite
+                                    Lo username inserito non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
@@ -87,7 +87,7 @@
                                     un numero e un simbolo di punteggiatura
                                 </small>
                                 <div class="invalid-feedback">
-                                    Il valore inserito non rispetta alcune delle indicazioni fornite
+                                    La password inserita non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="form-group">
@@ -97,7 +97,7 @@
                                     Per favore reinserisci la stessa password.
                                 </small>
                                 <div class="invalid-feedback">
-                                    Il valore inserito non rispetta alcune delle indicazioni fornite
+                                    La password inserita non rispetta alcune delle indicazioni fornite
                                 </div>
                             </div>
                             <div class="invalid-feedback border border-danger text-center p-1">
