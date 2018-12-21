@@ -29,6 +29,9 @@
                     </a>
                 </li>
             @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Iscriviti</a>
+                </li>
                 <li class="nav-item" title="Accedi">
                     <a class="nav-link px-2" href="{{ route('login') }}">
                         Accedi
@@ -44,9 +47,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto text-nowrap">
             @if(!auth()->check())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Iscriviti</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="{{ route('register') }}">Iscriviti</a>--}}
+                {{--</li>--}}
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Feed</a>
