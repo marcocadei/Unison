@@ -49,10 +49,19 @@
                 <div>
                     <span class="float-left">
                         <span>
+                             {{--L'icona del cuore è un bottone che esegue l'azione del like solo per gli utenti loggati. --}}
+                            {{--<span class="@if($song["is_liked"]) buttonOn @endif @if(auth()->check()) cursorPointer @endif"--}}
+                                  {{--@if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>--}}
+                                {{--<span class="fas fa-heart"></span>--}}
+                            {{--</span>--}}
+                            {{--<span class="smallText">{{ $song["likes"] }}</span>--}}
+
+                            <span class="@if(auth()->check()) cursorPointer @endif"
+                                  @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>
+                                <span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>
+                            </span>
                             {{-- L'icona del cuore è un bottone che esegue l'azione del like solo per gli utenti loggati. --}}
-                            <span class="@if($song["is_liked"]) buttonOn @endif @if(auth()->check()) cursorPointer @endif"
-                                  @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif
-                            >
+                            <span id="cuore1"  class="@if($song["is_liked"]) buttonOn @endif ">
                                 <span class="fas fa-heart"></span>
                             </span>
                             <span class="smallText">{{ $song["likes"] }}</span>

@@ -1,5 +1,6 @@
 function toggleLike(btnLike, idLiked) {
-
+    // ILLEGAL NEXT LEVEL CHECK ASAP
+    btnLike = $(btnLike).siblings()[0]
     $(btnLike).addClass("disabledAnchor");
 
     $.ajaxSetup({
