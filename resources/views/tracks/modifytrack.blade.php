@@ -103,8 +103,14 @@
                     <div class="invalid-feedback">
                         Hai già caricato una canzone con quel titolo.
                     </div>
-
-                    <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonModify">Modifica informazioni</button>
+                    <div class="form-row">
+                        <div class="col">
+                            <a class="btn-block btn btn-outline-secondary" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-block btn-primary" id="buttonModify">Modifica informazioni</button>
+                        </div>
+                    </div>
                 </form>
 
                 <form class="px-2 px-md-5" action="{{ asset("/track/delete/" . $trackRecord->id) }}" method="post" id="del">
