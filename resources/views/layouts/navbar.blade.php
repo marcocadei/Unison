@@ -12,7 +12,7 @@
                         <span class="fas fa-cloud-upload-alt"></span>
                     </a>
                 </li>
-                <li class="nav-item" title="Impostazioni">
+                <li class="nav-item" title="Modifica il tuo profilo">
                     <a class="nav-link px-2" href="{{ route('modify') }}">
                         <span class="fas fa-cogs"></span>
                     </a>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
             @else
-                <li class="nav-item">
+                <li class="nav-item" title="Iscriviti">
                     <a class="nav-link" href="{{ route('register') }}">Iscriviti</a>
                 </li>
                 <li class="nav-item" title="Accedi">
@@ -51,11 +51,11 @@
                     {{--<a class="nav-link" href="{{ route('register') }}">Iscriviti</a>--}}
                 {{--</li>--}}
             @else
-                <li class="nav-item">
+                <li class="nav-item" title="Feed">
                     <a class="nav-link" href="{{ route('home') }}">Feed</a>
                 </li>
             @endif
-            <li class="nav-item">
+            <li class="nav-item" title="Visualizza i brani più ascoltati">
                 <a class="nav-link" href="{{ route('top50') }}">I più ascoltati</a>
             </li>
         </ul>
@@ -71,7 +71,7 @@
 
                     <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" {{--required--}} data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" title="<small>Sono ammesse solo lettere da A a Z maiuscole, minuscole e accentate, numeri da 0 a 9 e punteggiatura.</small>">
 
-                    <div class="input-group-append">
+                    <div class="input-group-append" title="Avvia ricerca">
                         <button type="submit" class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></button>
                     </div>
                 </div>
