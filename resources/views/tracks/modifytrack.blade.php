@@ -47,13 +47,20 @@
         <div class="row h-100 justify-content-center align-items-center">
             <!-- Aggiungere al div anche la classe "align-items-center" se si vuole che l'immagine sia centrata
             anche rispetto al verticale -->
+
             <div class="col-sm-9 order-last col-md-3 order-md-first text-center">
                 <img class="loginImage rounded-circle img-fluid mt-3 mt-md-0" src="{{asset('images/settings.jpeg')}}" alt="Che aspetti? Effettua velocemente le modifiche così può tornare alla tua musica!">
             </div>
             <div class="col-sm-12 col-md-9 border-left pl-3">
+                <div class="row align-items-center justify-content-center profileInfoBackground rounded">
+                    <div class="text-left">
+                        <h2 class="boldText wordBreak text-left my-2">Modifica dati traccia</h2>
+                    </div>
+                </div>
                 <form class="px-2 px-md-5 py-3" action="{{ asset("/track/edit/" .  $trackRecord->id) }}" method="post" id="mod" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
+                    <input type="hidden" value="{{$trackRecord->id}}" id="trackID">
                     <div class="row mb-3">
                         <div class="col-12">
                             <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
@@ -113,6 +120,22 @@
                         Hai già caricato una canzone con quel titolo.
                     </div>
                     <div class="form-row">
+                        <div class="col-9 mb-2">
+                            <label>Collega la tua traccia con le informazioni provenienti da spotify</label>
+                        </div>
+                        <div class="col-3">
+                            <a href="" class="btn btn-primary btn-sm"><span class="fab fa-spotify"></span> Collega</a>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-9 mb-4">
+                            <label>Cancella connessione con i dati provenienti da spotify</label>
+                        </div>
+                        <div class="col-3">
+                            <a href="" id="cancelConnectionLink" class="btn btn-primary btn-sm"><span class="fas fa-unlink"></span> Cancella</a>
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="col">
                             <a class="btn-block btn btn-outline-secondary" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
                         </div>
@@ -121,8 +144,7 @@
                         </div>
                     </div>
                 </form>
-
-                <form class="px-2 px-md-5" action="{{ asset("/track/delete/" . $trackRecord->id) }}" method="post" id="del">
+                <form class="px-2 px-md-5 mb-3" action="{{ asset("/track/delete/" . $trackRecord->id) }}" method="post" id="del">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina traccia</button>
                 </form>

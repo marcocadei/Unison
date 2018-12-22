@@ -108,13 +108,14 @@
                         </div>
                     </div>
 
-                    {{--<div class="form-group">--}}
-                        {{--<label for="author">Autore:</label>--}}
-                        {{--<input type="text" class="form-control" id="author" name="author" value="{{ $username }}" disabled>--}}
-                        {{--<div class="invalid-feedback">--}}
-                            {{--Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                    {{--Il campo Author mi serve comunque per cercare su SPOTIFY!!--}}
+                    <div class="form-group" hidden>
+                        <label for="author">Autore:</label>
+                        <input type="text" class="form-control" id="author" name="author" value="{{ $username }}" disabled>
+                        <div class="invalid-feedback">
+                            Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="description">Descrizione:</label>

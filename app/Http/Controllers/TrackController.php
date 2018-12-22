@@ -253,6 +253,41 @@ class TrackController extends Controller
         return redirect()->route('modifyTrack', compact(['trackRecord']))->with('viewMod', true);
     }
 
+    public function updateSpotifyTrackID($trackID) {
+        $user = User::find(auth()->user()->id);
+        $userID = $user->id;
+
+        /*
+         * Si controlla che il trackID specificato nell'URL sia composto di sole cifre da 0 a 9.
+         */
+        if (ctype_digit($trackID)) {
+            /*
+             * Prima di tutto viene verificata l'esistenza della traccia; se è stata indicato una traccia inesistente o
+             * associata ad un altro utente, allora viene visualizzata una pagina d'errore.
+             */
+            $trackExists = Track::where('id', '=', $trackID)
+                ->where('uploader', '=', $userID)->exists();
+            if (!$trackExists) {
+                return abort(404);
+            }
+        }
+        else {
+            return abort(404);
+        }
+        /*
+         * Record del database associato alla track di cui si vuole visualizzare la pagina profilo.
+         */
+        $trackRecord =  Track::where('id', '=', $trackID)->first();
+        $trackRecord->spotify_id = "0000000000000000000000";
+        $trackRecord->save();
+        /*
+         * Dopo aver eseguito la modifica del database viene ricaricata la stessa pagina; viene però impostata a true
+         * la variabile di sessione "viewModSpotifyID" in modo che al caricamento venga visualizzata la finestra modale che
+         * conferma all'utente l'avvenuta applicazione delle modifiche.
+         */
+        return redirect()->route('modifyTrack', compact(['trackRecord']))->with('viewMod', true);
+    }
+
     public function deleteTrack($trackID) {
 
         $track =  Track::where('id', '=', $trackID)->first();

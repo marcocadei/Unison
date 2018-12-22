@@ -32,6 +32,7 @@ Route::post('/delete', 'UserController@delete');
 Route::get('/track/edit/{trackID}', 'TrackController@editTrack')->middleware('auth')->name('modifyTrack');
 Route::post('/track/edit/{trackID}', 'TrackController@updateTrack');
 Route::post('/track/delete/{trackID}', 'TrackController@deleteTrack');
+Route::post('/track/editSpotifyID/{trackID}', 'TrackController@updateSpotifyTrackID');
 
 // Following
 Route::post('/follow', 'UserController@follow');
