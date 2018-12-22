@@ -28,6 +28,7 @@
                     <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist_id"]) }}">{{ $song["artist"] }}</a></span>
                 </div>
                 <div>
+                    <span class="smallText mr-2">Riproduzioni: {{ $song["plays"] }}</span>
                     <span class="smallText text-black-50">Data di pubblicazione: {{ $song["date"] }}</span>
                 </div>
             </div>
@@ -59,28 +60,30 @@
                             <span class="@if(auth()->check()) cursorPointer @endif"
                                   @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>
                                 {{--<span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>--}}
-                                <span class="smallText btn btn-primary buttonWithoutShadow d-inline cursorPointer">Mi piace</span>
+                                {{--<span class="smallText btn btn-primary buttonWithoutShadow d-inline cursorPointer">Mi piace <span class="badge badge-light">4</span></span></span>--}}
+                                <span class="btn btn-primary btn-sm">
+                                    <i class="fas @if($song["is_liked"])fa-heart buttonOn @else fa-heart-broken @endif"></i>
+                                </span>
+                                <span class="smallText mr-2">Mi piace: {{ $song["likes"] }}</span>
                             </span>
-                            {{-- L'icona del cuore è un bottone che esegue l'azione del like solo per gli utenti loggati. --}}
-                            <span id="cuore1"  class="@if($song["is_liked"]) buttonOn @endif ">
-                                <span class="fas fa-heart"></span>
-                            </span>
-                            <span class="smallText">{{ $song["likes"] }}</span>
                         </span>
-                        |
-                        <span>
-                            <span>
-                                <span class="fas fa-play"></span>
-                            </span>
-                            <span class="smallText">{{ $song["plays"] }}</span>
-                        </span>
+                        {{--|--}}
+                        {{--<span>--}}
+                            {{--<span>--}}
+                                {{--<span class="fas fa-play"></span>--}}
+                            {{--</span>--}}
+                            {{--<span class="smallText">Riproduzioni: {{ $song["plays"] }}</span>--}}
+                        {{--</span>--}}
                         @if($song["dl_enabled"])
                         |
-                        <span class="cursorPointer" title="Scarica">
-                            <a href="{{ $song["url"] }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">
-                                <span class="fas fa-download"></span>
-                            </a>
-                        </span>
+                        {{--<span class="cursorPointer" title="Scarica">--}}
+                            {{--<a href="{{ $song["url"] }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">--}}
+                                {{--<span class="fas fa-download"></span>--}}
+                            {{--</a>--}}
+                        {{--</span>--}}
+                        <a class="btn btn-primary btn-sm" title="Scarica" href="{{ $song["url"] }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">
+                            <span class="fas fa-download"></span>
+                        </a>
                         @endif
                     </span>
                     @if(strcmp($song["spotify_id"], "0000000000000000000000") != 0)
