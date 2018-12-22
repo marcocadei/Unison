@@ -107,7 +107,6 @@
                             Consenti il download della traccia
                         </label>
                     </div>
-
                     <div class="form-group form-check">
                         <input class="form-check-input" type="checkbox" value="on" @if($trackRecord->private) checked @endif id="private" name="private">
                         <label class="form-check-label" for="private">
@@ -115,25 +114,16 @@
                         </label>
                     </div>
 
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="checkbox" value="on" id="disconnectID" name="disconnectID">
+                        <label class="form-check-label" for="disconnectID">
+                            Cancella connessione con i dati provenienti da spotify
+                        </label>
+                    </div>
+
                     <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
                     <div class="invalid-feedback border border-danger text-center p-1 mb-4">
                         Hai già caricato una canzone con quel titolo.
-                    </div>
-                    <div class="form-row">
-                        <div class="col-9 mb-2">
-                            <label>Collega la tua traccia con le informazioni provenienti da spotify</label>
-                        </div>
-                        <div class="col-3">
-                            <a href="" class="btn btn-primary btn-sm"><span class="fab fa-spotify"></span> Collega</a>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-9 mb-4">
-                            <label>Cancella connessione con i dati provenienti da spotify</label>
-                        </div>
-                        <div class="col-3">
-                            <a href="" id="cancelConnectionLink" class="btn btn-primary btn-sm"><span class="fas fa-unlink"></span> Cancella</a>
-                        </div>
                     </div>
                     <div class="form-row">
                         <div class="col">

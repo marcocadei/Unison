@@ -85,26 +85,7 @@ $(document).ready(function () {
 
     $("#buttonDel").click(openDeleteModal);
     $("#buttonDefDel").click(executeDelete);
-
-    $("#cancelConnectionLink").click(cancelConnection);
 });
-
-function cancelConnection(){
-    // Con questo annullo la connessione con spotify
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $.post("/track/editSpotifyID/218",
-        {},
-        function (data, status, xhr) {
-            //searchSong(token);
-            alert("ciao");
-        },
-        "json");
-}
-
 
 function validateModify(event) {
     // Di default disabilito il submit della form, che effettuo solo dopo
