@@ -21,11 +21,11 @@
                             <a class="boldText buttonOn btn btn-primary btn-sm" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit" title="Modifica traccia"></span></a>
                         @endif
                     @endif
-                    @if($song["private"])
-                        <span class="boldText text-primary buttonOn"><span class="fas fa-lock"></span></span>
-                    @endif
                     <span class="boldText wordBreak">{{ $song["name"] }}</span> |
                     <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist_id"]) }}">{{ $song["artist"] }}</a></span>
+                    @if($song["private"])
+                        <span class="boldText text-primary buttonOn text-right float-right" style="color: #8e44ad; filter: drop-shadow(0px 0px 2px #9b59b6);"    title="Traccia non visibile agli utenti"><span class="fas fa-lock"></span></span>
+                    @endif
                 </div>
                 <div>
                     <span class="smallText mr-2">Riproduzioni: {{ $song["plays"] }}</span>
