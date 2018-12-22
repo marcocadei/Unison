@@ -26,7 +26,8 @@
                     Desideri collegare la tua canzone a quella di spotify?<br>
                     <small>
                         Questo consentirà agli utenti di Unison di visualizzare ancora<br>
-                        più informazioni riguardo alla tua musica!
+                        più informazioni riguardo alla tua musica!<br>
+                        <a href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/" target="_blank"> Clicca qui per scoprire quali dati verranno aggiunti</a>
                     </small>
                 </div>
                 <div class="modal-footer">

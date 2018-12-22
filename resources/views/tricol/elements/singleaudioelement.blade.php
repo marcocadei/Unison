@@ -58,7 +58,8 @@
 
                             <span class="@if(auth()->check()) cursorPointer @endif"
                                   @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>
-                                <span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>
+                                {{--<span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>--}}
+                                <span class="smallText btn btn-primary buttonWithoutShadow d-inline cursorPointer">Mi piace</span>
                             </span>
                             {{-- L'icona del cuore è un bottone che esegue l'azione del like solo per gli utenti loggati. --}}
                             <span id="cuore1"  class="@if($song["is_liked"]) buttonOn @endif ">
@@ -75,7 +76,7 @@
                         </span>
                         @if($song["dl_enabled"])
                         |
-                        <span class="cursorPointer" >
+                        <span class="cursorPointer" title="Scarica">
                             <a href="{{ $song["url"] }}" download="{{ $song["artist"] }}_{{ $song["name"] }}{{ substr($song["url"], strrpos($song["url"], ".")) }}">
                                 <span class="fas fa-download"></span>
                             </a>

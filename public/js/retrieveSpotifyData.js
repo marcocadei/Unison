@@ -33,7 +33,7 @@ function retrieveData(element){
         })
             .then(function (oData) {
                 let intestazione = $("<div>I dati mostrati sono dei valori che Spotify associa a questa traccia.<br>" +
-                                   "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/' target='_blank'>Clicca qui per avere ulteriori informazioni</a></div>");
+                                     "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/' target='_blank'>Clicca qui per avere ulteriori informazioni</a></div>");
                 let dati = $("<ul class='smallText m-0'></ul>");
                 // Spiegazione dei vari campi:
                 // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
