@@ -18,7 +18,7 @@
                 <div>
                     @if(auth()->check())
                         @if($song["artist_id"] == auth()->user()->id)
-                            <a class="boldText text-primary buttonOn" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit"></span></a>
+                            <a class="boldText buttonOn btn btn-primary btn-sm" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit" title="Modifica traccia"></span></a>
                         @endif
                     @endif
                     @if($song["private"])
