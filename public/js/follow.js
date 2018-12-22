@@ -33,7 +33,7 @@ function follow(actionIsFollow) {
                 // Modifica dell'aspetto del bottone
                 button.toggleClass("btn-primary");
                 button.toggleClass("btn-outline-primary");
-                let newButtonText = actionIsFollow ? "Seguito" : "Segui";
+                let newButtonText = actionIsFollow ? "Smetti di seguire" : "Segui";
                 button.text(newButtonText);
 
                 // Modifica del numero dei follower
