@@ -32,6 +32,8 @@ function retrieveData(element){
             }
         })
             .then(function (oData) {
+                let intestazione = $("<div>I dati mostrati sono dei valori che Spotify associa a questa traccia.<br>" +
+                                   "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/' target='_blank'>Clicca qui per avere ulteriori informazioni</a></div>");
                 let dati = $("<ul class='smallText m-0'></ul>");
                 // Spiegazione dei vari campi:
                 // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
@@ -46,7 +48,8 @@ function retrieveData(element){
                 dati.append("<li><b>Spechiness: </b>" + oData.speechiness + "</li>");
                 dati.append("<li><b>Instrumentalness: </b>" + oData.instrumentalness + "</li>");
 
-                $($(element).attr("href")).find("span").replaceWith(dati);
+                let spot = intestazione.add(dati)
+                $($(element).attr("href")).find("span").replaceWith(spot);
 
                 // La utilizzo per indicare che ho già scaricato i dati
                 $(element).addClass("retrieved");
