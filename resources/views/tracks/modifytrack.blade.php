@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="photoMod">Inserisci la nuova immagine di copertina:</label>
+                        <label for="photoMod">Nuova immagine di copertina:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="title">Inserisci il nuovo titolo:</label>
+                        <label for="title">Nuovo titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}" aria-describedby="titleHelpBlock">
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <small id="titleHelpBlock" class="form-text text-muted">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description">Inserisci la nuova descrizione:</label>
+                        <label for="description">Nuova descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock">{{ $trackRecord->description }}</textarea>
                         <small id="descriptionHelpBlock" class="form-text text-muted">
                             Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
