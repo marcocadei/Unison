@@ -48,8 +48,7 @@
 .amplitude-shuffle-on,
 .amplitude-repeat-on,
 .buttonOn {
-    /*color: #8e44ad;*/
-    color: #ad0c0d;
+    color: #8e44ad;
     filter: drop-shadow(0px 0px 2px #9b59b6);
 }
 
