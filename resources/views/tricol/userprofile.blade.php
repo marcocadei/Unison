@@ -56,7 +56,7 @@
                                 {{-- Il bottone per il follow non viene visualizzato se l'utente non è loggato. --}}
                                 @if(auth()->check())
                                     @if($userInfo["followed_by_logged_user"])
-                                        <button id="buttonFollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Seguito</button>
+                                        <button id="buttonFollow" class="btn btn-outline-primary" onclick="executeUnfollow()">Smetti di seguire</button>
                                     @else
                                         <button id="buttonFollow" class="btn btn-primary" onclick="executeFollow()">Segui</button>
                                     @endif
