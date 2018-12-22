@@ -243,6 +243,9 @@ class TrackController extends Controller
         $trackRecord->private = (request('private') ? 1 : 0);
         if (request('disconnectID'))
             $trackRecord->spotify_id = "0000000000000000000000";
+        $tmp = request('spotifyID');
+        if (isset($tmp))
+            $trackRecord->spotify_id = request('spotifyID');
 
         $trackRecord->save();
 

@@ -61,6 +61,9 @@
                     {{ csrf_field() }}
                     <input type="hidden" class="form-control" id="formModify">
                     <input type="hidden" value="{{$trackRecord->id}}" id="trackID">
+                    <input type="hidden" id="spotifyID" name="spotifyID">
+                    <input type="hidden" id="author" name="author" value="{{auth()->user()->username}}">
+                    <input type="hidden" id="title" name="title" value="{{$trackRecord->title}}">
                     <div class="row mb-3">
                         <div class="col-12">
                             <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
@@ -114,12 +117,21 @@
                         </label>
                     </div>
 
-                    <div class="form-group form-check">
-                        <input class="form-check-input" type="checkbox" value="on" id="disconnectID" name="disconnectID">
-                        <label class="form-check-label" for="disconnectID">
-                            Cancella connessione con i dati provenienti da spotify
-                        </label>
-                    </div>
+                    @if(strcmp($trackRecord["spotify_id"], "0000000000000000000000") != 0)
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="checkbox" value="on" id="disconnectID" name="disconnectID">
+                            <label class="form-check-label" for="disconnectID">
+                                Cancella connessione con i dati provenienti da Spotify
+                            </label>
+                        </div>
+                    @else
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="checkbox" value="on" id="connectID" name="connectID">
+                            <label class="form-check-label" for="connectID">
+                                Collega la traccia con i dati provenienti da Spotify
+                            </label>
+                        </div>
+                    @endif
 
                     <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
                     <div class="invalid-feedback border border-danger text-center p-1 mb-4">
