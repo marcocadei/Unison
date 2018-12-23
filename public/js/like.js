@@ -52,7 +52,11 @@ function toggleLike(btnLike, idLiked) {
                 //     alert(btnLike.innerHTML);
                 //     alert("messo");
                 // }
-                $($($(btnLike).children()[0]).children()[0]).toggleClass("fa-heart fa-heart-broken");
+                // $($($(btnLike).children()[0]).children()[0]).toggleClass("fa-heart fa-heart-broken");
+                if($($($(btnLike).children()[0]).children()[0]).attr("data-prefix") == "fas")
+                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "far")
+                else
+                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "fas")
                 $($($(btnLike).children()[0]).children()[0]).toggleClass("buttonOn");
             }
         }, "json")
