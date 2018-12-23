@@ -63,7 +63,6 @@
                     <input type="hidden" value="{{$trackRecord->id}}" id="trackID">
                     <input type="hidden" id="spotifyID" name="spotifyID">
                     <input type="hidden" id="author" name="author" value="{{auth()->user()->username}}">
-                    <input type="hidden" id="title" name="title" value="{{$trackRecord->title}}">
                     <div class="row mb-3">
                         <div class="col-12">
                             <img class="img-fluid border border-primary profileImage" src="{{Storage::url($trackRecord->picture)}}">
