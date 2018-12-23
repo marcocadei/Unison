@@ -1,7 +1,7 @@
 {{-- Questo div vuoto serve per raggruppare assieme l'elemento audio e il campo per i dati di Spotify --}}
 {{-- La classe audioElementContainer non è definita a livello di CSS ma serve alla funzione JS che imposta la
     destinazione dell'elemento puntina. Non rimuovere! --}}
-<div class="audioElementContainer my-1">
+<div class="audioElementContainer my-1 mb-4">
     <div class="row align-items-center justify-content-center">
         <div class="col-7 col-sm-4 col-md-2 p-1 pl-3 pr-3 pr-sm-1">
             @if(!isset($displayCounter) || !$displayCounter)
