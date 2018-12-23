@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="photoSelect">Immagine:</label>
+                        <label for="photoSelect">Immagine di copertina:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoSelect">Scegli file...</label>

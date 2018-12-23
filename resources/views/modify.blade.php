@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" id="originalEmailMod" name="originalEmailMod" value="{{ auth()->user()->email }}">
-                        <label for="emailMod">Inserisci la nuova email:</label>
+                        <label for="emailMod">Nuova email:</label>
                         <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }} " aria-describedby="emailHelpBlock">
                         <small id="emailHelpBlock" class="form-text text-muted">
                             Per favore inserisci una mail valida. Esempio: mariorossi@libero.it <br>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" id="originalUsernameMod" name="originalUsernameMod" value="{{ auth()->user()->username }}">
-                        <label for="usernameMod">Inserisci il nuovo username:</label>
+                        <label for="usernameMod">Nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}" aria-describedby="usernameHelpBlock">
                         <small id="usernameHelpBlock" class="form-text text-muted">
                             Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="bioMod">Inserisci la nuova bio:</label>
+                        <label for="bioMod">Nuova bio:</label>
                         <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio..." aria-describedby="bioHelpBlock">{{ auth()->user()->bio }}</textarea>
                         <small id="bioHelpBlock" class="form-text text-muted">
                             Per favore inserisci una bio valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
