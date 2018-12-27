@@ -17,7 +17,7 @@
                         <span class="fas fa-cogs"></span>
                     </a>
                 </li>
-                <li class="nav-item" title="Il tuo profilo">
+                <li class="nav-item" title="Vai al tuo profilo">
                     <a class="nav-link px-2" href="{{ asset("/user/" . auth()->user()->id) }}">
                         <span class="fas fa-user"></span>
                     </a>
@@ -51,7 +51,7 @@
                     {{--<a class="nav-link" href="{{ route('register') }}">Iscriviti</a>--}}
                 {{--</li>--}}
             @else
-                <li class="nav-item" title="Feed">
+                <li class="nav-item" title="Vai al tuo feed">
                     <a class="nav-link" href="{{ route('home') }}">Feed</a>
                 </li>
             @endif
