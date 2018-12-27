@@ -17,7 +17,7 @@ $(document).ready(function () {
     });
     $("#usernameSU").focusin(function (event) {
         $("#formSU").removeClass("is-invalid");
-        $("#usernameSu").removeClass("is-invalid");
+        $("#usernameSU").removeClass("is-invalid");
     });
     $("#passwordSU").focusin(function (event) {
         $("#passwordSU").removeClass("is-invalid");
