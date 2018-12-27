@@ -42,7 +42,7 @@
                                     {{--Per favore specifica uno username o un'e-mail valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).--}}
                                 {{--</div>--}}
                                 <div class="invalid-feedback">
-                                    Per favore inserisi il tuo username o email
+                                    Per favore inserisci il tuo username o la tua email.
                                 </div>
                             </div>
                             <div class="form-group">
@@ -52,7 +52,7 @@
                                     {{--Per favore specifica una password valida (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili).--}}
                                 {{--</div>--}}
                                 <div class="invalid-feedback">
-                                    Per favore inserisi la tua password
+                                    Per favore inserisci la tua password.
                                 </div>
                             </div>
                             <div class="invalid-feedback border border-danger text-center p-1">
