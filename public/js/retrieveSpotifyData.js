@@ -14,7 +14,7 @@ $(document).ready(function () {
             //searchSong(token);
         },
         "json");
-})
+});
 
 function retrieveData(element){
     // Questo rimuove l'header X-CSRF-TOKEN dalla richiesta ajax
@@ -32,8 +32,8 @@ function retrieveData(element){
             }
         })
             .then(function (oData) {
-                let intestazione = $("<span class='smallText'>I dati mostrati sono dei valori che Spotify associa a questa traccia.<br>" +
-                                     "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features#audio-features-object' target='_blank'>Clicca qui per ulteriori informazioni <i class=\"fas fa-external-link-alt\"></i></a></span>");
+                let intestazione = $("<span class='smallText'>I dati mostrati sono dei valori che Spotify associa a questa traccia. " +
+                                     "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features#audio-features-object' target='_blank'>Ulteriori informazioni <i class=\"fas fa-external-link-alt\"></i></a></span>");
                 let dati = $("<ul class='smallText m-0'></ul>");
                 // Spiegazione dei vari campi:
                 // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features
@@ -48,7 +48,7 @@ function retrieveData(element){
                 dati.append("<li><b>Spechiness: </b>" + oData.speechiness + "</li>");
                 dati.append("<li><b>Instrumentalness: </b>" + oData.instrumentalness + "</li>");
 
-                let spot = intestazione.add(dati)
+                let spot = intestazione.add(dati);
                 $($(element).attr("href")).find("span").replaceWith(spot);
 
                 // La utilizzo per indicare che ho già scaricato i dati

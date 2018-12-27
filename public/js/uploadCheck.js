@@ -244,9 +244,9 @@ function mostraInfoSpotify(data){
             $("#upload").submit();
         });
         // Mostro la finestra modale, ma prima aggiungo le informazioni relative alla canzone
-        $("#canzoneModale").append("<b>Canzone:</b> " + data.tracks.items[0].name)
-        $("#artistaModale").append("<b>Artista:</b> " + data.tracks.items[0].artists[0].name)
-        $("#albumModale").append("<b>Album:</b> " + data.tracks.items[0].album.name)
+        $("#canzoneModale").append("<b>Titolo:</b> " + data.tracks.items[0].name);
+        $("#artistaModale").append("<b>Artista:</b> " + data.tracks.items[0].artists[0].name);
+        $("#albumModale").append("<b>Album:</b> " + data.tracks.items[0].album.name);
         $('#spotifyModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -342,7 +342,7 @@ function checkDeletedTrack(field, choosed, event) {
                 //alert("File deleted");
                 result = checkFileField(field, choosed, true);
             }
-        }
+        };
         fr.readAsText(file);
     } else {
         // no file choosen yet
@@ -368,7 +368,7 @@ function checkDeletedPhoto(field, choosed, event) {
                 //alert("File deleted");
                 result = checkFileField(field, choosed, true);
             }
-        }
+        };
         fr.readAsText(file);
     } else {
         // no file choosen yet

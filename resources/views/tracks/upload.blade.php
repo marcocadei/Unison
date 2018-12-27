@@ -17,17 +17,17 @@
                     {{--</button>--}}
                 </div>
                 <div class="modal-body">
-                    I dati della canzone che stai caricando corrispondono a quelli di una canzone su Spotify:
+                    I dati della traccia che stai caricando corrispondono a quelli di un brano su Spotify:
                     <ul>
                         <li id="canzoneModale"></li>
                         <li id="artistaModale"></li>
                         <li id="albumModale"></li>
                     </ul>
-                    Desideri collegare la tua canzone a quella di spotify?<br>
+                    Desideri collegare la tua traccia a quella di Spotify?<br>
                     <small>
                         Questo consentirà agli utenti di Unison di visualizzare ancora<br>
                         più informazioni riguardo alla tua musica!<br>
-                        <a href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features#audio-features-object" target="_blank"> Clicca qui per scoprire quali dati verranno aggiunti</a>
+                        <a href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features#audio-features-object" target="_blank">Maggiori dettagli sui dati che verranno aggiunti <i class="fas fa-external-link-alt"></i></a>
                     </small>
                 </div>
                 <div class="modal-footer">
@@ -60,7 +60,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <label for="trackSelect">Canzone:</label>
+                        <label for="trackSelect">Traccia:</label>
                         <div class="custom-file">
                             <!-- ID dell'utente -->
                             <input type="hidden" name="userID" id="userID" value="{{ $userID }}">
