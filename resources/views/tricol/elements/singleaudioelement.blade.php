@@ -61,7 +61,7 @@
                                   @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>
                                 {{--<span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>--}}
                                 {{--<span class="smallText btn btn-primary buttonWithoutShadow d-inline cursorPointer">Mi piace <span class="badge badge-light">4</span></span></span>--}}
-                                <span class="btn btn-primary btn-sm" title="Mi piace">
+                                <span class="btn btn-primary btn-sm" @if($song["is_liked"]) title="Togli mi piace" @else title="Metti mi piace" @endif>
                                     {{--<i class="fas @if($song["is_liked"])fa-heart buttonOn @else fa-heart-broken @endif"></i>--}}
                                     <i class="@if($song["is_liked"])fas buttonOn @else far @endif fa-heart"></i>
                                 </span>
@@ -89,14 +89,14 @@
                     </span>
                     @if(strcmp($song["spotify_id"], "0000000000000000000000") != 0)
                     <span class="float-right text-right ml-1">
-                        <a title="Visualizza dati Spotify" class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#spotifyMetadata-{{ $counter }}" role="button" aria-expanded="false" aria-controls="spotifyMetadata-{{ $counter }}" onclick="retrieveData(this)">
+                        <a title="Dati Spotify" class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#spotifyMetadata-{{ $counter }}" role="button" aria-expanded="false" aria-controls="spotifyMetadata-{{ $counter }}" onclick="retrieveData(this)">
                             <span class="fab fa-spotify"></span>
                         </a>
                     </span>
                     @endif
                     @if(!is_null($song["description"]) && strlen(trim($song["description"])) > 0)
                     <span class="float-right text-right ml-1">
-                        <a title="Visualizza descrizione traccia" class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#description-{{ $counter }}" role="button" aria-expanded="false" aria-controls="description-{{ $counter }}">
+                        <a title="Descrizione traccia" class="btn btn-primary buttonWithoutShadow d-inline" data-toggle="collapse" href="#description-{{ $counter }}" role="button" aria-expanded="false" aria-controls="description-{{ $counter }}">
                             <span class="fas fa-info-circle"></span>
                         </a>
                     </span>

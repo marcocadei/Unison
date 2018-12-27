@@ -36,7 +36,7 @@ function toggleLike(btnLike, idLiked) {
                 // }
                 let likesCount = parseInt(likesSpan.text().replace ( /[^\d.]/g, '' ));
                 let delta = $($($(btnLike).children()[0]).children()[0]).hasClass("buttonOn") ? -1 : +1;
-                likesCount += delta
+                likesCount += delta;
                 likesSpan.text("Mi piace: " + likesCount);
 
                 // if (delta == -1){
@@ -53,10 +53,14 @@ function toggleLike(btnLike, idLiked) {
                 //     alert("messo");
                 // }
                 // $($($(btnLike).children()[0]).children()[0]).toggleClass("fa-heart fa-heart-broken");
-                if($($($(btnLike).children()[0]).children()[0]).attr("data-prefix") == "fas")
-                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "far")
-                else
-                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "fas")
+                if($($($(btnLike).children()[0]).children()[0]).attr("data-prefix") === "fas") {
+                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "far");
+                    likesSpan.siblings(".btn").attr("title", "Metti mi piace");
+                }
+                else {
+                    $($($(btnLike).children()[0]).children()[0]).attr("data-prefix", "fas");
+                    likesSpan.siblings(".btn").attr("title", "Togli mi piace");
+                }
                 $($($(btnLike).children()[0]).children()[0]).toggleClass("buttonOn");
             }
         }, "json")
