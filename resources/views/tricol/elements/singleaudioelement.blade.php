@@ -63,7 +63,7 @@
                                   @if(auth()->check()) onclick="toggleLike(this, {{ $song["id"] }})" @endif>
                                 {{--<span class="badge badge-pill badge-primary cursorPointer">Mi piace</span>--}}
                                 {{--<span class="smallText btn btn-primary buttonWithoutShadow d-inline cursorPointer">Mi piace <span class="badge badge-light">4</span></span></span>--}}
-                                <span class="btn btn-primary btn-sm" @if($song["is_liked"]) title="Togli mi piace" @else title="Metti mi piace" @endif>
+                                <span class="btn btn-primary btn-sm @if(!auth()->check()) disabled @endif" @if($song["is_liked"]) title="Togli mi piace" @else title="Metti mi piace" @endif>
                                     {{--<i class="fas @if($song["is_liked"])fa-heart buttonOn @else fa-heart-broken @endif"></i>--}}
                                     <i class="@if($song["is_liked"])fas buttonOn @else far @endif fa-heart"></i>
                                 </span>
@@ -127,4 +127,4 @@
     </div>
     @endif
 </div>
-<hr class="d-sm-none bg-light">
+<hr class="bg-light">
