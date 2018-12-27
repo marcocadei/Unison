@@ -141,7 +141,7 @@
                             <a class="btn-block btn btn-outline-secondary" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-block btn-primary" id="buttonModify">Modifica informazioni</button>
+                            <button type="submit" class="btn btn-block btn-primary" id="buttonModify">Conferma modifiche</button>
                         </div>
                     </div>
                 </form>
