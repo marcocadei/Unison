@@ -50,10 +50,14 @@ function follow(actionIsFollow) {
                 button.attr("onclick", newFunction + "()");
 
                 // Modifica dell'elenco dei followed
+                if (actionIsFollow && $("#followedList ul").length == 0)
+                    $("#followedList span").replaceWith("<ul class='pl-2 my-auto'></ul>");
                 if (actionIsFollow) $("#followedList ul").append($("<li><a style='word-break: break-all' href='/user/"+$("#userID").text().trim()+"'>"+$("#username").text()+"</a></li>"));
                 else{
                     let username = $("#username").text().trim();
                     $("#followedList li:contains("+username+")").remove();
+                    if ($("#followedList li").length == 0)
+                        $("#followedList ul").replaceWith("<span class='text-left smallText'>Non segui nessuno attualmente.</span>")
                 }
             }
 
