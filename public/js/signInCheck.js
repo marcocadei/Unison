@@ -5,7 +5,16 @@
 $(document).ready(function () {
     // Tolgo il messaggio di errore solo quando il campo username prende il focus e non la pwd perché
     // l'errore è dato dallo username
-    $("#usernameSI").focusin(function(event) {removeError()});
+    //$("#usernameSI").focusin(function(event) {removeError()});
+    $("#usernameSI").focusin(function (event) {
+        $("#formSI").removeClass("is-invalid");
+        $("#usernameSI").removeClass("is-invalid");
+    });
+    $("#passwordSI").focusin(function (event) {
+        $("#formSI").removeClass("is-invalid");
+        $("#passwordSI").removeClass("is-invalid");
+    });
+
     //$("#usernameSI").keyup(function(event) {checkUser(event, this)});
     //$("#passwordSI").keyup(function(event) {checkPassword(event, this)});
     // Perché l'evento è sul click del bottone e non sul submit della form?
@@ -50,8 +59,16 @@ function validateLogin(event){
     // $("#SI input[type != hidden]").each(function () {
     //      nextPage &= checkFieldSI(null, this);
     // });
-    //nextPage &= checkUser(event, $("#usernameSI"));
-    //nextPage &= checkPassword(event, $("#passwordSI"));
+    // nextPage &= checkUser(event, $("#usernameSI"));
+    // nextPage &= checkPassword(event, $("#passwordSI"));
+    if ($("#usernameSI").val().length == 0){
+        $("#usernameSI").addClass("is-invalid");
+        nextPage = false;
+    }
+    if ($("#passwordSI").val().length == 0){
+        $("#passwordSI").addClass("is-invalid");
+        nextPage = false;
+    }
 
     // Se i controlli lato client hanno successo, prima di procedere alla pagina successiva devo
     // controllare che le credenziali corrispondano a quelle di un utente precedentemente registrato
