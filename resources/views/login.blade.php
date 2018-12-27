@@ -73,7 +73,7 @@
                                 <label for="usernameSU">Username:</label>
                                 <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username..." aria-describedby="usernameHelpBlock">
                                 <small id="usernameHelpBlock" class="form-text text-muted">
-                                    Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura
+                                    Per favore inserisci uno username valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
                                 </small>
                                 <div class="invalid-feedback">
                                     Lo username inserito non rispetta alcune delle indicazioni fornite
@@ -83,8 +83,7 @@
                                 <label for="passwordSU">Password:</label>
                                 <input type="password" class="form-control" id="passwordSU" name="passwordSU" placeholder="Inserisci password..." aria-describedby="passwordHelpBlock">
                                 <small id="passwordHelpBlock" class="form-text text-muted">
-                                    Per favore inserisci una password valida: almeno 8 caratteri, con una minuscola, una maiuscola,
-                                    un numero e un simbolo di punteggiatura
+                                    Per favore inserisci una password valida. La password deve contenere almeno 8 caratteri, con una lettera minuscola, una lettera maiuscola, un numero e un simbolo di punteggiatura.
                                 </small>
                                 <div class="invalid-feedback">
                                     La password inserita non rispetta alcune delle indicazioni fornite
@@ -97,7 +96,7 @@
                                     Per favore reinserisci la stessa password.
                                 </small>
                                 <div class="invalid-feedback">
-                                    La password inserita non rispetta alcune delle indicazioni fornite
+                                    La password non corrisponde a quella inserita nel campo precedente.
                                 </div>
                             </div>
                             <div class="invalid-feedback border border-danger text-center p-1">
