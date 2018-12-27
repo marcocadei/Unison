@@ -67,7 +67,8 @@
                                     {{--<i class="fas @if($song["is_liked"])fa-heart buttonOn @else fa-heart-broken @endif"></i>--}}
                                     <i class="@if($song["is_liked"])fas buttonOn @else far @endif fa-heart"></i>
                                 </span>
-                                <span class="smallText mr-2">Mi piace: {{ $song["likes"] }}</span>
+                                <span class="smallText">Mi piace: </span>
+                                <span class="smallText mr-2">{{ $song["likes"] }}</span>
                             </span>
                         </span>
                         {{--|--}}
