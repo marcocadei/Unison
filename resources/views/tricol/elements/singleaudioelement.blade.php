@@ -28,7 +28,9 @@
                     @endif
                 </div>
                 <div>
-                    <span class="smallText mr-2">Riproduzioni: {{ $song["plays"] }}</span>
+                    <span class="smallText">Riproduzioni: {{ $song["plays"] }}</span>
+                    <span class="d-none d-md-inline">|</span>
+                    <span class="d-inline d-md-none"><br></span>
                     <span class="smallText text-black-50">Data di pubblicazione: {{ $song["date"] }}</span>
                 </div>
             </div>
