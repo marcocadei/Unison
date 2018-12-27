@@ -128,8 +128,3 @@
     @endif
 </div>
 <hr class="d-sm-none bg-light">
-
-@section('script_footer')
-    @parent
-    <script type="text/javascript" src="{{ asset('/js/like.js') }}"></script>
-@endsection

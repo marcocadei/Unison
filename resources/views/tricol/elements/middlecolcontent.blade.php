@@ -24,3 +24,8 @@
         <button class="btn btn-primary mb-2 invisible" id="backBtn" title="Torna in cima alla pagina">Torna su</button>
     </div>
 </div>
+
+@section('script_footer')
+    @parent
+    <script type="text/javascript" src="{{ asset('/js/like.js') }}"></script>
+@endsection
