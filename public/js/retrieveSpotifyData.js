@@ -32,11 +32,11 @@ function retrieveData(element){
             }
         })
             .then(function (oData) {
-                let intestazione = $("<div>I dati mostrati sono dei valori che Spotify associa a questa traccia.<br>" +
-                                     "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/' target='_blank'>Clicca qui per avere ulteriori informazioni</a></div>");
+                let intestazione = $("<span class='smallText'>I dati mostrati sono dei valori che Spotify associa a questa traccia.<br>" +
+                                     "<a href='https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features#audio-features-object' target='_blank'>Clicca qui per ulteriori informazioni <i class=\"fas fa-external-link-alt\"></i></a></span>");
                 let dati = $("<ul class='smallText m-0'></ul>");
                 // Spiegazione dei vari campi:
-                // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
+                // https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features
                 // L'acousticness è la presenza di suoni "naturali" (piano, chitarra, voce), se ci sono
                 // tanti suono elettronici è bassa
                 dati.append("<li><b>Acousticness: </b>" + oData.acousticness + "</li>");
