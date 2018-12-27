@@ -18,13 +18,13 @@
                 <div>
                     @if(auth()->check())
                         @if($song["artist_id"] == auth()->user()->id)
-                            <a class="smallText buttonOn btn btn-primary btn-sm" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit" title="Modifica traccia"></span></a>
+                            <a class="smallText btn btn-primary btn-sm" href="{{ asset("/track/edit/" . $song["id"]) }}"><span class="far fa-edit" title="Modifica traccia"></span></a>
                         @endif
                     @endif
                     <span class="boldText wordBreak">{{ $song["name"] }}</span> |
                     <span class="text-primary smallText wordBreak"><a class="noOutline noDecoration" href="{{ asset("/user/" . $song["artist_id"]) }}">{{ $song["artist"] }}</a></span>
                     @if($song["private"])
-                        <span class="boldText text-primary buttonOn text-right float-right highlightedElement" title="Traccia non visibile agli utenti"><span class="fas fa-lock"></span></span>
+                        <span class="boldText text-primary text-right float-right highlightedElement" title="Traccia non visibile agli utenti"><span class="fas fa-lock"></span></span>
                     @endif
                 </div>
                 <div>
