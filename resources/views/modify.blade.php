@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <input type="hidden" id="originalEmailMod" name="originalEmailMod" value="{{ auth()->user()->email }}">
                         <label for="emailMod">Nuova email:</label>
-                        <input type="email" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }} " aria-describedby="emailHelpBlock">
+                        <input type="text" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }}" aria-describedby="emailHelpBlock">
                         <small id="emailHelpBlock" class="form-text text-muted">
                             Per favore inserisci una mail valida. Esempio: mariorossi@libero.it <br>
                             La mail non deve essere già associata ad un altro utente
