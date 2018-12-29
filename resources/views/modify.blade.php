@@ -133,7 +133,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col">
-                            <a class="btn-block btn btn-outline-secondary" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
+                            <a class="btn-block btn btn-outline-secondary mb-1" id="buttonUndo" href="{{ asset("/user/" . auth()->user()->id) }}">Annulla modifiche</a>
                         </div>
                         <div class="col">
                             <button type="submit" class="btn-block btn btn-primary" id="buttonMod">Conferma modifiche</button>
@@ -142,7 +142,7 @@
                 </form>
                 <form class="px-2 px-md-5" action="/delete" method="post" id="del">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-block btn-danger mt-4" id="buttonDel">Elimina profilo</button>
+                    <button type="submit" class="btn btn-block btn-danger mt-3" id="buttonDel">Elimina profilo</button>
                 </form>
             </div>
         </div>
