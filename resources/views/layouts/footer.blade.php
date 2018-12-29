@@ -2,7 +2,7 @@
     <div class="container text-center text-md-left">
         <div class="row text-center text-md-left mt-3 pb-3 text-light">
             <div class="col-sm-12 col-md-4 mx-auto mt-4 pl-3">
-                <img class="img-fluid float-left" src="{{asset('images/bigLogo.png')}}" alt="Logo Unison">
+                <img class="img-fluid mx-auto" src="{{asset('images/bigLogo.png')}}" alt="Logo Unison">
             </div>
             <div class="col-sm-12 col-md-4 mx-auto mt-4 border-left pl-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold">Chi siamo</h5>
