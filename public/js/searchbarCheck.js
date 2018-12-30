@@ -26,3 +26,7 @@ function validateQueryString (event) {
         searchbar.parent().parent().submit();
     }
 }
+
+function preloadSearchBar(text) {
+    $("input[name=searchInput]").attr("value", text);
+}

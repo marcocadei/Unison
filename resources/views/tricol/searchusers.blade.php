@@ -50,3 +50,10 @@
         @endforeach
     </div>
 @endsection
+
+@section('script_footer')
+    @parent
+    <script type="text/javascript">
+        preloadSearchBar('{!! addslashes($queryString) !!}');
+    </script>
+@endsection
