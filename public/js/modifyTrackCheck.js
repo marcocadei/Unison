@@ -297,7 +297,7 @@ function checkDeletedPhoto(field, choosed, event) {
                 //alert("File deleted");
                 result = checkFileField(field, choosed, true);
             }
-        }
+        };
         fr.readAsText(file);
     } else {
         // no file choosen yet

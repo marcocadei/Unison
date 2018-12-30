@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#followerList").collapse();
     $("#followedList").on('shown.bs.collapse', retrieveFollowedUsers);
     $("#followerList").on('shown.bs.collapse', retrieveFollowerUsers);
-})
+});
 
 function retrieveFollowedUsers(){
     if (!$("#followedList").hasClass("retrieved")) {
