@@ -16,11 +16,11 @@
     min-width: 14px;
 }
 
-.amplitude-not-muted:after {
+.amplitude-muted:after {
     content: "\f026\00D7";
 }
 
-.amplitude-muted:after {
+.amplitude-not-muted:after {
     content: "\f028";
 }
 

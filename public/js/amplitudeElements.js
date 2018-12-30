@@ -137,10 +137,18 @@ function updatePlayCount() {
 */
 
 /**
- * Disabilita tutti i bottoni della navbar inferiore.
- * Nota: Lo slider del volume è comunque ancora modificabile, ma dato che non ci sono brani in riproduzione la modifica
- * del suo valore non ha alcun effetto.
+ * Disabilita tutti i bottoni della navbar inferiore, inclusi lo slider per il volume e la progress bar che indica
+ * la riproduzione della traccia corrente.
  */
 function disableMainPlayButton() {
+    // Disabilita tutti i pulsanti sul lato sinistro.
     $("#audioNavButtons > li > a").addClass("disabledAnchor");
+
+    // Disabilita lo slider del volume e imposta manualmente il suo valore a 0.
+    $("input#volume-slider").addClass("disabledAnchor");
+    $("input#volume-slider").attr("value", 0);
+
+    // Disabilita la progress bar relativa alla traccia in riproduzione.
+    $("progress#amplitude-main-progress").addClass("disabledAnchor");
+    $("progress#song-buffered-progress-0").addClass("disabledAnchor");
 }

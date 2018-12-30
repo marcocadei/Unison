@@ -36,7 +36,7 @@
         </div>
         <div class="d-flex flex-row w-100 my-auto">
             <div class="align-items-center w-100">
-                <input type="range" class="d-block amplitude-volume-slider w-100"/>
+                <input id="volume-slider" type="range" class="d-block amplitude-volume-slider w-100"/>
             </div>
         </div>
     </div>
