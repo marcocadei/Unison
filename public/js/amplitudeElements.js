@@ -152,3 +152,19 @@ function disableMainPlayButton() {
     $("progress#amplitude-main-progress").addClass("disabledAnchor");
     $("progress#song-buffered-progress-0").addClass("disabledAnchor");
 }
+
+/**
+ * Rende non visibile la navbar inferiore e tutto il suo contenuto.
+ */
+function hidePlayer() {
+    let player = $("#audioNavButtons").parents("nav");
+
+    // Nasconde gli elementi del player.
+    player.children().addClass("invisible");
+
+    /*
+        La riga seguente nasconde anche il player stesso, in modo che l'intera navbar non venga visualizzata. La pagina
+        comunque rimane delle stesse dimensioni, quindi lo spazio normalmente occupato dalla navbar non viene rimosso.
+     */
+    player.addClass("invisible");
+}

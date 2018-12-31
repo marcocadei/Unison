@@ -53,8 +53,9 @@ if (songsData.length > 0) {
 }
 
 /**
- * Se non ci sono tracce, tutti i bottoni della navbar inferiore vengono disabilitati.
+ * Se non ci sono tracce, tutti i bottoni della navbar inferiore vengono disabilitati e la navbar stessa viene nascosta.
  */
 if (songsData.length == 0) {
     disableMainPlayButton();
+    hidePlayer();
 }
