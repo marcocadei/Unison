@@ -2,34 +2,34 @@
     <div class="d-flex flex-row order-0 w-100 pr-2">
         <div class="d-flex flex-row order-0">
             <ul class="navbar-nav flex-row" id="audioNavButtons">
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Traccia precedente">
                     <span class="amplitude-prev">
                         <span class="fas fa-chevron-left"></span>
                     </span>
                 </a></li>
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Attiva/disattiva riproduzione">
                     <span class="amplitude-play-pause" amplitude-main-play-pause="true">
                     </span>
                 </a></li>
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Traccia successiva">
                     <span class="amplitude-next">
                         <span class="fas fa-chevron-right"></span>
                     </span>
                 </a></li>
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Riproduzione casuale">
                     <span class="amplitude-shuffle">
                         <span class="fas fa-random"></span>
                     </span>
                 </a></li>
-                <li class="nav-item d-none"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item d-none"><a class="nav-link px-2 cursorPointer" title="Ripeti">
                     <span class="amplitude-repeat">
                         <span class="fas fa-redo"></span>
                     </span>
                 </a></li>
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer" id="thumbtack">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" id="thumbtack" title="Vai alla traccia attualmente in riproduzione">
                     <span class="fas fa-thumbtack"></span>
                 </a></li>
-                <li class="nav-item"><a class="nav-link px-2 cursorPointer">
+                <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Attiva/disattiva volume">
                     <span class="amplitude-mute"></span>
                 </a></li>
             </ul>
