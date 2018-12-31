@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-bottom navbarMinHeight border-primary border-top">
-    <div class="d-flex flex-row order-0 w-100 pr-2">
+    <div class="d-flex flex-row order-0 w-100 pr-2 border-right border-secondary">
         <div class="d-flex flex-row order-0">
             <ul class="navbar-nav flex-row" id="audioNavButtons">
                 <li class="nav-item"><a class="nav-link px-2 cursorPointer" title="Traccia precedente">
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="collapse navbar-collapse order-last w-100">
+    <div class="collapse navbar-collapse order-last w-100 pl-2">
         <ul class="navbar-nav mr-2 text-nowrap">
             <li class="nav-item d-none"><a class="nav-link">
                 <span class="smallText" amplitude-song-info="name" amplitude-main-song-info="true">Current Track Name</span>
