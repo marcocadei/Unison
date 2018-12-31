@@ -58,4 +58,13 @@ if (songsData.length > 0) {
 if (songsData.length == 0) {
     disableMainPlayButton();
     hidePlayer();
+
+    /*
+        Mostra il messaggio presentato all'utente nel caso il suo feed sia vuoto.
+        Nota: Questa istruzione viene eseguita ogni qualvolta si visiti una pagina che sia priva di tracce (come lo
+        può essere ad esempio il profilo utente di un utente che non ha caricato tracce); in tutte le pagine che non
+        siano quella del feed, tuttavia, questa istruzione è priva di effetto dal momento che non esiste alcun elemento
+        avente id "emptyFeedMessage".
+     */
+    $("#emptyFeedMessage").removeClass("d-none");
 }
