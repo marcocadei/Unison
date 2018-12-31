@@ -69,7 +69,7 @@
                         <option value="1" @if(isset($usersSelectedInNavbarForm) && $usersSelectedInNavbarForm) selected @endif> Utenti </option>
                     </select>
 
-                    <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" {{--required--}} data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" title="<small>Sono ammesse solo lettere da A a Z maiuscole, minuscole e accentate, numeri da 0 a 9 e punteggiatura.</small>">
+                    <input type="search" class="form-control" name="searchInput" placeholder="Cerca..." maxlength="128" data-toggle="tooltip" data-trigger="focus" data-placement="bottom" data-html="true" data-container="body" title="<small>Sono ammesse solo lettere da A a Z maiuscole, minuscole e accentate, numeri da 0 a 9 e punteggiatura.</small>">
 
                     <div class="input-group-append" title="Avvia ricerca">
                         <button type="submit" class="btn btn-default btn-primary btn-outline-light"><span class="fas fa-search"></span></button>
