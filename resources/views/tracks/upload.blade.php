@@ -1,10 +1,27 @@
 @extends('layouts.layout')
 
 @section('title')
-    Upload track
+    Upload traccia
 @endsection
 
 @section('content')
+    <!-- Modal per la conferma avvenuto upload -->
+    <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload traccia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Caricamento completato con successo!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Finestra modale che si attiva nel caso in cui al termine dell'upload, i dati relativi alla
          canzone inserita vengano trovati su Spotify -->
     <div class="modal fade" id="spotifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -160,4 +177,15 @@
 @endsection
 @section('script_footer')
     <script type="text/javascript" src="{{ asset('js/uploadCheck.js') }}"></script>
+
+    {{-- Attiva la finestra modale con cui è confermata l'avvenuto upload di una traccia al caricamento della pagina.
+    Nota: La variabile di sessione "viewMod" è settata solo quando la pagina viene caricata a seguito del completamento
+    di un upload. --}}
+    @if(session('viewMod'))
+        <script type="text/javascript">
+            $('#modModal').modal({
+                keyboard: true
+            });
+        </script>
+    @endif
 @endsection

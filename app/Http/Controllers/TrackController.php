@@ -170,7 +170,13 @@ class TrackController extends Controller
         if (request('photoSelect') != null) {
             Storage::putFileAs('public/trackthumbs', request()->file('photoSelect'), request('userID')."_".$timestamp.".".$coverArtFormat);
         }
-        return redirect('/user/' .request('userID'));
+
+        /*
+         * Dopo aver completato l'upload l'utente viene reindirizzato al proprio profilo. Viene però
+         * impostata a true la variabile di sessione "viewMod" in modo che al caricamento venga
+         * visualizzata la finestra modale che conferma all'utente l'avvenuto upload della traccia.
+         */
+        return redirect()->route('upload')->with('viewMod', true);
     }
 
     public function editTrack($trackID) {
