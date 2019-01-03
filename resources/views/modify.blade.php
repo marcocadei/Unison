@@ -5,23 +5,6 @@
 @endsection
 
 @section('content')
-    <!-- Modal conferma modifiche -->
-    <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modifica informazioni utente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Modifica avvenuta con successo!</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal eliminazione profilo -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -157,14 +140,4 @@
 
     <!-- Script che implementa MD5 per evitare di mandare la password al server in chiaro -->
     <script type="text/javascript" src="{{asset('js/libs/md5.js')}}"></script>
-
-    {{-- Attiva la finestra modale al caricamento della pagina; la variabile di sessione "viewMod" è settata solo
-    quando la pagina di modifica viene ricaricata a seguito di un aggiornamento dei dati. --}}
-    @if(session('viewMod'))
-        <script type="text/javascript">
-            $('#modModal').modal({
-                keyboard: true
-            });
-        </script>
-    @endif
 @endsection

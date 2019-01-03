@@ -250,11 +250,11 @@ class TrackController extends Controller
         $trackRecord->save();
 
         /*
-         * Dopo aver eseguito la modifica del database viene ricaricata la stessa pagina; viene però impostata a true
-         * la variabile di sessione "viewMod" in modo che al caricamento venga visualizzata la finestra modale che
-         * conferma all'utente l'avvenuta applicazione delle modifiche.
+         * Dopo aver eseguito la modifica del database l'utente viene reindirizzato al proprio profilo. Viene però
+         * impostata a true la variabile di sessione "viewMod" in modo che al caricamento venga visualizzata la
+         * finestra modale che conferma all'utente l'avvenuta applicazione delle modifiche.
          */
-        return redirect()->route('modifyTrack', compact(['trackRecord']))->with('viewMod', true);
+        return redirect('/user/' . auth()->user()->id)->with('viewMod', true);
     }
 
     public function deleteTrack($trackID) {
@@ -263,7 +263,12 @@ class TrackController extends Controller
 
         $track->delete();
 
-        return redirect('/user/' . auth()->user()->id);
+        /*
+         * Dopo aver eseguito la modifica del database l'utente viene reindirizzato al proprio profilo. Viene però
+         * impostata a true la variabile di sessione "viewSuccesfulDeleteMod" in modo che al caricamento venga
+         * visualizzata la finestra modale che conferma all'utente l'avvenuta eliminazione della traccia.
+         */
+        return redirect('/user/' . auth()->user()->id)->with('viewSuccesfulDeleteMod', true);
     }
 
     /*
