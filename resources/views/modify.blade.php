@@ -71,7 +71,7 @@
                         <label for="usernameMod">Nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}" aria-describedby="usernameHelpBlock">
                         <small id="usernameHelpBlock" class="form-text text-muted">
-                            Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                            Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).
                             Lo username non deve essere già associato ad un altro utente
                         </small>
                         <div class="invalid-feedback">
