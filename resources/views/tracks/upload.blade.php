@@ -88,6 +88,7 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoSelect" name="photoSelect" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoSelect">Scegli file...</label>
                             <small id="photoHelpBlock" class="form-text text-muted">
+                                Campo opzionale. <br>
                                 Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
                             </small>
                             <div class="invalid-feedback">
@@ -121,6 +122,7 @@
                         <label for="description">Descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock"></textarea>
                         <small id="descriptionHelpBlock" class="form-text text-muted">
+                            Campo opzionale. <br>
                             Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
                         </small>
                         <div class="invalid-feedback">
