@@ -73,11 +73,11 @@
                             <input type="file" accept=".mp3, .m4a" class="custom-file-input" id="trackSelect" name="trackSelect" aria-describedby="trackHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="trackSelect">Scegli file...</label>
                             <small id="trackHelpBlock" class="form-text text-muted">
-                                Per favore inserisci una canzone in un formato valido [.mp3, .m4a]
+                                Per favore seleziona una traccia in un formato valido (.mp3, .m4a).
                                 {{--Per favore seleziona un file valido [.mp3, m4a] (dimensione massima consentita: {{ $maxFileSize }}).--}}
                             </small>
                             <div class="invalid-feedback">
-                                La canzone inserita non rispetta alcune delle indicazioni fornite
+                                Il file selezionato non rispetta alcune delle indicazioni fornite.
                             </div>
                         </div>
                     </div>
@@ -89,10 +89,10 @@
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoSelect">Scegli file...</label>
                             <small id="photoHelpBlock" class="form-text text-muted">
                                 Campo opzionale. <br>
-                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                                Per favore seleziona un'immagine quadrata, di dimensione superiore a 150x150 e in un formato valido (.jpeg, .jpg, .png).
                             </small>
                             <div class="invalid-feedback">
-                                L'immagine inserita non rispetta alcune delle indicazioni fornite
+                                L'immagine selezionata non rispetta alcune delle indicazioni fornite.
                             </div>
                         </div>
                     </div>
@@ -101,11 +101,11 @@
                         <label for="title">Titolo:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." aria-describedby="titleHelpBlock">
                         <small id="titleHelpBlock" class="form-text text-muted">
-                            Per favore inserisci un titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
-                            Il titolo deve essere diverso da quello delle tracce che hai già caricato
+                            Per favore inserisci un titolo valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).
+                            Il titolo deve essere diverso da quello delle tracce che hai già caricato.
                         </small>
                         <div class="invalid-feedback">
-                            Il titolo inserito non rispetta alcune delle indicazioni fornite
+                            Il titolo inserito non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
 
@@ -114,7 +114,7 @@
                         <label for="author">Autore:</label>
                         <input type="text" class="form-control" id="author" name="author" value="{{ $username }}" disabled>
                         <div class="invalid-feedback">
-                            Per favore specifica un nome di autore valido (lunghezza massima consentita 64 caratteri, solo caratteri ASCII stampabili e lettere accentate).
+                            Per favore specifica un nome di autore valido.
                         </div>
                     </div>
 
@@ -123,10 +123,10 @@
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock"></textarea>
                         <small id="descriptionHelpBlock" class="form-text text-muted">
                             Campo opzionale. <br>
-                            Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                            Per favore inserisci una descrizione valida. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).<br>
                         </small>
                         <div class="invalid-feedback">
-                            La descrizione inserita non rispetta alcune delle indicazioni fornite
+                            La descrizione inserita non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
 
@@ -149,7 +149,7 @@
 
                     <input type="hidden" class="form-control" id="formUpload">
                     <div class="invalid-feedback border border-danger text-center p-1 mb-4">
-                        Hai già caricato una canzone con quel titolo.
+                        Hai già caricato una traccia con quel titolo.
                     </div>
 
                     <button type="submit" class="btn btn-block btn-primary mt-4" id="buttonUpload">Carica</button>

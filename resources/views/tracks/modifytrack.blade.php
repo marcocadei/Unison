@@ -57,10 +57,10 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
                             <small id="photoHelpBlock" class="form-text text-muted">
-                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                                Per favore seleziona un'immagine quadrata, di dimensione superiore a 150x150 e in un formato valido (.jpeg, .jpg, .png).
                             </small>
                             <div class="invalid-feedback">
-                                L'immagine inserita non rispetta alcune delle indicazioni fornite
+                                L'immagine inserita non rispetta alcune delle indicazioni fornite.
                             </div>
                         </div>
                     </div>
@@ -69,21 +69,21 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci titolo..." value="{{ $trackRecord->title }}" aria-describedby="titleHelpBlock">
                         <input type="hidden" id="originalTitle" name="originalTitle" value="{{ $trackRecord->title }}">
                         <small id="titleHelpBlock" class="form-text text-muted">
-                            Per favore inserisci un titolo valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
-                            Il titolo deve essere diverso da quello delle tracce che hai già caricato
+                            Per favore inserisci un titolo valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).
+                            Il titolo deve essere diverso da quello delle tracce che hai già caricato.
                         </small>
                         <div class="invalid-feedback">
-                            Il titolo inserito non rispetta alcune delle indicazioni fornite
+                            Il titolo inserito non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Nuova descrizione:</label>
                         <textarea class="form-control unresizable" id="description" name="description" placeholder="Inserisci una descrizione..." aria-describedby="descriptionHelpBlock">{{ $trackRecord->description }}</textarea>
                         <small id="descriptionHelpBlock" class="form-text text-muted">
-                            Per favore inserisci una descrizione valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                            Per favore inserisci una descrizione valida. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).<br>
                         </small>
                         <div class="invalid-feedback">
-                            La descrizione inserita non rispetta alcune delle indicazioni fornite
+                            La descrizione inserita non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group form-check">
@@ -117,7 +117,7 @@
 
                     <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
                     <div class="invalid-feedback border border-danger text-center p-1 mb-4">
-                        Hai già caricato una canzone con quel titolo.
+                        Hai già caricato una traccia con quel titolo.
                     </div>
                     <div class="form-row">
                         <div class="col">
