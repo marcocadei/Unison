@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="photoMod">Immagine di profilo:</label>
+                        <label for="photoMod">Nuova immagine di profilo:</label>
                         <div class="custom-file">
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
