@@ -79,7 +79,7 @@
                                 <label for="usernameSU">Username:</label>
                                 <input type="text" class="form-control" id="usernameSU" name="usernameSU" placeholder="Inserisci username..." aria-describedby="usernameHelpBlock">
                                 <small id="usernameHelpBlock" class="form-text text-muted">
-                                    Per favore inserisci uno username valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura.
+                                    Per favore inserisci uno username valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).
                                 </small>
                                 <div class="invalid-feedback">
                                     Lo username inserito non rispetta alcune delle indicazioni fornite
