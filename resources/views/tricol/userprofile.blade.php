@@ -5,39 +5,41 @@
 @endsection
 
 @section('middlecol_header')
-    <!-- Modal conferma modifiche -->
-    <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modifica dati</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Modifica avvenuta con successo!</h5>
+    @if($userInfo["same_as_logged_user"])
+        <!-- Modal conferma modifiche -->
+        <div class="modal fade" id="modModal" tabindex="-1" role="dialog" aria-labelledby="modModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modifica dati</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title text-success" id="modModalLabel"><span class="fas fa-check"></span> Modifica avvenuta con successo!</h5>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal conferma eliminazione traccia -->
-    <div class="modal fade" id="succesfulDeleteModal" tabindex="-1" role="dialog" aria-labelledby="succesfulDeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Eliminazione traccia</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h6 class="modal-title text-black-50" id="succesfulDeleteModalLabel">La traccia è stata correttamente eliminata.</h6>
+        <!-- Modal conferma eliminazione traccia -->
+        <div class="modal fade" id="succesfulDeleteModal" tabindex="-1" role="dialog" aria-labelledby="succesfulDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Eliminazione traccia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="modal-title text-black-50" id="succesfulDeleteModalLabel">La traccia è stata correttamente eliminata.</h6>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="container">
         <div class="row align-items-center justify-content-center profileInfoBackground rounded py-3">
@@ -110,25 +112,27 @@
     <script type="text/javascript" src="{{ asset('/js/follow.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/like.js') }}"></script>
 
-    {{-- Attiva la finestra modale con cui è confermata l'avvenuta modifica dei dati al caricamento della pagina.
-    Nota: La variabile di sessione "viewMod" è settata solo quando la pagina viene caricata a seguito di un
-    aggiornamento dei dati. --}}
-    @if(session('viewMod'))
-        <script type="text/javascript">
-            $('#modModal').modal({
-                keyboard: true
-            });
-        </script>
-    @endif
+    @if($userInfo["same_as_logged_user"])
+        {{-- Attiva la finestra modale con cui è confermata l'avvenuta modifica dei dati al caricamento della pagina.
+        Nota: La variabile di sessione "viewMod" è settata solo quando la pagina viene caricata a seguito di un
+        aggiornamento dei dati. --}}
+        @if(session('viewMod'))
+            <script type="text/javascript">
+                $('#modModal').modal({
+                    keyboard: true
+                });
+            </script>
+        @endif
 
-    {{-- Attiva la finestra modale con cui è confermata l'avvenuta eliminazione di una traccia al caricamento della pagina.
-    Nota: La variabile di sessione "viewSuccesfulDeleteMod" è settata solo quando la pagina viene caricata a seguito
-    dell'eliminazione di una traccia. --}}
-    @if(session('viewSuccesfulDeleteMod'))
-        <script type="text/javascript">
-            $('#succesfulDeleteModal').modal({
-                keyboard: true
-            });
-        </script>
+        {{-- Attiva la finestra modale con cui è confermata l'avvenuta eliminazione di una traccia al caricamento della pagina.
+        Nota: La variabile di sessione "viewSuccesfulDeleteMod" è settata solo quando la pagina viene caricata a seguito
+        dell'eliminazione di una traccia. --}}
+        @if(session('viewSuccesfulDeleteMod'))
+            <script type="text/javascript">
+                $('#succesfulDeleteModal').modal({
+                    keyboard: true
+                });
+            </script>
+        @endif
     @endif
 @endsection
