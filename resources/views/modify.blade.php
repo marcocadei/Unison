@@ -47,10 +47,10 @@
                             <input type="file" accept=".jpeg, .jpg, .png" class="custom-file-input" id="photoMod" name="photoMod" aria-describedby="photoHelpBlock">
                             <label class="custom-file-label modal-open fileLabelHeightReset" for="photoMod">Scegli file...</label>
                             <small id="photoHelpBlock" class="form-text text-muted">
-                                Per favore inserisci un'immagine quadrata, almeno 150x150 e in un formato valido [.jpeg, .jpg, .png]
+                                Per favore seleziona un'immagine quadrata, di dimensione superiore a 150x150 e in un formato valido (.jpeg, .jpg, .png).
                             </small>
                             <div class="invalid-feedback">
-                                L'immagine inserita non rispetta alcune delle indicazioni fornite
+                                L'immagine inserita non rispetta alcune delle indicazioni fornite.
                             </div>
                         </div>
                     </div>
@@ -60,10 +60,10 @@
                         <input type="text" class="form-control" id="emailMod" name="emailMod" placeholder="Inserisci email..." value="{{ auth()->user()->email }}" aria-describedby="emailHelpBlock">
                         <small id="emailHelpBlock" class="form-text text-muted">
                             Per favore inserisci una mail valida. Esempio: mariorossi@libero.it <br>
-                            La mail non deve essere già associata ad un altro utente
+                            La mail non deve essere già associata ad un altro utente.
                         </small>
                         <div class="invalid-feedback">
-                            La mail inserita non rispetta alcune delle indicazioni fornite
+                            La mail inserita non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group">
@@ -71,43 +71,52 @@
                         <label for="usernameMod">Nuovo username:</label>
                         <input type="text" class="form-control" id="usernameMod" name="usernameMod" placeholder="Inserisci username..." value="{{ auth()->user()->username }}" aria-describedby="usernameHelpBlock">
                         <small id="usernameHelpBlock" class="form-text text-muted">
-                            Per favore inserisci uno username valido: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).
-                            Lo username non deve essere già associato ad un altro utente
+                            Per favore inserisci uno username valido. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi).<br>
+                            Lo username non deve essere già associato ad un altro utente.
                         </small>
                         <div class="invalid-feedback">
-                            Lo username inserito non rispetta alcune delle indicazioni fornite
+                            Lo username inserito non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bioMod">Nuova bio:</label>
                         <textarea rows="4" id="bioMod" name="bioMod" class="form-control unresizable" placeholder="Inserisci una bio..." aria-describedby="bioHelpBlock">{{ auth()->user()->bio }}</textarea>
                         <small id="bioHelpBlock" class="form-text text-muted">
-                            Per favore inserisci una bio valida: lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura <br>
+                            Per favore inserisci una bio valida. Sono ammesse lettere da A a Z (maiuscole e minuscole), lettere accentate, numeri da 0 a 9 e punteggiatura (anche spazi). <br>
                         </small>
                         <div class="invalid-feedback">
-                            La bio inserita non rispetta alcune delle indicazioni fornite
+                            La bio inserita non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="passwordMod">Password:</label>
-                        <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password..." aria-describedby="passwordHelpBlock">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="passwordCheckbox">
+                            <label class="form-check-label" for="passwordCheckbox">
+                                Modifica password
+                            </label>
+                        </div>
+                        <small class="form-text text-muted">
+                            Spunta questa casella solo se intendi cambiare la tua password.<br>
+                            I due campi sottostanti saranno considerati solo se la casella è spuntata.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordMod">Nuova password:</label>
+                        <input type="password" class="form-control" id="passwordMod" name="passwordMod" placeholder="Inserisci la nuova password..." aria-describedby="passwordHelpBlock" disabled>
                         <small id="passwordHelpBlock" class="form-text text-muted">
-                            Compila questo campo solo se intendi cambiare la tua password <br>
-                            Per favore inserisci una password valida: almeno 8 caratteri, con una minuscola, una maiuscola,
-                            un numero e un simbolo di punteggiatura
+                            Per favore inserisci una password valida. La password deve contenere almeno 8 caratteri, con una lettera minuscola, una lettera maiuscola, un numero e un simbolo di punteggiatura.
                         </small>
                         <div class="invalid-feedback">
-                            La password inserita non rispetta alcune delle indicazioni fornite
+                            La password inserita non rispetta alcune delle indicazioni fornite.
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="repeatPasswordMod">Ripeti password:</label>
-                        <input type="password" class="form-control" id="repeatPasswordMod" name="repeatPasswordMod" placeholder="Reinserisci password..." aria-describedby="repeatPasswordHelpBlock">
-                        <small id="repeatPasswordHelpBlock" class="form-text text-muted">
-                            Compila questo campo solo se intendi cambiare la tua password
-                        </small>
+                        <input type="password" class="form-control" id="repeatPasswordMod" name="repeatPasswordMod" placeholder="Reinserisci password..." aria-describedby="repeatPasswordHelpBlock" disabled>
+                        {{--<small id="repeatPasswordHelpBlock" class="form-text text-muted">--}}
+                        {{--</small>--}}
                         <div class="invalid-feedback">
-                            La password inserita non rispetta alcune delle indicazioni fornite
+                            La password non corrisponde a quella inserita nel campo precedente.
                         </div>
                     </div>
                     <input type="hidden" class="form-control" id="formMod">

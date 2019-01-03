@@ -9,6 +9,8 @@ imageChosen = true;
  */
 $(document).ready(function () {
 
+    $("#passwordCheckbox").on('change', togglePasswordInputs);
+
     let profilePicElement = $("form img");
     let originalProfilePicSrc = profilePicElement.attr("src");
 
@@ -123,8 +125,10 @@ function validateModify(event) {
     // nextPage &= checkFileField($("#photoMod"), imageChosen);
     nextPage &= checkEmail(event, $("#emailMod"));
     nextPage &= checkUser(event, $("#usernameMod"));
-    nextPage &= checkPassword(event, $("#passwordMod"));
-    nextPage &= checkRepeatPassword(event, $("#repeatPasswordMod"));
+    if ($("#passwordCheckbox").prop('checked')) {
+        nextPage &= checkPassword(event, $("#passwordMod"));
+        nextPage &= checkRepeatPassword(event, $("#repeatPasswordMod"));
+    }
     nextPage &= checkBio(event, $("#bioMod"), maxLengthBio);
     nextPage &= checkFileField($("#photoMod"), imageChosen);
 
@@ -236,8 +240,8 @@ function checkPassword(event, pwd) {
         }
     }
     else {
-        $(pwd).removeClass("is-invalid");
-        return true;
+        $(pwd).addClass("is-invalid");
+        return false;
     }
 
 }
@@ -260,8 +264,8 @@ function checkRepeatPassword(event, repwd) {
         }
     }
     else {
-        $(repwd).removeClass("is-invalid");
-        return true;
+        $(repwd).addClass("is-invalid");
+        return false;
     }
 }
 
@@ -384,4 +388,18 @@ function openDeleteModal (event) {
 
 function executeDelete() {
     $('#buttonDel').parent().submit();
+}
+
+function togglePasswordInputs() {
+    $('#passwordMod').removeClass("is-invalid");
+    $('#repeatPasswordMod').removeClass("is-invalid");
+
+    if ($('#passwordMod').prop('disabled')) {
+        $('#passwordMod').prop('disabled', false);
+        $('#repeatPasswordMod').prop('disabled', false);
+    }
+    else {
+        $('#passwordMod').prop('disabled', true);
+        $('#repeatPasswordMod').prop('disabled', true);
+    }
 }
